@@ -261,13 +261,25 @@ class LanguageView(discord.ui.View):
     async def set_french(self, interaction: discord.Interaction, button: discord.ui.Button):
         """Définir le français comme langue"""
         translator.set_guild_language(self.guild_id, 'fr')
-        await interaction.response.send_message("✅ Langue définie sur Français", ephemeral=True)
+        
+        # Mettre à jour l'embed pour refléter le changement
+        updated_embed = create_language_embed(self.guild_id)
+        await interaction.response.edit_message(embed=updated_embed, view=self)
+        
+        # Envoyer un message de confirmation
+        await interaction.followup.send("✅ Langue définie sur Français", ephemeral=True)
     
     @discord.ui.button(label="🇬🇧 English", style=discord.ButtonStyle.secondary)
     async def set_english(self, interaction: discord.Interaction, button: discord.ui.Button):
         """Définir l'anglais comme langue"""
         translator.set_guild_language(self.guild_id, 'en')
-        await interaction.response.send_message("✅ Language set to English", ephemeral=True)
+        
+        # Mettre à jour l'embed pour refléter le changement
+        updated_embed = create_language_embed(self.guild_id)
+        await interaction.response.edit_message(embed=updated_embed, view=self)
+        
+        # Envoyer un message de confirmation
+        await interaction.followup.send("✅ Language set to English", ephemeral=True)
 
 
 # Fonctions pour créer les embeds

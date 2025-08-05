@@ -23,6 +23,22 @@
 
 ## ⚙️ Fonctionnalités principales
 
+### 🌍 **Système de traduction multilingue**
+
+#### Support complet français/anglais
+- **Interface dynamique** : Tous les éléments UI traduits (modals, boutons, embeds, messages)
+- **Changement instantané** : Boutons 🇫🇷/🇬🇧 pour basculer entre les langues
+- **Configuration par serveur** : Chaque serveur peut définir sa langue par défaut
+- **350+ clés de traduction** : Messages d'erreur, notifications, commandes, etc.
+- **Système extensible** : Architecture prête pour d'autres langues
+
+#### Éléments traduits
+- Commandes `/agis`, `/setup`, `/check`, `/validate`, `/categories`
+- Modals de signalement avec champs dynamiques
+- Messages de validation et notifications
+- Erreurs et messages système
+- Interface de configuration complète
+
 ### 🔔 **Système de signalement**
 
 #### `/agis` - Signalement anonyme
@@ -146,6 +162,12 @@
 - Intents : `guilds`, `members`, `message_content`, `dm_messages`
 - Gestion des événements et interactions
 - Commandes slash synchronisées
+
+#### **Système de traduction**
+- `TranslationManager` : Gestion multilingue complète
+- Configuration par serveur avec persistance
+- Support fallback automatique français → anglais
+- Architecture extensible pour nouvelles langues
 
 #### **Système de sécurité**
 - `SecurityValidator` : Sanitisation des entrées
@@ -312,5 +334,7 @@ python bot.py
 - ✅ Interface intuitive
 - ✅ Système de preuves
 - ✅ Logs d'audit complets
+- ✅ **Support multilingue complet** (FR/EN)
+- ✅ **Interface entièrement traduite**
 
 **Prêt pour la production** avec surveillance et maintenance appropriées.

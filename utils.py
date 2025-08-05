@@ -54,8 +54,17 @@ class SecurityValidator:
         if SecurityValidator.validate_discord_id(username):
             return True
             
-        # Valider le format nom d'utilisateur
-        return re.match(r'^[a-zA-Z0-9._]{2,32}$', username.replace('#', '')) is not None
+        # Nettoyer le nom d'utilisateur (enlever @, #, espaces en début/fin)
+        clean_username = username.strip().lstrip('@').split('#')[0]
+        
+        # Vérifier la longueur après nettoyage
+        if len(clean_username) < 1 or len(clean_username) > 32:
+            return False
+            
+        # Discord permet maintenant presque tous les caractères dans les noms d'utilisateur
+        # On vérifie juste qu'il n'y a pas de caractères de contrôle dangereux
+        forbidden_chars = ['\n', '\r', '\t', '\0']
+        return not any(char in clean_username for char in forbidden_chars)
 
 class RateLimiter:
     """Système de limitation de taux pour éviter le spam"""
