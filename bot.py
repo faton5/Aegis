@@ -2,8 +2,26 @@ import discord
 from discord import app_commands
 import dotenv 
 import os
+import sys
 from datetime import datetime, timedelta
 import asyncio
+import logging
+
+# Configuration de l'encodage pour éviter les erreurs Unicode sur Windows
+if sys.platform == "win32":
+    # Forcer l'encodage UTF-8 pour stdout/stderr
+    import codecs
+    sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+    sys.stderr = codecs.getwriter("utf-8")(sys.stderr.detach())
+    
+    # Configuration du logging pour UTF-8
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
 
 # Charger les variables d'environnement AVANT d'importer config
 dotenv.load_dotenv()
@@ -93,8 +111,9 @@ evidence_collector = EvidenceCollector()
 
 # View pour sélectionner la catégorie avant le modal
 class CategorySelectView(discord.ui.View):
-    def __init__(self):
+    def __init__(self, guild_id: int):
         super().__init__(timeout=300)
+        self.guild_id = guild_id
         self.selected_category = None
 
     @discord.ui.select(
@@ -118,13 +137,14 @@ class CategorySelectView(discord.ui.View):
             f"**Catégorie sélectionnée :** {REPORT_CATEGORIES[self.selected_category]}\n\nVotre rapport repose-t-il sur une preuve ?",
             discord.Color.blue()
         )
-        view = ProofSelectView(self.selected_category)
+        view = ProofSelectView(self.guild_id, self.selected_category)
         await interaction.response.edit_message(embed=embed, view=view)
 
 # View pour sélectionner si on a des preuves
 class ProofSelectView(discord.ui.View):
-    def __init__(self, category: str):
+    def __init__(self, guild_id: int, category: str):
         super().__init__(timeout=300)
+        self.guild_id = guild_id
         self.selected_category = category
         self.has_proof = None
 
@@ -138,41 +158,47 @@ class ProofSelectView(discord.ui.View):
     async def proof_select(self, interaction: discord.Interaction, select: discord.ui.Select):
         self.has_proof = select.values[0]
         # Ouvrir le modal avec toutes les données
-        modal = AgisReportModal(self.selected_category, self.has_proof)
+        modal = AgisReportModal(self.guild_id, self.selected_category, self.has_proof)
         await interaction.response.send_modal(modal)
 
 # Modal pour la commande /agis
-class AgisReportModal(discord.ui.Modal, title="Signalement Agis - Rapport anonyme"):
-    def __init__(self, category: str = None, has_proof: str = None):
-        super().__init__()
+class AgisReportModal(discord.ui.Modal):
+    def __init__(self, guild_id: int, category: str = None, has_proof: str = None):
+        # Initialiser avec titre traduit
+        title = translator.t("report_modal_title", guild_id)
+        super().__init__(title=title)
+        self.guild_id = guild_id
         self.selected_category = category
         self.has_proof = has_proof
-    # Nom d'utilisateur à signaler
-    target_username = discord.ui.TextInput(
-        label="Nom d'utilisateur à signaler",
-        placeholder="@utilisateur, pseudo, ou ID Discord (ex: 123456789012345678)...",
-        required=True,
-        max_length=BOT_CONFIG["MAX_USERNAME_LENGTH"]
-    )
-    
-    
-    # Motif du signalement
-    report_reason = discord.ui.TextInput(
-        label="Motif du signalement",
-        placeholder="Explication factuelle du comportement ou contenu concerné...",
-        required=True,
-        style=discord.TextStyle.paragraph,
-        max_length=BOT_CONFIG["MAX_REPORT_LENGTH"]
-    )
-    
-    # Liens et éléments complémentaires (combinés)
-    additional_evidence = discord.ui.TextInput(
-        label="Liens et preuves (optionnel)",
-        placeholder="Liens de messages, screenshots, logs, autres preuves...",
-        required=False,
-        style=discord.TextStyle.paragraph,
-        max_length=BOT_CONFIG["MAX_EVIDENCE_LENGTH"]
-    )
+        
+        # Définir les champs avec traductions
+        self.target_username = discord.ui.TextInput(
+            label=translator.t("username_label", guild_id),
+            placeholder=translator.t("username_placeholder", guild_id),
+            required=True,
+            max_length=BOT_CONFIG["MAX_USERNAME_LENGTH"]
+        )
+        
+        self.report_reason = discord.ui.TextInput(
+            label=translator.t("reason_label", guild_id),
+            placeholder=translator.t("reason_placeholder", guild_id),
+            required=True,
+            style=discord.TextStyle.paragraph,
+            max_length=BOT_CONFIG["MAX_REPORT_LENGTH"]
+        )
+        
+        self.additional_evidence = discord.ui.TextInput(
+            label=translator.t("evidence_label", guild_id),
+            placeholder=translator.t("evidence_placeholder", guild_id),
+            required=False,
+            style=discord.TextStyle.paragraph,
+            max_length=BOT_CONFIG["MAX_EVIDENCE_LENGTH"]
+        )
+        
+        # Ajouter les champs au modal
+        self.add_item(self.target_username)
+        self.add_item(self.report_reason)
+        self.add_item(self.additional_evidence)
     
     
     async def on_submit(self, interaction: discord.Interaction):
@@ -794,7 +820,7 @@ async def agis_report(interaction: discord.Interaction):
         "Sélectionnez la catégorie de votre signalement :",
         discord.Color.blue()
     )
-    view = CategorySelectView()
+    view = CategorySelectView(interaction.guild.id)
     await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
 
 # Commande slash /categories (pour voir les catégories disponibles)
