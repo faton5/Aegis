@@ -25,6 +25,13 @@ TRANSLATIONS = {
         "other": "Autre",
         
         # Interface utilisateur
+        "report_modal_title": "Signalement Agis - Rapport anonyme",
+        "username_label": "Nom d'utilisateur à signaler",
+        "username_placeholder": "@utilisateur, pseudo, ou ID Discord (ex: 123456789012345678)...",
+        "reason_label": "Motif du signalement",
+        "reason_placeholder": "Décrivez les faits observés de manière factuelle...",
+        "evidence_label": "Liens et preuves (optionnel)",
+        "evidence_placeholder": "Liens de messages, screenshots, logs, autres preuves...",
         "report_button": "Faire un signalement",
         "validate_button": "Valider",
         "reject_button": "Rejeter",
@@ -77,6 +84,13 @@ TRANSLATIONS = {
         "other": "Other",
         
         # User interface
+        "report_modal_title": "Agis Report - Anonymous Report",
+        "username_label": "Username to report",
+        "username_placeholder": "@username, display name, or Discord ID (e.g., 123456789012345678)...",
+        "reason_label": "Report reason",
+        "reason_placeholder": "Describe the observed facts objectively...",
+        "evidence_label": "Links and evidence (optional)",
+        "evidence_placeholder": "Message links, screenshots, logs, other evidence...",
         "report_button": "Make a report",
         "validate_button": "Validate",
         "reject_button": "Reject",
@@ -125,12 +139,10 @@ class TranslationManager:
         if language not in TRANSLATIONS:
             return False
         
-        config = guild_config.get_guild_config(guild_id) or {}
-        config['language'] = language
-        guild_config.set_guild_config(guild_id, config)
+        guild_config.update_guild_config(guild_id, {'language': language})
         return True
     
-    def t(self, key: str, guild_id: int = None, language: str = None) -> str:
+    def t(self, key: str, guild_id: int = None, language: str = None, fallback: str = None) -> str:
         """
         Traduit une clé selon la langue de la guilde
         
@@ -157,8 +169,8 @@ class TranslationManager:
             if fallback_lang in TRANSLATIONS and key in TRANSLATIONS[fallback_lang]:
                 return TRANSLATIONS[fallback_lang][key]
         
-        # Retourne la clé si aucune traduction trouvée
-        return key
+        # Retourne le fallback ou la clé si aucune traduction trouvée
+        return fallback if fallback else key
     
     def get_available_languages(self) -> Dict[str, str]:
         """Retourne la liste des langues disponibles"""
