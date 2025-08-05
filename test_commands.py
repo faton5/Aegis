@@ -8,6 +8,7 @@ from config import BOT_CONFIG, REPORT_CATEGORIES, ERROR_MESSAGES
 from utils import SecurityValidator, RateLimiter, ReportTracker, AuditLogger, logger
 from supabase_client import supabase_client
 from guild_config import guild_config
+from translations import translator
 
 
 class TestBugLogger:
@@ -29,23 +30,23 @@ class TestBugLogger:
         self.bugs_found.append(bug_entry)
         
         # Logger dans le fichier aegis_bot.log
-        logger.error(f"🐛 BUG DÉTECTÉ - Test: {test_name} | Erreur: {error} | Contexte: {context}")
-        logger.error(f"🐛 TRACEBACK: {traceback.format_exc()}")
+        logger.error(translator.t("bug_detected_log", fallback="🐛 BUG DÉTECTÉ - Test: {test_name} | Erreur: {error} | Contexte: {context}").format(test_name=test_name, error=error, context=context))
+        logger.error(translator.t("traceback_log", fallback="🐛 TRACEBACK: {traceback}").format(traceback=traceback.format_exc()))
         
         return bug_entry
     
     def get_bugs_summary(self):
         """Retourne un résumé des bugs trouvés"""
         if not self.bugs_found:
-            return "✅ Aucun bug détecté lors des tests !"
+            return translator.t("no_bugs_detected_summary", fallback="✅ Aucun bug détecté lors des tests !")
         
-        summary = f"🐛 **{len(self.bugs_found)} bug(s) détecté(s):**\n\n"
+        summary = translator.t("bugs_detected_summary", fallback="🐛 **{count} bug(s) détecté(s):**\n\n").format(count=len(self.bugs_found))
         for i, bug in enumerate(self.bugs_found, 1):
-            summary += f"**{i}.** `{bug['test_name']}`\n"
-            summary += f"   • Erreur: `{bug['error_type']}: {bug['error_message']}`\n"
+            summary += translator.t("bug_entry_name", fallback="**{i}.** `{test_name}`\n").format(i=i, test_name=bug['test_name'])
+            summary += translator.t("bug_entry_error", fallback="   • Erreur: `{error_type}: {error_message}`\n").format(error_type=bug['error_type'], error_message=bug['error_message'])
             if bug['context']:
-                summary += f"   • Contexte: {bug['context']}\n"
-            summary += f"   • Horodatage: {bug['timestamp']}\n\n"
+                summary += translator.t("bug_entry_context", fallback="   • Contexte: {context}\n").format(context=bug['context'])
+            summary += translator.t("bug_entry_timestamp", fallback="   • Horodatage: {timestamp}\n\n").format(timestamp=bug['timestamp'])
         
         return summary
 
@@ -70,10 +71,10 @@ async def test_security_validator():
         try:
             is_valid = validator.validate_input(input_text)
             sanitized = validator.sanitize_input(input_text)
-            results.append(f"✅ {name}: Valide={is_valid}, Longueur sanitisée={len(sanitized)}")
+            results.append(translator.t("test_valid_sanitized", fallback="✅ {name}: Valide={is_valid}, Longueur sanitisée={length}").format(name=name, is_valid=is_valid, length=len(sanitized)))
         except Exception as e:
             test_bug_logger.log_bug("security_validator", e, f"Input: {input_text[:50]}...")
-            results.append(f"❌ {name}: ERREUR - {e}")
+            results.append(translator.t("test_error", fallback="❌ {name}: ERREUR - {error}").format(name=name, error=e))
     
     return results
 
