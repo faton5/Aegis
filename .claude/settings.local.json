@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__supabase-community-supabase-mcp__list_tables",
+      "mcp__supabase-community-supabase-mcp__get_project_url",
+      "mcp__supabase-community-supabase-mcp__apply_migration",
+      "mcp__supabase-community-supabase-mcp__get_anon_key",
+      "Bash(python:*)",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -m pip install -r requirements.txt)",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" bot.py)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"from guild_config import guild_config; print(f''Migration test: {guild_config.list_configured_guilds()}'')\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"from config import BOT_CONFIG; print(f''TEST_MODE_ENABLED: {BOT_CONFIG[\"\"TEST_MODE_ENABLED\"\"]}'')\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import dotenv; dotenv.load_dotenv(); from config import BOT_CONFIG; print(f''TEST_MODE_ENABLED: {BOT_CONFIG[\"\"TEST_MODE_ENABLED\"\"]}'')\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''C:/Users/FATON-GAMES/Nextcloud/Documents/Programmation/Aegis/Aegis-bot/setup_views.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''C:/Users/FATON-GAMES/Nextcloud/Documents/Programmation/Aegis/Aegis-bot/bot.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''bot.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''setup_views.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''bot.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''bot.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"from config import BOT_CONFIG; print(f''TEST_MODE_ENABLED: {BOT_CONFIG[\"\"TEST_MODE_ENABLED\"\"]}'')\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"from guild_config import guild_config; print(f''Migration test: {guild_config.list_configured_guilds()}'')\")"
+    ],
+    "deny": []
+  }
+}

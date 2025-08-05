@@ -1,0 +1,50 @@
+{
+  "auto_actions": {
+    "critical": "ban",
+    "high": "quarantine",
+    "medium": "alert",
+    "low": "none"
+  },
+  "quarantine": {
+    "enabled": true,
+    "role_name": "Quarantaine Aegis",
+    "duration_hours": 60,
+    "remove_roles": true,
+    "restricted_channels": []
+  },
+  "thresholds": {
+    "auto_action_min_validations": 2,
+    "alert_admins_on_critical": true,
+    "alert_admins_on_high": false,
+    "require_manual_review_for_ban": true
+  },
+  "channels": {
+    "flag_alerts": null,
+    "critical_alerts": null,
+    "ban_logs": null,
+    "admin_notifications": null
+  },
+  "notifications": {
+    "dm_admins_on_critical": true,
+    "ping_admins_on_critical": true,
+    "webhook_url": null
+  },
+  "permissions": {
+    "check_command_roles": [
+      "Validateur"
+    ],
+    "config_command_roles": [
+      "Administrateur"
+    ],
+    "bypass_auto_actions": [
+      "Modérateur",
+      "Administrateur"
+    ]
+  },
+  "logging": {
+    "log_all_checks": false,
+    "log_auto_actions": true,
+    "retention_days": 30
+  },
+  "quarantine.duration_hours": 48
+}
