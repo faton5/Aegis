@@ -37,6 +37,7 @@ from setup_views import SetupMainView
 from guild_config import guild_config
 from debug_tools import debug_system, test_supabase_manual, setup_debug_logging
 from test_commands import register_test_commands
+from translations import translator
 # Anciens décorateurs supprimés - interaction directe maintenant
 
 # Activer le debug avancé
@@ -115,26 +116,35 @@ class CategorySelectView(discord.ui.View):
         super().__init__(timeout=300)
         self.guild_id = guild_id
         self.selected_category = None
-
-    @discord.ui.select(
-        placeholder="Sélectionnez une catégorie de signalement...",
-        options=[
-            discord.SelectOption(label="🚨 Harcèlement", value="harassment", description="Comportement de harcèlement"),
-            discord.SelectOption(label="🔞 Contenu inapproprié", value="inappropriate_content", description="Contenu NSFW ou inapproprié"),
-            discord.SelectOption(label="👁️ Comportement suspect", value="suspicious_behavior", description="Activité suspecte"),
-            discord.SelectOption(label="🛡️ Sécurité des mineurs", value="child_safety", description="Risques pour les mineurs"),
-            discord.SelectOption(label="📢 Spam", value="spam", description="Messages répétitifs ou indésirables"),
-            discord.SelectOption(label="💰 Arnaque", value="scam", description="Tentative d'escroquerie"),
-            discord.SelectOption(label="⚔️ Menaces", value="threats", description="Menaces ou violence"),
-            discord.SelectOption(label="❓ Autre", value="other", description="Autre type de problème")
-        ]
-    )
+        
+        # Créer les options avec traductions
+        options = []
+        categories = ["harassment", "inappropriate_content", "suspicious_behavior", "child_safety", "spam", "scam", "threats", "other"]
+        emojis = ["🚨", "🔞", "👁️", "🛡️", "📢", "💰", "⚔️", "❓"]
+        
+        for cat, emoji in zip(categories, emojis):
+            label = f"{emoji} {translator.t(cat, guild_id)}"
+            description = translator.t(f"{cat}_desc", guild_id, fallback=translator.t(cat, guild_id))
+            options.append(discord.SelectOption(label=label, value=cat, description=description))
+        
+        # Créer le select avec options traduites
+        self.category_select_menu = discord.ui.Select(
+            placeholder=translator.t("select_category_placeholder", guild_id),
+            options=options
+        )
+        self.category_select_menu.callback = lambda interaction: self.category_select(interaction, self.category_select_menu)
+        self.add_item(self.category_select_menu)
     async def category_select(self, interaction: discord.Interaction, select: discord.ui.Select):
         self.selected_category = select.values[0]
         # Passer à la sélection de preuve
+        title = translator.t("report_step2_title", self.guild_id, fallback="🛡️ Signalement Agis - Étape 2")
+        category_name = translator.t(self.selected_category, self.guild_id)
+        selected_text = translator.t("category_selected", self.guild_id, fallback="Catégorie sélectionnée")
+        proof_question = translator.t("proof_question", self.guild_id, fallback="Votre rapport repose-t-il sur une preuve ?")
+        
         embed = create_secure_embed(
-            "🛡️ Signalement Agis - Étape 2", 
-            f"**Catégorie sélectionnée :** {REPORT_CATEGORIES[self.selected_category]}\n\nVotre rapport repose-t-il sur une preuve ?",
+            title, 
+            f"**{selected_text} :** {category_name}\n\n{proof_question}",
             discord.Color.blue()
         )
         view = ProofSelectView(self.guild_id, self.selected_category)
@@ -147,14 +157,27 @@ class ProofSelectView(discord.ui.View):
         self.guild_id = guild_id
         self.selected_category = category
         self.has_proof = None
-
-    @discord.ui.select(
-        placeholder="Votre rapport repose-t-il sur une preuve ?",
-        options=[
-            discord.SelectOption(label="✅ Oui", value="oui", description="J'ai des preuves (captures, liens, etc.)"),
-            discord.SelectOption(label="❌ Non", value="non", description="Pas de preuve directe disponible")
+        
+        # Créer le select avec traductions
+        options = [
+            discord.SelectOption(
+                label=f"✅ {translator.t('proof_yes', guild_id)}", 
+                value="oui", 
+                description=translator.t('proof_yes_desc', guild_id)
+            ),
+            discord.SelectOption(
+                label=f"❌ {translator.t('proof_no', guild_id)}", 
+                value="non", 
+                description=translator.t('proof_no_desc', guild_id)
+            )
         ]
-    )
+        
+        self.proof_select_menu = discord.ui.Select(
+            placeholder=translator.t('select_proof_placeholder', guild_id),
+            options=options
+        )
+        self.proof_select_menu.callback = lambda interaction: self.proof_select(interaction, self.proof_select_menu)
+        self.add_item(self.proof_select_menu)
     async def proof_select(self, interaction: discord.Interaction, select: discord.ui.Select):
         self.has_proof = select.values[0]
         # Ouvrir le modal avec toutes les données
@@ -231,7 +254,7 @@ class AgisReportModal(discord.ui.Modal):
         
         if not security_validator.validate_username(target_username):
             await interaction.followup.send(
-                ERROR_MESSAGES["invalid_input"] + " Nom d'utilisateur invalide.",
+                translator.t("invalid_input", self.guild_id) + " " + translator.t("invalid_username", self.guild_id),
                 ephemeral=True
             )
             return
@@ -241,7 +264,7 @@ class AgisReportModal(discord.ui.Modal):
             interaction.user.id, target_username, report_reason
         ):
             await interaction.followup.send(
-                "⚠️ Signalement similaire déjà soumis récemment.",
+                "⚠️ " + translator.t("duplicate_report", self.guild_id),
                 ephemeral=True
             )
             return
@@ -251,29 +274,29 @@ class AgisReportModal(discord.ui.Modal):
         
         # Créer un embed sécurisé
         embed = create_secure_embed(
-            "🛡️ Nouveau signalement Agis",
-            "Un nouveau signalement anonyme a été reçu",
+            translator.t("new_report_title", self.guild_id),
+            translator.t("new_report_description", self.guild_id),
             discord.Color.orange()
         )
         
-        embed.add_field(name="🆔 ID Signalement", value=f"`{report_id}`", inline=False)
-        embed.add_field(name="👤 Utilisateur signalé", value=target_username, inline=False)
+        embed.add_field(name=translator.t("report_id_field", self.guild_id), value=f"`{report_id}`", inline=False)
+        embed.add_field(name=translator.t("reported_user_field", self.guild_id), value=target_username, inline=False)
         # Utiliser la catégorie sélectionnée
-        category_display = REPORT_CATEGORIES.get(self.selected_category, "❓ Autre") if self.selected_category else "❓ Autre"
-        embed.add_field(name="📂 Catégorie", value=category_display, inline=False)
-        embed.add_field(name="📝 Motif", value=report_reason, inline=False)
+        category_display = translator.t(self.selected_category, self.guild_id) if self.selected_category else translator.t("other", self.guild_id)
+        embed.add_field(name=translator.t("category_field", self.guild_id), value=category_display, inline=False)
+        embed.add_field(name=translator.t("reason_field", self.guild_id), value=report_reason, inline=False)
         
         if self.additional_evidence.value:
             evidence = security_validator.sanitize_input(
                 self.additional_evidence.value, BOT_CONFIG["MAX_EVIDENCE_LENGTH"]
             )
-            embed.add_field(name="🔗 Liens et preuves", value=evidence, inline=False)
+            embed.add_field(name=translator.t("links_evidence_field", self.guild_id), value=evidence, inline=False)
         
-        proof_display = "✅ Oui" if self.has_proof == "oui" else "❌ Non"
-        embed.add_field(name="✅ Preuve disponible", value=proof_display, inline=True)
-        embed.add_field(name="🕐 Date du signalement", value=datetime.now().strftime("%d/%m/%Y %H:%M"), inline=True)
+        proof_display = translator.t("yes", self.guild_id) if self.has_proof == "oui" else translator.t("no", self.guild_id)
+        embed.add_field(name=translator.t("proof_available_field", self.guild_id), value=proof_display, inline=True)
+        embed.add_field(name=translator.t("report_date_field", self.guild_id), value=datetime.now().strftime("%d/%m/%Y %H:%M"), inline=True)
         
-        embed.set_footer(text="Signalement anonyme • En attente de validation")
+        embed.set_footer(text=translator.t("report_footer", self.guild_id))
         
         # Log du signalement
         audit_logger.log_report_submitted(
@@ -321,41 +344,35 @@ class AgisReportModal(discord.ui.Modal):
             # Envoyer un DM à l'utilisateur pour la collecte de preuves
             try:
                 dm_embed = create_secure_embed(
-                    "📨 Signalement Agis - Preuves supplémentaires",
-                    f"Votre signalement **{report_id}** a été soumis avec succès.",
+                    translator.t("additional_evidence_title", self.guild_id),
+                    translator.t("report_submitted_dm", self.guild_id).format(report_id=report_id),
                     discord.Color.blue()
                 )
                 dm_embed.add_field(
-                    name="💡 Vous pouvez maintenant envoyer des preuves",
-                    value="Répondez à ce message privé avec :\n"
-                          "• Captures d'écran\n"
-                          "• Messages copiés\n"
-                          "• Liens vers des preuves\n"
-                          "• Tout autre élément pertinent\n\n"
-                          "⏰ **Vous avez 24h** pour envoyer vos preuves.\n"
-                          "🔒 **Votre anonymat** est préservé - les preuves seront transférées sans révéler votre identité.",
+                    name=translator.t("send_evidence_prompt", self.guild_id),
+                    value=translator.t("evidence_instructions", self.guild_id) + "\n\n" + 
+                          translator.t("evidence_timeout", self.guild_id) + "\n" +
+                          translator.t("anonymity_preserved", self.guild_id),
                     inline=False
                 )
                 dm_embed.add_field(
-                    name="🚫 Pour arrêter",
-                    value="Envoyez simplement le mot `STOP` pour ne plus recevoir de demandes de preuves.",
+                    name=translator.t("stop_evidence", self.guild_id),
+                    value=translator.t("stop_evidence_instructions", self.guild_id),
                     inline=False
                 )
-                dm_embed.set_footer(text=f"ID: {report_id} • Expire dans 24h")
+                dm_embed.set_footer(text=translator.t("evidence_footer", self.guild_id).format(report_id=report_id))
                 
                 await interaction.user.send(embed=dm_embed)
                 
                 await interaction.followup.send(
-                    "✅ Votre signalement anonyme a été envoyé avec succès !\n"
-                    "📨 Un message privé vous a été envoyé pour collecter d'éventuelles preuves supplémentaires.",
+                    translator.t("report_success_with_dm", self.guild_id).format(report_id=report_id),
                     ephemeral=True
                 )
                 
             except discord.Forbidden:
                 # L'utilisateur n'accepte pas les DM
                 await interaction.followup.send(
-                    "✅ Votre signalement anonyme a été envoyé avec succès !\n"
-                    "⚠️ Impossible d'envoyer un DM - vérifiez vos paramètres de confidentialité si vous souhaitez envoyer des preuves supplémentaires.",
+                    translator.t("report_success_no_dm", self.guild_id).format(report_id=report_id),
                     ephemeral=True
                 )
         else:
@@ -402,9 +419,41 @@ class ValidationView(discord.ui.View):
         self.category = category
         self.reason = reason
         self.guild_name = guild_name
+        
+        # Créer les boutons avec traductions
+        self.validate_btn = discord.ui.Button(
+            label=translator.t("validate_button", guild_id),
+            style=discord.ButtonStyle.green,
+            custom_id="validate_report"
+        )
+        self.validate_btn.callback = self.validate_button
+        self.add_item(self.validate_btn)
+        
+        self.reject_btn = discord.ui.Button(
+            label=translator.t("reject_button", guild_id),
+            style=discord.ButtonStyle.red,
+            custom_id="reject_report"
+        )
+        self.reject_btn.callback = self.reject_button
+        self.add_item(self.reject_btn)
+        
+        self.details_btn = discord.ui.Button(
+            label=translator.t("request_details_button", guild_id),
+            style=discord.ButtonStyle.blurple,
+            custom_id="request_details"
+        )
+        self.details_btn.callback = self.request_details_button
+        self.add_item(self.details_btn)
+        
+        self.anonymize_btn = discord.ui.Button(
+            label=translator.t("anonymize_button", guild_id),
+            style=discord.ButtonStyle.gray,
+            custom_id="anonymize_report"
+        )
+        self.anonymize_btn.callback = self.anonymize_button
+        self.add_item(self.anonymize_btn)
     
-    @discord.ui.button(label="✅ Valider", style=discord.ButtonStyle.green, custom_id="validate_report")
-    async def validate_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+    async def validate_button(self, interaction: discord.Interaction):
         try:
             await interaction.response.defer(ephemeral=True)
         except discord.InteractionResponded:
@@ -416,7 +465,7 @@ class ValidationView(discord.ui.View):
             
         if self.is_finalized:
             await interaction.followup.send(
-                "ℹ️ Ce signalement a déjà été finalisé.", ephemeral=True
+                translator.t("already_finalized", self.guild_id), ephemeral=True
             )
             return
             
@@ -427,7 +476,7 @@ class ValidationView(discord.ui.View):
             # Empêcher la double validation par le même utilisateur
             if interaction.user.id in self.validators:
                 await interaction.followup.send(
-                    "⚠️ Vous avez déjà validé ce signalement.", ephemeral=True
+                    translator.t("already_validated", self.guild_id), ephemeral=True
                 )
                 return
                 
@@ -782,9 +831,10 @@ async def agis_report(interaction: discord.Interaction):
     
     if not alerts_forum or not validator_role:
         # Message d'erreur détaillé avec instructions claires
+        guild_id = interaction.guild.id
         error_embed = create_secure_embed(
             "❌ Configuration manquante",
-            "Le bot Agis n'est pas encore configuré sur ce serveur.",
+            translator.t("bot_not_configured", guild_id),
             discord.Color.red()
         )
         
@@ -795,29 +845,32 @@ async def agis_report(interaction: discord.Interaction):
             missing_items.append(f"• Rôle `@{BOT_CONFIG['VALIDATOR_ROLE_NAME']}`")
         
         error_embed.add_field(
-            name="🔧 Éléments manquants",
+            name=translator.t("missing_elements", guild_id),
             value="\n".join(missing_items),
             inline=False
         )
         error_embed.add_field(
-            name="👑 Pour les administrateurs",
-            value="Utilisez `/setup` pour configurer automatiquement le bot.",
+            name=translator.t("for_admins", guild_id),
+            value=translator.t("use_setup", guild_id),
             inline=False
         )
         error_embed.add_field(
-            name="💡 Que fait /setup ?",
-            value="• Crée le forum pour les signalements\n• Crée le rôle pour les validateurs\n• Configure les permissions",
+            name=translator.t("what_does_setup", guild_id),
+            value=translator.t("setup_description", guild_id),
             inline=False
         )
-        error_embed.set_footer(text="Configuration requise avant utilisation")
+        error_embed.set_footer(text=translator.t("config_required", guild_id))
         
         await interaction.response.send_message(embed=error_embed, ephemeral=True)
         return
     
     # Envoyer le sélecteur de catégorie
+    title = translator.t("report_title", interaction.guild.id, fallback="🛡️ Signalement Agis")
+    description = translator.t("select_category_description", interaction.guild.id, fallback="Sélectionnez la catégorie de votre signalement :")
+    
     embed = create_secure_embed(
-        "🛡️ Signalement Agis", 
-        "Sélectionnez la catégorie de votre signalement :",
+        title, 
+        description,
         discord.Color.blue()
     )
     view = CategorySelectView(interaction.guild.id)
