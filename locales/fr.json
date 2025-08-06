@@ -1,0 +1,58 @@
+{
+  "report_modal_title": "Signalement Agis - Rapport anonyme",
+  "report_modal_target_label": "Nom d'utilisateur à signaler",
+  "report_modal_target_placeholder": "Entrez le nom d'utilisateur exact",
+  "report_modal_reason_label": "Raison du signalement",
+  "report_modal_reason_placeholder": "Décrivez la raison de votre signalement (500 caractères max)",
+  "report_modal_evidence_label": "Preuves (optionnel)",
+  "report_modal_evidence_placeholder": "Liens, captures d'écran, ou autres preuves",
+  
+  "category_harassment": "🚫 Harcèlement",
+  "category_inappropriate_content": "📵 Contenu inapproprié",
+  "category_suspicious_behavior": "🔍 Comportement suspect",
+  "category_child_safety": "🛡️ Sécurité des mineurs",
+  "category_spam": "📢 Spam/Flood",
+  "category_scam": "💰 Arnaque/Phishing",
+  "category_threats": "⚔️ Menaces",
+  "category_other": "❓ Autre",
+  
+  "report_submitted_title": "✅ Signalement Envoyé",
+  "report_submitted_description": "Votre signalement **{report_id}** a été transmis aux modérateurs.\n\n📝 **Cible**: {target}\n🏷️ **Catégorie**: {category}\n⏰ **ID**: `{report_id}`",
+  
+  "validation_title": "🔍 Validation de Signalement",
+  "validation_approved": "✅ Signalement Validé",
+  "validation_rejected": "❌ Signalement Rejeté",
+  
+  "user_flagged_centralized": "🚩 L'utilisateur {user} a été signalé sur la base de données centralisée.",
+  "user_check_clean": "✅ Utilisateur {user} : Aucun signalement trouvé dans la base de données.",
+  
+  "error_guild_not_configured": "❌ Ce serveur n'est pas configuré pour utiliser Aegis.",
+  "error_missing_permissions": "❌ Vous n'avez pas les permissions nécessaires.",
+  "error_rate_limited": "⏰ Vous devez attendre {time} minutes avant de faire un nouveau signalement.",
+  "error_invalid_input": "❌ Les données fournies ne sont pas valides.",
+  "error_database_error": "❌ Erreur de base de données. Réessayez plus tard.",
+  "error_user_not_found": "❌ Utilisateur non trouvé ou inaccessible.",
+  
+  "setup_welcome_title": "🛠️ Configuration Aegis",
+  "setup_welcome_description": "Bienvenue dans la configuration d'Aegis !\n\nVeuillez sélectionner les éléments que vous souhaitez configurer :",
+  "setup_language_title": "🌐 Langue du Bot",
+  "setup_language_description": "Choisissez la langue principal pour votre serveur :",
+  "setup_complete_title": "✅ Configuration Terminée",
+  "setup_complete_description": "Aegis est maintenant configuré pour votre serveur !",
+  
+  "command_agis_description": "Créer un signalement anonyme",
+  "command_check_description": "Vérifier un utilisateur dans la base de données",
+  "command_validate_description": "Valider les signalements en attente",
+  "command_categories_description": "Afficher les catégories de signalement",
+  "command_setup_description": "Configurer Aegis pour votre serveur",
+  "command_anonymize_description": "Anonymiser un signalement existant",
+  
+  "button_submit_report": "📤 Envoyer le Signalement",
+  "button_approve": "✅ Approuver",
+  "button_reject": "❌ Rejeter",
+  "button_configure_forum": "📋 Configurer Forum",
+  "button_configure_roles": "👥 Configurer Rôles",
+  "button_set_language": "🌐 Définir Langue",
+  "button_back": "⬅️ Retour",
+  "button_finish": "✅ Terminer"
+}
