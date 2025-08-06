@@ -64,6 +64,7 @@ class ReportService:
                 guild_id=guild_id,
                 reporter_id=user_id,
                 target_username=self.validator.sanitize_input(target_username),
+                target_user_id=target_user_id,
                 category=category,
                 reason=self.validator.sanitize_input(reason),
                 evidence=self.validator.sanitize_input(evidence),

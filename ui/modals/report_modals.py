@@ -29,12 +29,12 @@ class AgisReportModal(Modal):
     def _create_inputs(self):
         """Créer les champs de saisie"""
         
-        # Champ nom d'utilisateur cible
+        # Champ nom d'utilisateur cible (accepte @mentions, noms, IDs)
         self.target_input = TextInput(
             label=self.translator.t("report_modal_target_label", self.guild_id),
             placeholder=self.translator.t("report_modal_target_placeholder", self.guild_id),
             required=True,
-            max_length=32,
+            max_length=100,  # Augmenté pour les mentions
             style=discord.TextStyle.short
         )
         self.add_item(self.target_input)
@@ -64,14 +64,25 @@ class AgisReportModal(Modal):
         try:
             logger.info(f"Signalement soumis par {interaction.user} dans {interaction.guild}")
             
-            # Récupérer les valeurs
-            target = self.target_input.value.strip()
+            # Récupérer les valeurs et extraire l'utilisateur
+            target_raw = self.target_input.value.strip()
             reason = self.reason_input.value.strip()
             evidence = self.evidence_input.value.strip() if self.evidence_input.value else ""
             
+            # Extraire les infos utilisateur (nom/ID)
+            target_user_data = await self._extract_user_info(interaction, target_raw)
+            if not target_user_data:
+                await interaction.response.send_message(
+                    f"❌ {self.translator.t('report_target_invalid', self.guild_id)}",
+                    ephemeral=True
+                )
+                return
+            
+            target_username, target_user_id = target_user_data
+            
             # Valider les données
             is_valid, error_msg = self.bot.security_validator.validate_report_data(
-                target, reason, evidence
+                target_username, reason, evidence
             )
             
             if not is_valid:
@@ -81,11 +92,12 @@ class AgisReportModal(Modal):
                 )
                 return
             
-            # Créer le signalement via le service
+            # Créer le signalement via le service (avec user ID si disponible)
             report = await self.bot.report_service.create_report(
                 user_id=interaction.user.id,
                 guild_id=interaction.guild_id,
-                target_username=target,
+                target_username=target_username,
+                target_user_id=target_user_id,  # Nouveau paramètre
                 category=self.category,
                 reason=reason,
                 evidence=evidence
@@ -113,10 +125,10 @@ class AgisReportModal(Modal):
                 return
             
             # Créer l'embed de confirmation
-            await self._send_confirmation(interaction, report, target)
+            await self._send_confirmation(interaction, report, target_username)
             
             # Créer le post dans le forum si configuré
-            await self._create_forum_post(interaction, report, target)
+            await self._create_forum_post(interaction, report, target_username)
             
             # Envoyer MP pour les preuves si nécessaire
             await self._send_evidence_dm(interaction, report)
@@ -333,3 +345,51 @@ class AgisReportModal(Modal):
             logger.warning(f"Impossible d'envoyer un MP à {interaction.user} (DM fermés)")
         except Exception as e:
             logger.error(f"Erreur lors de l'envoi du MP pour preuves: {e}")
+    
+    async def _extract_user_info(self, interaction: discord.Interaction, target_input: str):
+        """Extraire les informations utilisateur depuis une mention, nom ou ID"""
+        import re
+        
+        try:
+            target_input = target_input.strip()
+            
+            # 1. Vérifier si c'est une mention (<@123456789> ou <@!123456789>)
+            mention_match = re.match(r'<@!?(\d+)>', target_input)
+            if mention_match:
+                user_id = int(mention_match.group(1))
+                try:
+                    user = await interaction.client.fetch_user(user_id)
+                    return (user.name, user_id)
+                except:
+                    return (f"Unknown#{user_id}", user_id)
+            
+            # 2. Vérifier si c'est un ID numérique pur
+            if target_input.isdigit():
+                user_id = int(target_input)
+                try:
+                    user = await interaction.client.fetch_user(user_id)
+                    return (user.name, user_id)
+                except:
+                    return (f"Unknown#{user_id}", user_id)
+            
+            # 3. Chercher par nom dans le serveur
+            if interaction.guild:
+                # Chercher par nom exact
+                for member in interaction.guild.members:
+                    if member.name.lower() == target_input.lower() or member.display_name.lower() == target_input.lower():
+                        return (member.name, member.id)
+                
+                # Chercher par nom partiel si pas trouvé
+                for member in interaction.guild.members:
+                    if target_input.lower() in member.name.lower() or target_input.lower() in member.display_name.lower():
+                        return (member.name, member.id)
+            
+            # 4. Si aucune correspondance, traiter comme nom d'utilisateur (sans ID)
+            if len(target_input) >= 2 and len(target_input) <= 32:
+                return (target_input, None)
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Erreur extraction utilisateur '{target_input}': {e}")
+            return None

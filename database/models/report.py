@@ -18,6 +18,7 @@ class Report:
     reason: str
     evidence: str = ""
     status: str = "pending"  # pending, validated, rejected
+    target_user_id: Optional[int] = None  # ID Discord si disponible
     created_at: Optional[datetime] = None
     validated_by: Optional[int] = None
     validated_at: Optional[datetime] = None
@@ -53,6 +54,7 @@ class Report:
             'guild_id': self.guild_id,
             'reporter_id': self.reporter_id,
             'target_username': self.target_username,
+            'target_user_id': self.target_user_id,
             'category': self.category,
             'reason': self.reason,
             'evidence': self.evidence,
@@ -81,6 +83,7 @@ class Report:
             guild_id=data['guild_id'],
             reporter_id=data['reporter_id'],
             target_username=data['target_username'],
+            target_user_id=data.get('target_user_id'),
             category=data['category'],
             reason=data['reason'],
             evidence=data.get('evidence', ''),

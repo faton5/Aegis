@@ -71,9 +71,9 @@ class ReportValidationView(View):
                             else:
                                 flag_level = "low"
                             
-                            # Ajouter à Supabase
+                            # Ajouter à Supabase (avec user_id si disponible maintenant !)
                             await interaction.client.report_service.db.add_validated_report(
-                                user_id=0,  # On n'a pas l'ID, seulement le username
+                                user_id=report.target_user_id or 0,  # Utilise l'ID si disponible
                                 username=report.target_username,
                                 flag_level=flag_level,
                                 reason=report.reason,
