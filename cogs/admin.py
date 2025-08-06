@@ -153,11 +153,74 @@ class AdminCog(commands.Cog):
                 inline=True
             )
             
-            embed.add_field(
-                name="🗃️ Base de données",
-                value="🔄 Vérification en cours...\n(Fonctionnalité en développement)",
-                inline=False
-            )
+            # Chercher les signalements concernant cet utilisateur
+            user_reports = []
+            if hasattr(self.bot, 'report_service'):
+                for report in self.bot.report_service.active_reports.values():
+                    if report.target_username.lower() == user.name.lower() or report.target_username.lower() == user.display_name.lower():
+                        user_reports.append(report)
+            
+            if user_reports:
+                # Trier par date (plus récent en premier)
+                user_reports.sort(key=lambda r: r.created_at, reverse=True)
+                
+                # Statistiques
+                validated_count = len([r for r in user_reports if r.status == "validated"])
+                pending_count = len([r for r in user_reports if r.status == "pending"])
+                rejected_count = len([r for r in user_reports if r.status == "rejected"])
+                
+                embed.add_field(
+                    name="🚨 Signalements",
+                    value=f"**Total:** {len(user_reports)}\n**Validés:** {validated_count}\n**En attente:** {pending_count}\n**Rejetés:** {rejected_count}",
+                    inline=True
+                )
+                
+                # Détails des signalements récents (max 3)
+                recent_reports = user_reports[:3]
+                reports_text = ""
+                for report in recent_reports:
+                    status_emoji = {
+                        "validated": "✅",
+                        "pending": "🔄", 
+                        "rejected": "❌"
+                    }.get(report.status, "❓")
+                    
+                    reports_text += f"{status_emoji} **{report.id}** - {report.category}\n"
+                    reports_text += f"   *{report.reason[:50]}{'...' if len(report.reason) > 50 else ''}*\n"
+                
+                embed.add_field(
+                    name="📋 Signalements Récents",
+                    value=reports_text if reports_text else "Aucun",
+                    inline=False
+                )
+                
+                # Niveau de risque basé sur les signalements validés
+                if validated_count >= 3:
+                    risk_level = "🔴 **CRITIQUE**"
+                    embed.color = discord.Color.red()
+                elif validated_count >= 2:
+                    risk_level = "🟠 **ÉLEVÉ**"
+                    embed.color = discord.Color.orange()
+                elif validated_count >= 1:
+                    risk_level = "🟡 **MOYEN**"
+                    embed.color = discord.Color.gold()
+                else:
+                    risk_level = "🟢 **FAIBLE**"
+                    embed.color = discord.Color.green()
+                
+                embed.add_field(
+                    name="⚠️ Niveau de Risque",
+                    value=risk_level,
+                    inline=True
+                )
+                
+            else:
+                embed.add_field(
+                    name="🗃️ Base de données",
+                    value="✅ Aucun signalement trouvé\n*Utilisateur propre*",
+                    inline=False
+                )
+                embed.color = discord.Color.green()
             
             await interaction.followup.send(embed=embed, ephemeral=True)
             

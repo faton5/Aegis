@@ -250,10 +250,15 @@ class AgisReportModal(Modal):
                 icon_url=interaction.guild.icon.url if interaction.guild.icon else None
             )
             
+            # Créer la vue avec boutons de validation
+            from ui.views.validation_views import ReportValidationView
+            validation_view = ReportValidationView(report.id, interaction.guild_id)
+            
             # Créer le post dans le forum
             thread_with_message = await forum_channel.create_thread(
                 name=f"AEGIS-{report.id}",
                 embed=embed,
+                view=validation_view,
                 reason=f"Signalement automatique #{report.id}"
             )
             
