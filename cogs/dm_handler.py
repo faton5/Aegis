@@ -84,21 +84,18 @@ class DMHandlerCog(commands.Cog):
                 logger.warning(f"Thread {report.thread_id} non trouvé pour signalement {report.id}")
                 return
             
-            # Créer l'embed pour le message transféré
+            # Créer l'embed pour le message transféré (ANONYME)
             embed = discord.Embed(
-                title="💬 Message du Rapporteur",
+                title="💬 Message du Rapporteur (Anonyme)",
                 description=message.content if message.content else "*[Aucun texte]*",
                 color=discord.Color.blue(),
                 timestamp=message.created_at
             )
             
-            embed.set_author(
-                name=f"{message.author.display_name} ({message.author})",
-                icon_url=message.author.display_avatar.url
-            )
+            # PAS de set_author pour préserver l'anonymat
             
             embed.set_footer(
-                text=f"Signalement #{report.id} • Via MP"
+                text=f"Signalement #{report.id} • Réponse anonyme via MP"
             )
             
             # Ajouter les pièces jointes s'il y en a
@@ -118,9 +115,13 @@ class DMHandlerCog(commands.Cog):
             await thread.send(embed=embed)
             
             # Confirmer à l'utilisateur que son message a été transféré
+            from locales.translation_manager import translator
+            # Récupérer la guild depuis le thread pour les traductions
+            guild_id = thread.guild.id if hasattr(thread, 'guild') else None
+            
             confirmation_embed = discord.Embed(
-                title="✅ Message Transféré",
-                description=f"Votre message a été ajouté au signalement **#{report.id}**.",
+                title=translator.t("dm_transferred_title", guild_id) if guild_id else "✅ Message Transféré",
+                description=translator.t("dm_transferred_description", guild_id, report_id=report.id) if guild_id else f"Votre message a été ajouté au signalement **#{report.id}**.",
                 color=discord.Color.green()
             )
             
@@ -131,7 +132,7 @@ class DMHandlerCog(commands.Cog):
             )
             
             confirmation_embed.set_footer(
-                text="Les modérateurs verront votre message"
+                text="Les modérateurs verront votre message (anonyme)"
             )
             
             await message.author.send(embed=confirmation_embed)
