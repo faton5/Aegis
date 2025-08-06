@@ -1,114 +1,56 @@
-2025-08-05 20:48:32,009 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 20:55:13,611 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 20:55:22,889 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 21:00:30,066 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 21:00:48,941 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 21:01:02,582 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 21:01:23,785 - AegisBot - WARNING - SECURITY_EVENT - Type: TEST_EVENT, Details: Test message, User: 123456789
-2025-08-05 21:01:23,787 - AegisBot - INFO - VALIDATION_VALIDATE - Validator: 123456789, Report: REPORT_123, Guild: 987654321
-2025-08-05 21:02:42,782 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 21:06:35,476 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:26:16,446 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:26:23,326 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:26:58,757 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:27:20,433 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:27:45,985 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-06 16:28:22,092 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-[2025-08-06 16:48:14] [INFO    ] aegis.report_service: Signalement créé: 492C06C0 par user 123456789
-[2025-08-06 16:49:31] [INFO    ] aegis.bot: 🔧 Initialisation des services...
-[2025-08-06 16:49:31] [INFO    ] aegis.bot: ✅ Services initialisés
-[2025-08-06 16:49:31] [INFO    ] aegis.reports: ✅ Cog Reports chargé
-[2025-08-06 16:49:31] [ERROR   ] aegis.bot: ❌ Erreur chargement cog cogs.admin: Extension 'cogs.admin' could not be loaded or found.
-[2025-08-06 16:49:31] [ERROR   ] aegis.bot: ❌ Erreur chargement cog cogs.setup: Extension 'cogs.setup' could not be loaded or found.
-[2025-08-06 16:49:31] [INFO    ] aegis.bot: 🔌 Extensions chargées
-[2025-08-06 16:49:34] [INFO    ] aegis.bot: 🔌 Fermeture du bot...
-[2025-08-06 16:56:30] [INFO    ] aegis: ==================================================
-[2025-08-06 16:56:30] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
-[2025-08-06 16:56:30] [INFO    ] aegis: ==================================================
-[2025-08-06 16:56:30] [INFO    ] aegis: ✅ Configuration validée
-[2025-08-06 16:56:30] [INFO    ] aegis: 🔧 Mode test: Désactivé
-[2025-08-06 16:56:30] [INFO    ] aegis: 🔧 Mode debug: Désactivé
-[2025-08-06 16:56:30] [INFO    ] aegis: 🗃️  Supabase: Activé
-[2025-08-06 16:56:30] [INFO    ] aegis.bot: 🔧 Initialisation des services...
-[2025-08-06 16:56:30] [INFO    ] aegis.bot: ✅ Services initialisés
-[2025-08-06 16:56:30] [INFO    ] aegis.reports: ✅ Cog Reports chargé
-[2025-08-06 16:56:30] [INFO    ] aegis.admin: ✅ Cog Admin chargé
-[2025-08-06 16:56:31] [INFO    ] aegis.setup: ✅ Cog Setup chargé
-[2025-08-06 16:56:31] [INFO    ] aegis.bot: 🔌 Extensions chargées
-[2025-08-06 16:56:31] [INFO    ] aegis: 🚀 Bot initialisé avec succès
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
-[2025-08-06 16:56:34] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 16:56:34] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
-[2025-08-06 17:04:06] [INFO    ] aegis: ==================================================
-[2025-08-06 17:04:06] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
-[2025-08-06 17:04:06] [INFO    ] aegis: ==================================================
-[2025-08-06 17:04:06] [INFO    ] aegis: ✅ Configuration validée
-[2025-08-06 17:04:06] [INFO    ] aegis: 🔧 Mode test: Désactivé
-[2025-08-06 17:04:06] [INFO    ] aegis: 🔧 Mode debug: Désactivé
-[2025-08-06 17:04:06] [INFO    ] aegis: 🗃️  Supabase: Activé
-[2025-08-06 17:04:06] [INFO    ] aegis.bot: 🔧 Initialisation des services...
-[2025-08-06 17:04:06] [INFO    ] aegis.bot: ✅ Services initialisés
-[2025-08-06 17:04:06] [INFO    ] aegis.reports: ✅ Cog Reports chargé
-[2025-08-06 17:04:06] [INFO    ] aegis.admin: ✅ Cog Admin chargé
-[2025-08-06 17:04:06] [INFO    ] aegis.setup: ✅ Cog Setup chargé
-[2025-08-06 17:04:06] [INFO    ] aegis.bot: 🔌 Extensions chargées
-[2025-08-06 17:04:06] [INFO    ] aegis: 🚀 Bot initialisé avec succès
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
-[2025-08-06 17:04:09] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:04:09] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
-[2025-08-06 17:04:30] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
-[2025-08-06 17:04:50] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
-[2025-08-06 17:25:28] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
-[2025-08-06 17:25:31] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
-[2025-08-06 17:25:35] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
-[2025-08-06 17:25:35] [INFO    ] aegis.report_service: Signalement créé: 9977A713 par user 883682952221978674
-[2025-08-06 17:26:53] [INFO    ] aegis: ==================================================
-[2025-08-06 17:26:53] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
-[2025-08-06 17:26:53] [INFO    ] aegis: ==================================================
-[2025-08-06 17:26:53] [INFO    ] aegis: ✅ Configuration validée
-[2025-08-06 17:26:53] [INFO    ] aegis: 🔧 Mode test: Désactivé
-[2025-08-06 17:26:53] [INFO    ] aegis: 🔧 Mode debug: Désactivé
-[2025-08-06 17:26:53] [INFO    ] aegis: 🗃️  Supabase: Activé
-[2025-08-06 17:26:53] [INFO    ] aegis.bot: 🔧 Initialisation des services...
-[2025-08-06 17:26:53] [INFO    ] aegis.bot: ✅ Services initialisés
-[2025-08-06 17:26:53] [INFO    ] aegis.reports: ✅ Cog Reports chargé
-[2025-08-06 17:26:53] [INFO    ] aegis.admin: ✅ Cog Admin chargé
-[2025-08-06 17:26:53] [INFO    ] aegis.setup: ✅ Cog Setup chargé
-[2025-08-06 17:26:53] [INFO    ] aegis.bot: 🔌 Extensions chargées
-[2025-08-06 17:26:53] [INFO    ] aegis: 🚀 Bot initialisé avec succès
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
-[2025-08-06 17:26:57] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:26:57] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
-[2025-08-06 17:29:02] [INFO    ] aegis: ==================================================
-[2025-08-06 17:29:02] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
-[2025-08-06 17:29:02] [INFO    ] aegis: ==================================================
-[2025-08-06 17:29:02] [INFO    ] aegis: ✅ Configuration validée
-[2025-08-06 17:29:02] [INFO    ] aegis: 🔧 Mode test: Désactivé
-[2025-08-06 17:29:02] [INFO    ] aegis: 🔧 Mode debug: Désactivé
-[2025-08-06 17:29:02] [INFO    ] aegis: 🗃️  Supabase: Activé
-[2025-08-06 17:29:02] [INFO    ] aegis.bot: 🔧 Initialisation des services...
-[2025-08-06 17:29:02] [INFO    ] aegis.bot: ✅ Services initialisés
-[2025-08-06 17:29:02] [INFO    ] aegis.reports: ✅ Cog Reports chargé
-[2025-08-06 17:29:02] [INFO    ] aegis.admin: ✅ Cog Admin chargé
-[2025-08-06 17:29:02] [INFO    ] aegis.setup: ✅ Cog Setup chargé
-[2025-08-06 17:29:02] [INFO    ] aegis.bot: 🔌 Extensions chargées
-[2025-08-06 17:29:02] [INFO    ] aegis: 🚀 Bot initialisé avec succès
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
-[2025-08-06 17:29:05] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: ==================================================
-[2025-08-06 17:29:05] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
+
+[2025-08-06 17:34:38] [INFO    ] aegis: ==================================================
+[2025-08-06 17:34:38] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 17:34:38] [INFO    ] aegis: ==================================================
+[2025-08-06 17:34:38] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 17:34:38] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 17:34:38] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 17:34:38] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 17:34:38] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 17:34:38] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 17:34:38] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 17:34:38] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 17:34:38] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 17:34:38] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 17:34:38] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 17:34:41] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:34:41] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 17:34:41] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 17:34:41] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 17:34:41] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 17:34:41] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:34:42] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
+[2025-08-06 17:34:50] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 17:34:53] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 17:34:57] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 17:34:57] [INFO    ] aegis.report_service: Signalement créé: 1ECC7A3F par user 883682952221978674
+[2025-08-06 17:34:57] [ERROR   ] aegis.ui.report_modals: Forum channel 1401296044989075466 non trouvé ou invalide
+[2025-08-06 17:35:32] [INFO    ] aegis.setup: Commande /setup utilisée par 1faton dans Aegis
+[2025-08-06 17:35:34] [INFO    ] aegis.ui.setup_views: Forum agis-alerts créé dans Aegis
+[2025-08-06 17:35:34] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 1401296043504832602: ['forum_channel_id', 'validator_role_id', 'configured']
+[2025-08-06 17:35:41] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 17:35:43] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: spam par 1faton
+[2025-08-06 17:35:47] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 17:35:47] [INFO    ] aegis.report_service: Signalement créé: 41581B4E par user 883682952221978674
+[2025-08-06 17:35:47] [ERROR   ] aegis.ui.report_modals: Erreur lors de la création du post forum: 'ThreadWithMessage' object has no attribute 'id'
+[2025-08-06 17:39:33] [INFO    ] aegis: ==================================================
+[2025-08-06 17:39:33] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 17:39:33] [INFO    ] aegis: ==================================================
+[2025-08-06 17:39:33] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 17:39:33] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 17:39:33] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 17:39:33] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 17:39:33] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 17:39:33] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 17:39:33] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 17:39:33] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 17:39:33] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 17:39:33] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 17:39:33] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 17:39:36] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:39:36] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées

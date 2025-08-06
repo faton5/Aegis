@@ -117,11 +117,21 @@ class SetupMainView(View):
                     inline=True
                 )
             
+            # Sauvegarder la configuration
+            from services.guild_service import guild_service
+            guild_service.update_guild_config(self.guild_id, {
+                'forum_channel_id': alerts_forum.id,
+                'validator_role_id': validator_role.id,
+                'configured': True
+            })
+            
             embed.add_field(
                 name="📋 Prochaines étapes", 
                 value=f"1. Attribuer le rôle @{bot_settings.validator_role_name} aux modérateurs\n2. Utiliser /agis pour tester", 
                 inline=False
             )
+            
+            embed.set_footer(text="Configuration sauvegardée automatiquement")
             
             await interaction.followup.send(embed=embed, ephemeral=True)
             
@@ -158,7 +168,7 @@ class SetupMainView(View):
         """Afficher les statistiques de configuration"""
         try:
             # Import dynamique pour éviter les dépendances circulaires
-            from guild_config import guild_config
+            from services.guild_service import guild_service as guild_config
             
             config = guild_config.get_guild_config(self.guild_id)
             
