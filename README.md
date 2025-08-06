@@ -1,340 +1,228 @@
-# 🛡️ Bot Discord Aegis - Documentation complète
+# 🤖 Aegis Bot - Système de Signalement Communautaire
 
-## 📋 Vue d'ensemble
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
+[![Discord.py](https://img.shields.io/badge/Discord.py-2.0+-green.svg)](https://discordpy.readthedocs.io/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Aegis** est un bot Discord de signalement défensif conçu pour la protection communautaire, l'éducation et la veille sécuritaire. Il permet aux utilisateurs de signaler anonymement des comportements à risque et offre un système de validation par la communauté.
+**Aegis** est un bot Discord moderne pour la gestion de signalements communautaires avec un système de validation collaborative et une base de données centralisée.
 
-## 🎯 Objectifs du projet
+## ✨ **Fonctionnalités**
 
-### 🛡️ **Protection communautaire**
-- Signalement anonyme de comportements dangereux
-- Base de données centralisée des utilisateurs à risque
-- Partage d'informations entre serveurs Discord
+### 🛡️ **Signalements Sécurisés**
+- **Signalements anonymes** via `/agis`
+- **8 catégories** de signalements (harcèlement, contenu inapproprié, etc.)
+- **Validation sécurisée** des entrées utilisateur
+- **Rate limiting** automatique
 
-### 📚 **Éducation et prévention**
-- Sensibilisation aux risques en ligne
-- Formation des modérateurs
-- Documentation des types de menaces
+### 🌐 **Multilingue**
+- **Français** et **Anglais** supportés
+- **Traductions externalisées** en JSON
+- **Configuration par serveur**
 
-### 👥 **Collaboration inter-serveurs**
-- Réseau de serveurs partenaires
-- Validation communautaire des signalements
-- Partage sécurisé d'informations
+### 🔧 **Administration**
+- **Configuration automatique** via `/setup`
+- **Statistiques** détaillées via `/stats`
+- **Vérification utilisateurs** via `/check`
+- **Validation collaborative** via `/validate`
+- **Nettoyage automatique** via `/purge`
 
-## ⚙️ Fonctionnalités principales
+### 🏗️ **Architecture Moderne**
+- **Structure modulaire** (Cogs, Services, UI)
+- **Tests automatisés** (31 tests)
+- **Logging centralisé**
+- **Configuration type-safe**
 
-### 🌍 **Système de traduction multilingue**
+## 🚀 **Installation**
 
-#### Support complet français/anglais
-- **Interface dynamique** : Tous les éléments UI traduits (modals, boutons, embeds, messages)
-- **Changement instantané** : Boutons 🇫🇷/🇬🇧 pour basculer entre les langues
-- **Configuration par serveur** : Chaque serveur peut définir sa langue par défaut
-- **350+ clés de traduction** : Messages d'erreur, notifications, commandes, etc.
-- **Système extensible** : Architecture prête pour d'autres langues
-
-#### Éléments traduits
-- Commandes `/agis`, `/setup`, `/check`, `/validate`, `/categories`
-- Modals de signalement avec champs dynamiques
-- Messages de validation et notifications
-- Erreurs et messages système
-- Interface de configuration complète
-
-### 🔔 **Système de signalement**
-
-#### `/agis` - Signalement anonyme
-1. **Sélection de catégorie** via menu déroulant :
-   - 🚨 Harcèlement
-   - 🔞 Contenu inapproprié  
-   - 👁️ Comportement suspect
-   - 🛡️ Sécurité des mineurs
-   - 📢 Spam
-   - 💰 Arnaque
-   - ⚔️ Menaces
-   - ❓ Autre
-
-2. **Sélection "Avez-vous des preuves ?"** :
-   - ✅ Oui (avec preuves)
-   - ❌ Non (sans preuve directe)
-
-3. **Modal de saisie** :
-   - Nom d'utilisateur à signaler
-   - Motif détaillé du signalement
-   - Liens et preuves supplémentaires (optionnel)
-
-4. **Collecte de preuves par DM** :
-   - DM automatique après signalement
-   - Transfert anonyme des preuves vers le thread
-   - Support texte, images, fichiers (max 8MB)
-   - Expiration automatique après 24h
-
-### 🔍 **Système de validation**
-
-#### Validation par quorum communautaire
-- **Rôle requis** : `@Validateur`
-- **Seuil par défaut** : 80% des validateurs
-- **Délai** : 48h pour valider
-- **Actions** : ✅ Valider ou ❌ Rejeter
-
-#### Centralisation automatique
-- Signalements validés → Base Supabase
-- Partage entre serveurs partenaires
-- Niveaux de risque : `critical`, `high`, `medium`
-
-#### ⚔️ Actions automatiques (FONCTIONNEL)
-**Système de protection automatique basé sur les niveaux de risque :**
-
-- **Critical** 🚫 : Ban automatique + alerte admins
-- **High** 👢 : Kick automatique + surveillance renforcée  
-- **Medium** ⚠️ : Alerte uniquement + monitoring
-- **Low** ℹ️ : Log silencieux
-
-**Configuration via `/setup` → Actions automatiques :**
-- Seuils personnalisables par serveur
-- Validation requise (minimum 2 serveurs par défaut)
-- Logs complets des actions exécutées
-- Interface de gestion avancée
-
-**Vérification automatique nouveaux membres :**
-- Scan automatique contre la base centralisée
-- Actions préventives selon le niveau de risque
-- Notifications aux modérateurs
-
-### 👑 **Commandes administrateur**
-
-#### `/setup` - Configuration initiale
-- Crée le forum `#agis-alerts`
-- Crée le rôle `@Validateur`
-- Configure les permissions
-- Mode avancé avec interface interactive
-
-#### `/export` - Export de données
-- Format JSON ou CSV
-- Filtrage par période/catégorie
-- Données anonymisées
-
-#### `/purge` - Nettoyage
-- Suppression des anciens signalements
-- Respect des délais RGPD
-- Logs de traçabilité
-
-### 🔧 **Commandes de modération**
-
-#### `/validate` - Validation manuelle
-- Interface pour valider/rejeter
-- Historique des actions
-- Statistiques de validation
-
-#### `/check` - Vérification utilisateur
-- Recherche dans la base centralisée
-- Historique des signalements
-- Niveau de risque
-
-### 📊 **Commandes d'information**
-
-#### `/categories` - Liste des catégories
-- Affichage des types de signalement
-- Descriptions détaillées
-- Exemples d'utilisation
-
-#### `/stats` - Statistiques
-- Nombre de signalements par période
-- Taux de validation
-- Activité des validateurs
-
-### 🛠️ **Commandes de debug**
-
-#### `/debug` - Diagnostics système
-- État général du bot
-- Connexion Supabase
-- Structure du serveur
-- Permissions
-
-#### `/test-supabase` - Test base de données
-- Vérification connexion
-- Test des fonctions SQL
-- Statistiques serveur
-
-## 🏗️ Architecture technique
-
-### 🧱 **Composants principaux**
-
-#### **Client Discord**
-- Intents : `guilds`, `members`, `message_content`, `dm_messages`
-- Gestion des événements et interactions
-- Commandes slash synchronisées
-
-#### **Système de traduction**
-- `TranslationManager` : Gestion multilingue complète
-- Configuration par serveur avec persistance
-- Support fallback automatique français → anglais
-- Architecture extensible pour nouvelles langues
-
-#### **Système de sécurité**
-- `SecurityValidator` : Sanitisation des entrées
-- `RateLimiter` : Protection anti-spam (3 signalements/heure)
-- `ReportTracker` : Détection de doublons
-- `AuditLogger` : Logs de sécurité
-
-#### **Collecteur de preuves (RGPD-compliant)**
-- `EvidenceCollector` : Mapping temporaire utilisateur/thread
-- Stockage en mémoire uniquement (24h max)
-- Nettoyage automatique
-- Anonymisation complète
-
-#### **Base de données Supabase**
-- Table `flagged_users` : Utilisateurs signalés
-- Table `audit_logs` : Logs d'audit
-- Table `query_logs` : Historique des requêtes
-- Fonctions SQL pour la logique métier
-
-### 🔐 **Sécurité et conformité**
-
-#### **RGPD et vie privée**
-- Anonymat des rapporteurs préservé
-- Stockage temporaire des mappings (24h)
-- Droit à l'oubli respecté
-- Logs de traçabilité
-
-#### **Validation des données**
-- Sanitisation de toutes les entrées utilisateur
-- Taille limitée des contenus
-- Validation des formats
-- Protection contre l'injection
-
-#### **Rate limiting**
-- 3 signalements max par utilisateur/heure
-- Détection de comportements suspects
-- Blocage temporaire des abus
-
-### 📡 **Intégrations**
-
-#### **Supabase (Base de données)**
-- PostgreSQL hébergé
-- API REST automatique
-- Fonctions edge pour la logique
-- Sécurité RLS (Row Level Security)
-
-#### **Discord API**
-- Slash commands
-- Modals et Views interactives
-- Threads dans forums
-- Messages privés (DM)
-
-## 🚀 Installation et configuration
-
-### 📋 **Prérequis**
+### **Prérequis**
 - Python 3.11+
-- Compte Discord Developer
-- Projet Supabase
-- Serveur Discord avec permissions admin
+- Token Discord Bot
+- (Optionnel) Base de données Supabase
 
-### ⚙️ **Variables d'environnement**
-```env
-DISCORD_TOKEN=your_bot_token_here
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_anon_key
-LOG_LEVEL=INFO
-```
+### **Installation Rapide**
 
-### 🔧 **Installation**
 ```bash
-cd Aegis-bot
+# Cloner le projet
+git clone <repo_url>
+cd aegis
+
+# Installer les dépendances
 pip install -r requirements.txt
-python bot.py
+
+# Configuration
+cp .env.example .env
+# Éditer .env avec votre token Discord
+
+# Lancer le bot
+python main.py
 ```
 
-### 🎛️ **Configuration Discord**
-1. Inviter le bot avec les permissions requises
-2. Exécuter `/setup` en tant qu'administrateur
-3. Attribuer le rôle `@Validateur` aux modérateurs
-4. Tester avec `/agis`
+### **Configuration .env**
 
-## 📊 **Métriques et surveillance**
+```env
+# Configuration Discord (REQUIS)
+DISCORD_TOKEN=your_discord_bot_token
 
-### 📈 **KPIs suivis**
-- Nombre de signalements par jour/semaine
-- Taux de validation des signalements
-- Temps moyen de validation
-- Activité des validateurs
-- Détections d'utilisateurs à risque
+# Configuration Supabase (OPTIONNEL)
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+SUPABASE_ENABLED=true
 
-### 🔍 **Logs et audit**
-- Tous les signalements sont tracés
-- Actions de validation enregistrées
-- Logs de sécurité structurés
-- Respect des délais de rétention
+# Modes de développement
+TEST_MODE_ENABLED=false
+DEBUG_ENABLED=false
+```
 
-### ⚠️ **Alertes et monitoring**
-- Forum non trouvé → Alerte configuration
-- Erreurs Supabase → Logs d'erreur
-- Rate limiting dépassé → Logs sécurité
-- Validation expirée → Timeout automatique
+## 📋 **Utilisation**
 
-## 🤝 **Utilisation recommandée**
+### **Configuration Serveur**
+1. **Inviter le bot** avec permissions Administrator
+2. **Lancer** `/setup` pour configuration automatique
+3. **Attribuer** le rôle "Validateur" aux modérateurs
+4. **Tester** avec `/agis`
 
-### 👥 **Pour les utilisateurs**
-1. Utiliser `/agis` pour signaler des comportements suspects
-2. Fournir des preuves détaillées et factuelles
-3. Respecter l'anonymat des autres
-4. Ne pas abuser du système
+### **Commandes Utilisateurs**
+- `/agis` - Créer un signalement anonyme
+- `/categories` - Voir les catégories de signalement
 
-### 🛡️ **Pour les modérateurs**
-1. Valider les signalements rapidement et objectivement
-2. Rechercher les utilisateurs avec `/check`
-3. Suivre les statistiques avec `/stats`
-4. Maintenir la qualité des validations
+### **Commandes Administration**
+- `/setup` - Configuration du serveur
+- `/stats` - Statistiques détaillées  
+- `/check <utilisateur>` - Vérifier un utilisateur
+- `/validate` - Interface de validation
+- `/purge [jours]` - Nettoyer anciens signalements
 
-### 👑 **Pour les administrateurs**
-1. Configurer le bot avec `/setup`
-2. Exporter régulièrement les données
-3. Surveiller les métriques
-4. Former les validateurs
+### **Commandes Debug** *(mode développement)*
+- `/debug-info` - Informations système
+- `/debug-services` - État des services
+- `/debug-translations <clé>` - Test traductions
 
-## 🛣️ **Roadmap et évolutions**
+## 🏗️ **Architecture**
 
-### 🔜 **Prochaines fonctionnalités**
-- [ ] Interface web de gestion
-- [ ] API REST pour intégrations
-- [ ] Webhooks pour notifications externes
-- [ ] Machine learning pour détection automatique
-- [ ] App mobile companion
+```
+aegis/
+├── main.py                     # Point d'entrée
+├── config/                     # Configuration centralisée
+│   ├── bot_config.py          # Config principale
+│   └── logging_config.py      # Configuration logging
+├── core/                       # Cœur du bot
+│   └── bot.py                 # Classe principale
+├── cogs/                       # Commandes Discord
+│   ├── reports.py             # Signalements
+│   ├── admin.py               # Administration
+│   ├── setup.py               # Configuration
+│   └── debug.py               # Debug
+├── ui/                         # Interface utilisateur
+│   ├── views/                 # Vues Discord
+│   └── modals/                # Modals Discord
+├── services/                   # Logique métier
+│   ├── report_service.py      # Service signalements
+│   └── guild_service.py       # Service serveurs
+├── utils/                      # Utilitaires
+│   ├── security.py            # Validation sécurisée
+│   └── rate_limiter.py        # Limitation taux
+├── locales/                    # Traductions
+│   ├── fr.json                # Français
+│   ├── en.json                # Anglais
+│   └── translation_manager.py # Gestionnaire
+├── database/                   # Base de données
+│   ├── models/                # Modèles de données
+│   └── supabase_client.py     # Client Supabase
+└── tests/                      # Tests automatisés
+```
 
-### 🎯 **Améliorations techniques**
-- [ ] Réorganisation modulaire du code
-- [ ] Tests unitaires et d'intégration
-- [ ] CI/CD avec GitHub Actions
-- [ ] Monitoring avancé avec Prometheus
-- [ ] Cache Redis pour les performances
+## 🧪 **Tests**
 
-## 📞 **Support et contribution**
+```bash
+# Lancer tous les tests
+python scripts/run_tests.py
 
-### 🆘 **Support**
-- Documentation : Ce fichier
-- Debug : Commande `/debug`
-- Logs : Fichier `aegis_bot.log`
-- Issues : GitHub repository
+# Tests spécifiques
+python -m pytest tests/test_simple.py -v
 
-### 🤲 **Contribution**
-- Code : Respecter la structure existante
-- Tests : Ajouter des tests pour nouvelles fonctionnalités
-- Documentation : Mettre à jour cette documentation
-- Sécurité : Signaler les vulnérabilités de manière responsable
+# Avec couverture
+python scripts/run_tests.py -c
+```
+
+**Résultats actuels :** ✅ 31 tests passent
+
+## 📊 **Statistiques Projet**
+
+- **~6,000 lignes** de code bien organisées
+- **40+ fichiers** modulaires (< 200 lignes chacun)
+- **4 cogs** Discord
+- **6 services** métier
+- **2 langues** supportées
+- **31 tests** automatisés
+
+## 🛠️ **Développement**
+
+### **Ajouter une Nouvelle Langue**
+
+```bash
+# 1. Créer le fichier de traduction
+cp locales/fr.json locales/es.json
+
+# 2. Traduire les clés dans es.json
+# 3. Le gestionnaire de traductions l'utilisera automatiquement
+```
+
+### **Ajouter une Nouvelle Commande**
+
+```python
+# Dans cogs/reports.py ou autre cog
+@app_commands.command(name="ma_commande", description="Description")
+async def ma_commande(self, interaction: discord.Interaction):
+    await interaction.response.send_message("Hello !", ephemeral=True)
+```
+
+### **Ajouter un Nouveau Service**
+
+```python
+# Dans services/mon_service.py
+class MonService:
+    def __init__(self):
+        self.logger = get_logger('mon_service')
+    
+    def ma_methode(self):
+        return "Résultat"
+
+# Dans core/bot.py, dans setup()
+self.mon_service = MonService()
+```
+
+## 📚 **Documentation**
+
+- **[Rapport de Refactorisation](docs/reports/REFACTORING_REPORT.md)** - Détails de l'architecture
+- **[Rapport de Tests](docs/reports/TESTS_REPORT.md)** - Résultats des tests
+
+## 🔒 **Sécurité**
+
+- ✅ **Validation** de toutes les entrées utilisateur
+- ✅ **Rate limiting** automatique 
+- ✅ **Sanitisation** des contenus Discord
+- ✅ **Permissions** vérifiées pour chaque commande
+- ✅ **Logs d'audit** pour traçabilité
+
+## 🤝 **Contribution**
+
+1. Fork le projet
+2. Créer une branche feature (`git checkout -b feature/ma-feature`)
+3. Commit les changements (`git commit -am 'Add ma feature'`)
+4. Pousser la branche (`git push origin feature/ma-feature`)
+5. Créer une Pull Request
+
+## 📝 **License**
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 🆘 **Support**
+
+Pour toute question ou problème :
+- **Issues GitHub** : Créer une issue
+- **Documentation** : Consulter `/docs`
+- **Logs** : Vérifier `aegis_bot.log`
 
 ---
 
-## 📝 **Résumé exécutif**
-
-**Aegis** est un bot Discord mature et sécurisé qui permet de créer un réseau de protection communautaire efficace. Avec ses fonctionnalités de signalement anonyme, validation par quorum, et base de données centralisée, il offre une solution complète pour la sécurité des communautés Discord.
-
-**Points forts** :
-- ✅ Anonymat préservé
-- ✅ Validation communautaire
-- ✅ Conformité RGPD
-- ✅ Base centralisée
-- ✅ Interface intuitive
-- ✅ Système de preuves
-- ✅ Logs d'audit complets
-- ✅ **Support multilingue complet** (FR/EN)
-- ✅ **Interface entièrement traduite**
-
-**Prêt pour la production** avec surveillance et maintenance appropriées.
+**Développé avec ❤️ pour la communauté Discord**

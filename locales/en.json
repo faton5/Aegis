@@ -1,0 +1,58 @@
+{
+  "report_modal_title": "Agis Report - Anonymous Report",
+  "report_modal_target_label": "Username to report",
+  "report_modal_target_placeholder": "Enter the exact username",
+  "report_modal_reason_label": "Reason for report",
+  "report_modal_reason_placeholder": "Describe the reason for your report (500 characters max)",
+  "report_modal_evidence_label": "Evidence (optional)",
+  "report_modal_evidence_placeholder": "Links, screenshots, or other evidence",
+  
+  "category_harassment": "🚫 Harassment",
+  "category_inappropriate_content": "📵 Inappropriate Content",
+  "category_suspicious_behavior": "🔍 Suspicious Behavior",
+  "category_child_safety": "🛡️ Child Safety",
+  "category_spam": "📢 Spam/Flood",
+  "category_scam": "💰 Scam/Phishing",
+  "category_threats": "⚔️ Threats",
+  "category_other": "❓ Other",
+  
+  "report_submitted_title": "✅ Report Submitted",
+  "report_submitted_description": "Your report **{report_id}** has been sent to moderators.\n\n📝 **Target**: {target}\n🏷️ **Category**: {category}\n⏰ **ID**: `{report_id}`",
+  
+  "validation_title": "🔍 Report Validation",
+  "validation_approved": "✅ Report Approved",
+  "validation_rejected": "❌ Report Rejected",
+  
+  "user_flagged_centralized": "🚩 User {user} has been flagged in the centralized database.",
+  "user_check_clean": "✅ User {user}: No reports found in database.",
+  
+  "error_guild_not_configured": "❌ This server is not configured to use Aegis.",
+  "error_missing_permissions": "❌ You don't have the necessary permissions.",
+  "error_rate_limited": "⏰ Please wait {time} minutes before making another report.",
+  "error_invalid_input": "❌ The provided data is not valid.",
+  "error_database_error": "❌ Database error. Please try again later.",
+  "error_user_not_found": "❌ User not found or inaccessible.",
+  
+  "setup_welcome_title": "🛠️ Aegis Configuration",
+  "setup_welcome_description": "Welcome to Aegis configuration!\n\nPlease select what you would like to configure:",
+  "setup_language_title": "🌐 Bot Language", 
+  "setup_language_description": "Choose the main language for your server:",
+  "setup_complete_title": "✅ Configuration Complete",
+  "setup_complete_description": "Aegis is now configured for your server!",
+  
+  "command_agis_description": "Create an anonymous report",
+  "command_check_description": "Check a user in the database",
+  "command_validate_description": "Validate pending reports",
+  "command_categories_description": "Show report categories",
+  "command_setup_description": "Configure Aegis for your server",
+  "command_anonymize_description": "Anonymize an existing report",
+  
+  "button_submit_report": "📤 Submit Report",
+  "button_approve": "✅ Approve",
+  "button_reject": "❌ Reject",
+  "button_configure_forum": "📋 Configure Forum",
+  "button_configure_roles": "👥 Configure Roles",
+  "button_set_language": "🌐 Set Language",
+  "button_back": "⬅️ Back",
+  "button_finish": "✅ Finish"
+}

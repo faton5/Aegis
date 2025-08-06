@@ -1,214 +1,114 @@
-2025-08-04 22:55:39,271 - AegisBot - ERROR - ERROR - Type: SETUP_ERROR, Details: Erreur lors de la configuration: 404 Not Found (error code: 10062): Unknown interaction, User: 883682952221978674
-2025-08-04 22:55:39,276 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:55:39,397 - discord.webhook.async_ - WARNING - Webhook ID 1402032259804172349 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:55:39,405 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:55:39,444 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:56:21,635 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:56:21,635 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:56:21,647 - AegisBot - ERROR - ERROR - Type: SETUP_ERROR, Details: Erreur lors de la configuration: 404 Not Found (error code: 10062): Unknown interaction, User: 883682952221978674
-2025-08-04 22:56:21,759 - discord.webhook.async_ - WARNING - Webhook ID 1402032437537669261 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:56:21,762 - discord.webhook.async_ - WARNING - Webhook ID 1402032437537669261 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:56:21,798 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:56:22,329 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:04,452 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:57:04,465 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:57:04,468 - discord.app_commands.tree - ERROR - Ignoring exception in command 'setup'
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 858, in _do_call
-    return await self._callback(interaction, **params)  # type: ignore
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\Nextcloud\Documents\Programmation\Aegis\Aegis-bot\bot.py", line 1090, in setup_agis
-    )
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\interactions.py", line 844, in defer
-    response = await adapter.create_interaction_response(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<6 lines>...
-    )
-    ^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\webhook\async_.py", line 224, in request
-    raise NotFound(response, data)
-discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
-    await command._invoke_with_namespace(interaction, namespace)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
-    return await self._do_call(interaction, transformed_values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
-    raise CommandInvokeError(self, e) from e
-discord.app_commands.errors.CommandInvokeError: Command 'setup' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:57:04,577 - discord.webhook.async_ - WARNING - Webhook ID 1402032616709816391 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:04,588 - discord.webhook.async_ - WARNING - Webhook ID 1402032616709816391 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:04,647 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:05,137 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:31,796 - AegisBot - ERROR - ERROR - Type: SETUP_ERROR, Details: Erreur lors de la configuration: 404 Not Found (error code: 10062): Unknown interaction, User: 883682952221978674
-2025-08-04 22:57:31,801 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 22:57:31,922 - discord.webhook.async_ - WARNING - Webhook ID 1402032731646464030 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 22:57:31,939 - discord.webhook.async_ - WARNING - Webhook ID 1401300007612846090 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 23:01:50,143 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-04 23:01:50,148 - AegisBot - INFO - D�marrage du bot Agis...
-2025-08-04 23:01:50,149 - discord.client - INFO - logging in using static token
-2025-08-04 23:01:51,129 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 58464ac98ce8d9df2297482773355df6).
-2025-08-04 23:01:53,138 - AegisBot - INFO - Bot connect� en tant que Aegis#4663 (ID: 1401300007612846090)
-2025-08-04 23:01:53,138 - AegisBot - INFO - Tentative de connexion � Supabase...
-2025-08-04 23:01:54,159 - httpx - INFO - HTTP Request: GET https://yhkrrzzblwlfsxhruywt.supabase.co/rest/v1/flagged_users?select=id&limit=1 "HTTP/2 200 OK"
-2025-08-04 23:01:54,164 - AegisBot - INFO - R�sultat connexion Supabase: True
-2025-08-04 23:01:54,164 - AegisBot - INFO - Synchronisation des commandes slash...
-2025-08-04 23:01:54,553 - AegisBot - INFO - Commandes synchronis�es: ['agis', 'categories', 'validate', 'check', 'setup', 'stats', 'export', 'purge', 'debug', 'test-supabase', 'test_diagnostics', 'anonymiser']
-2025-08-04 23:01:54,554 - AegisBot - INFO - === BOT AGIS PR�T ===
-2025-08-04 23:01:54,554 - AegisBot - INFO - Commandes disponibles:
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /setup (configuration)
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /agis (signalement anonyme)
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /categories (voir les cat�gories)
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /validate (validation mod�rateurs)
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /check (v�rification utilisateur)
-2025-08-04 23:01:54,554 - AegisBot - INFO - - /debug (diagnostics syst�me)
-2025-08-04 23:01:54,555 - AegisBot - INFO - - /test-supabase (test de Supabase)
-2025-08-04 23:01:54,555 - AegisBot - INFO - - !agis (commande de test)
-2025-08-04 23:01:54,555 - AegisBot - INFO - Configuration: Forum=#agis-alerts, R�le=@Validateur
-2025-08-04 23:01:54,555 - AegisBot - INFO - === D�MARRAGE TERMIN� ===
-2025-08-04 23:02:07,585 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:02:07,585 - AegisBot - ERROR - Erreur setup: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:02:07,707 - discord.webhook.async_ - WARNING - Webhook ID 1402033888435507353 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 23:02:07,710 - discord.webhook.async_ - WARNING - Webhook ID 1402033888435507353 is rate limited. Retrying in 0.30 seconds.
-2025-08-04 23:02:48,031 - discord.gateway - INFO - Shard ID None has successfully RESUMED session a3caaa6e849c5dc8ba419724f1dec4b0.
-2025-08-04 23:06:07,593 - discord.app_commands.tree - ERROR - Ignoring exception in command 'agis'
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 858, in _do_call
-    return await self._callback(interaction, **params)  # type: ignore
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\Nextcloud\Documents\Programmation\Aegis\Aegis-bot\bot.py", line 798, in agis_report
-    await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\interactions.py", line 1004, in send_message
-    response = await adapter.create_interaction_response(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\webhook\async_.py", line 224, in request
-    raise NotFound(response, data)
-discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
-    await command._invoke_with_namespace(interaction, namespace)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
-    return await self._do_call(interaction, transformed_values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
-    raise CommandInvokeError(self, e) from e
-discord.app_commands.errors.CommandInvokeError: Command 'agis' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:06:07,594 - discord.app_commands.tree - ERROR - Ignoring exception in command 'agis'
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 858, in _do_call
-    return await self._callback(interaction, **params)  # type: ignore
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "c:\Users\FATON-GAMES\Nextcloud\Documents\Programmation\Aegis\Aegis-bot\bot.py", line 798, in agis_report
-    await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\interactions.py", line 1004, in send_message
-    response = await adapter.create_interaction_response(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<6 lines>...
-    )
-    ^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\webhook\async_.py", line 224, in request
-    raise NotFound(response, data)
-discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
-    await command._invoke_with_namespace(interaction, namespace)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
-    return await self._do_call(interaction, transformed_values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
-    raise CommandInvokeError(self, e) from e
-discord.app_commands.errors.CommandInvokeError: Command 'agis' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:06:07,604 - discord.app_commands.tree - ERROR - Ignoring exception in command 'agis'
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 858, in _do_call
-    return await self._callback(interaction, **params)  # type: ignore
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\Nextcloud\Documents\Programmation\Aegis\Aegis-bot\bot.py", line 794, in agis_report
-    "S�lectionnez la cat�gorie de votre signalement :",
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\interactions.py", line 1004, in send_message
-    response = await adapter.create_interaction_response(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\webhook\async_.py", line 224, in request
-    raise NotFound(response, data)
-discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
-    await command._invoke_with_namespace(interaction, namespace)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
-    return await self._do_call(interaction, transformed_values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
-    raise CommandInvokeError(self, e) from e
-discord.app_commands.errors.CommandInvokeError: Command 'agis' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:06:07,650 - discord.app_commands.tree - ERROR - Ignoring exception in command 'agis'
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 858, in _do_call
-    return await self._callback(interaction, **params)  # type: ignore
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\Nextcloud\Documents\Programmation\Aegis\Aegis-bot\bot.py", line 797, in agis_report
-    view = CategorySelectView()
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\interactions.py", line 1004, in send_message
-    response = await adapter.create_interaction_response(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<6 lines>...
-    )
-    ^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\webhook\async_.py", line 224, in request
-    raise NotFound(response, data)
-discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
-    await command._invoke_with_namespace(interaction, namespace)
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
-    return await self._do_call(interaction, transformed_values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\FATON-GAMES\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
-    raise CommandInvokeError(self, e) from e
-discord.app_commands.errors.CommandInvokeError: Command 'agis' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
-2025-08-04 23:06:15,716 - AegisBot - INFO - REPORT_SUBMITTED - User: 883682952221978674, Target: qd, Guild: 1401296043504832602
-2025-08-04 23:06:16,337 - AegisBot - INFO - Evidence collector: Registered user 883682952221978674 for thread 1402034931122569286
-2025-08-04 23:06:28,801 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804230615, User: 883682952221978674
-2025-08-04 23:06:28,816 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804200205, User: 883682952221978674
-2025-08-04 23:06:28,854 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804201652, User: 883682952221978674
-2025-08-04 23:06:39,458 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804230615, User: 883682952221978674
-2025-08-04 23:06:39,486 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804201652, User: 883682952221978674
-2025-08-04 23:06:39,553 - AegisBot - WARNING - SECURITY_EVENT - Type: EVIDENCE_RECEIVED, Details: Evidence received for report AGIS-1401296043504832602-20250804200205, User: 883682952221978674
-2025-08-04 23:17:27,388 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 424cb27aa0360140bd6908fe8bdc0dfc.
-2025-08-05 15:37:14,647 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2025-08-05 15:37:14,669 - AegisBot - INFO - D�marrage du bot Agis...
-2025-08-05 15:37:14,670 - discord.client - INFO - logging in using static token
-2025-08-05 15:37:15,436 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: d18533ad8776147736e600172bcccda3).
-2025-08-05 15:37:17,445 - AegisBot - INFO - Bot connect� en tant que Aegis#4663 (ID: 1401300007612846090)
-2025-08-05 15:37:17,446 - AegisBot - INFO - Tentative de connexion � Supabase...
-2025-08-05 15:37:19,001 - httpx - INFO - HTTP Request: GET https://yhkrrzzblwlfsxhruywt.supabase.co/rest/v1/flagged_users?select=id&limit=1 "HTTP/2 200 OK"
-2025-08-05 15:37:19,033 - AegisBot - INFO - R�sultat connexion Supabase: True
-2025-08-05 15:37:19,033 - AegisBot - INFO - Synchronisation des commandes slash...
-2025-08-05 15:37:19,367 - AegisBot - INFO - Commandes synchronis�es: ['agis', 'categories', 'validate', 'check', 'setup', 'stats', 'export', 'purge', 'debug', 'test-supabase', 'test_diagnostics', 'anonymiser']
-2025-08-05 15:37:19,368 - AegisBot - INFO - === BOT AGIS PR�T ===
-2025-08-05 15:37:19,368 - AegisBot - INFO - Commandes disponibles:
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /setup (configuration)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /agis (signalement anonyme)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /categories (voir les cat�gories)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /validate (validation mod�rateurs)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /check (v�rification utilisateur)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /debug (diagnostics syst�me)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - /test-supabase (test de Supabase)
-2025-08-05 15:37:19,369 - AegisBot - INFO - - !agis (commande de test)
-2025-08-05 15:37:19,369 - AegisBot - INFO - Configuration: Forum=#agis-alerts, R�le=@Validateur
-2025-08-05 15:37:19,370 - AegisBot - INFO - === D�MARRAGE TERMIN� ===
+2025-08-05 20:48:32,009 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 20:55:13,611 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 20:55:22,889 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 21:00:30,066 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 21:00:48,941 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 21:01:02,582 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 21:01:23,785 - AegisBot - WARNING - SECURITY_EVENT - Type: TEST_EVENT, Details: Test message, User: 123456789
+2025-08-05 21:01:23,787 - AegisBot - INFO - VALIDATION_VALIDATE - Validator: 123456789, Report: REPORT_123, Guild: 987654321
+2025-08-05 21:02:42,782 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-05 21:06:35,476 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:26:16,446 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:26:23,326 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:26:58,757 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:27:20,433 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:27:45,985 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-08-06 16:28:22,092 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+[2025-08-06 16:48:14] [INFO    ] aegis.report_service: Signalement créé: 492C06C0 par user 123456789
+[2025-08-06 16:49:31] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 16:49:31] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 16:49:31] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 16:49:31] [ERROR   ] aegis.bot: ❌ Erreur chargement cog cogs.admin: Extension 'cogs.admin' could not be loaded or found.
+[2025-08-06 16:49:31] [ERROR   ] aegis.bot: ❌ Erreur chargement cog cogs.setup: Extension 'cogs.setup' could not be loaded or found.
+[2025-08-06 16:49:31] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 16:49:34] [INFO    ] aegis.bot: 🔌 Fermeture du bot...
+[2025-08-06 16:56:30] [INFO    ] aegis: ==================================================
+[2025-08-06 16:56:30] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 16:56:30] [INFO    ] aegis: ==================================================
+[2025-08-06 16:56:30] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 16:56:30] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 16:56:30] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 16:56:30] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 16:56:30] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 16:56:30] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 16:56:30] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 16:56:30] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 16:56:31] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 16:56:31] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 16:56:31] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 16:56:34] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 16:56:34] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
+[2025-08-06 17:04:06] [INFO    ] aegis: ==================================================
+[2025-08-06 17:04:06] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 17:04:06] [INFO    ] aegis: ==================================================
+[2025-08-06 17:04:06] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 17:04:06] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 17:04:06] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 17:04:06] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 17:04:06] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 17:04:06] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 17:04:06] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 17:04:06] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 17:04:06] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 17:04:06] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 17:04:06] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 17:04:09] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:04:09] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
+[2025-08-06 17:04:30] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 17:04:50] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 17:25:28] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 17:25:31] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 17:25:35] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 17:25:35] [INFO    ] aegis.report_service: Signalement créé: 9977A713 par user 883682952221978674
+[2025-08-06 17:26:53] [INFO    ] aegis: ==================================================
+[2025-08-06 17:26:53] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 17:26:53] [INFO    ] aegis: ==================================================
+[2025-08-06 17:26:53] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 17:26:53] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 17:26:53] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 17:26:53] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 17:26:53] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 17:26:53] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 17:26:53] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 17:26:53] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 17:26:53] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 17:26:53] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 17:26:53] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 17:26:57] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:26:57] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
+[2025-08-06 17:29:02] [INFO    ] aegis: ==================================================
+[2025-08-06 17:29:02] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 17:29:02] [INFO    ] aegis: ==================================================
+[2025-08-06 17:29:02] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 17:29:02] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 17:29:02] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 17:29:02] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 17:29:02] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 17:29:02] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 17:29:02] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 17:29:02] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 17:29:02] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 17:29:02] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 17:29:02] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: 📊 Serveurs connectés: 1
+[2025-08-06 17:29:05] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 2)
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 17:29:05] [INFO    ] aegis.bot: ⚡ 7 commandes slash synchronisées
