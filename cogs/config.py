@@ -280,7 +280,20 @@ class ThresholdsConfigView(discord.ui.View):
         super().__init__(timeout=timeout)
         self.guild_id = guild_id
     
-    # TODO: Ajouter des modals pour modifier les valeurs numériques
+    @discord.ui.button(label="🎯 Modifier Quorum", style=discord.ButtonStyle.primary)
+    async def modify_quorum(self, interaction: discord.Interaction, button: discord.ui.Button):
+        modal = QuorumModal(self.guild_id)
+        await interaction.response.send_modal(modal)
+    
+    @discord.ui.button(label="👥 Modifier Min Validateurs", style=discord.ButtonStyle.primary)  
+    async def modify_min_validators(self, interaction: discord.Interaction, button: discord.ui.Button):
+        modal = MinValidatorsModal(self.guild_id)
+        await interaction.response.send_modal(modal)
+    
+    @discord.ui.button(label="⏰ Modifier Timeout", style=discord.ButtonStyle.primary)
+    async def modify_timeout(self, interaction: discord.Interaction, button: discord.ui.Button):
+        modal = TimeoutModal(self.guild_id)
+        await interaction.response.send_modal(modal)
 
 
 class LimitsConfigView(discord.ui.View):
@@ -290,7 +303,196 @@ class LimitsConfigView(discord.ui.View):
         super().__init__(timeout=timeout)
         self.guild_id = guild_id
     
-    # TODO: Ajouter des modals pour modifier les limites
+    @discord.ui.button(label="👤 Limites Utilisateur", style=discord.ButtonStyle.secondary)
+    async def modify_user_limits(self, interaction: discord.Interaction, button: discord.ui.Button):
+        modal = UserLimitsModal(self.guild_id)
+        await interaction.response.send_modal(modal)
+    
+    @discord.ui.button(label="🏠 Limites Serveur", style=discord.ButtonStyle.secondary)
+    async def modify_guild_limits(self, interaction: discord.Interaction, button: discord.ui.Button):
+        modal = GuildLimitsModal(self.guild_id)
+        await interaction.response.send_modal(modal)
+
+
+# Modals pour la configuration
+class QuorumModal(discord.ui.Modal):
+    def __init__(self, guild_id: int):
+        super().__init__(title="Modifier le Quorum", timeout=300)
+        self.guild_id = guild_id
+        
+        self.quorum_input = discord.ui.TextInput(
+            label="Pourcentage de Quorum (1-100)",
+            placeholder="80",
+            min_length=1,
+            max_length=3
+        )
+        self.add_item(self.quorum_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            quorum = int(self.quorum_input.value)
+            if not 1 <= quorum <= 100:
+                raise ValueError("Le quorum doit être entre 1 et 100")
+            
+            from services.guild_service import guild_service
+            config = guild_service.get_guild_config(self.guild_id)
+            if 'validation_thresholds' not in config:
+                config['validation_thresholds'] = {}
+            
+            config['validation_thresholds']['quorum_percentage'] = quorum
+            guild_service.update_guild_config(self.guild_id, {
+                'validation_thresholds': config['validation_thresholds']
+            })
+            
+            await interaction.response.send_message(
+                f"✅ Quorum mis à jour: {quorum}%", ephemeral=True
+            )
+        except ValueError as e:
+            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+
+
+class MinValidatorsModal(discord.ui.Modal):
+    def __init__(self, guild_id: int):
+        super().__init__(title="Modifier Min Validateurs", timeout=300)
+        self.guild_id = guild_id
+        
+        self.min_validators_input = discord.ui.TextInput(
+            label="Nombre minimum de validateurs (1-10)",
+            placeholder="2",
+            min_length=1,
+            max_length=2
+        )
+        self.add_item(self.min_validators_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            min_val = int(self.min_validators_input.value)
+            if not 1 <= min_val <= 10:
+                raise ValueError("Le minimum doit être entre 1 et 10")
+            
+            from services.guild_service import guild_service
+            config = guild_service.get_guild_config(self.guild_id)
+            if 'validation_thresholds' not in config:
+                config['validation_thresholds'] = {}
+            
+            config['validation_thresholds']['min_validators'] = min_val
+            guild_service.update_guild_config(self.guild_id, {
+                'validation_thresholds': config['validation_thresholds']
+            })
+            
+            await interaction.response.send_message(
+                f"✅ Minimum validateurs mis à jour: {min_val}", ephemeral=True
+            )
+        except ValueError as e:
+            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+
+
+class TimeoutModal(discord.ui.Modal):
+    def __init__(self, guild_id: int):
+        super().__init__(title="Modifier Timeout", timeout=300)
+        self.guild_id = guild_id
+        
+        self.timeout_input = discord.ui.TextInput(
+            label="Timeout en heures (1-168)",
+            placeholder="24",
+            min_length=1,
+            max_length=3
+        )
+        self.add_item(self.timeout_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            timeout = int(self.timeout_input.value)
+            if not 1 <= timeout <= 168:  # Max 1 semaine
+                raise ValueError("Le timeout doit être entre 1 et 168 heures")
+            
+            from services.guild_service import guild_service
+            config = guild_service.get_guild_config(self.guild_id)
+            if 'validation_thresholds' not in config:
+                config['validation_thresholds'] = {}
+            
+            config['validation_thresholds']['validation_timeout_hours'] = timeout
+            guild_service.update_guild_config(self.guild_id, {
+                'validation_thresholds': config['validation_thresholds']
+            })
+            
+            await interaction.response.send_message(
+                f"✅ Timeout mis à jour: {timeout} heures", ephemeral=True
+            )
+        except ValueError as e:
+            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+
+
+class UserLimitsModal(discord.ui.Modal):
+    def __init__(self, guild_id: int):
+        super().__init__(title="Limites Utilisateur", timeout=300)
+        self.guild_id = guild_id
+        
+        self.user_limit_input = discord.ui.TextInput(
+            label="Reports par utilisateur par heure (1-20)",
+            placeholder="3",
+            min_length=1,
+            max_length=2
+        )
+        self.add_item(self.user_limit_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            limit = int(self.user_limit_input.value)
+            if not 1 <= limit <= 20:
+                raise ValueError("La limite doit être entre 1 et 20")
+            
+            from services.guild_service import guild_service
+            config = guild_service.get_guild_config(self.guild_id)
+            if 'rate_limits' not in config:
+                config['rate_limits'] = {}
+            
+            config['rate_limits']['reports_per_user_per_hour'] = limit
+            guild_service.update_guild_config(self.guild_id, {
+                'rate_limits': config['rate_limits']
+            })
+            
+            await interaction.response.send_message(
+                f"✅ Limite utilisateur mise à jour: {limit} reports/h", ephemeral=True
+            )
+        except ValueError as e:
+            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+
+
+class GuildLimitsModal(discord.ui.Modal):
+    def __init__(self, guild_id: int):
+        super().__init__(title="Limites Serveur", timeout=300)
+        self.guild_id = guild_id
+        
+        self.guild_limit_input = discord.ui.TextInput(
+            label="Reports par serveur par heure (5-100)",
+            placeholder="20",
+            min_length=1,
+            max_length=3
+        )
+        self.add_item(self.guild_limit_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            limit = int(self.guild_limit_input.value)
+            if not 5 <= limit <= 100:
+                raise ValueError("La limite doit être entre 5 et 100")
+            
+            from services.guild_service import guild_service
+            config = guild_service.get_guild_config(self.guild_id)
+            if 'rate_limits' not in config:
+                config['rate_limits'] = {}
+            
+            config['rate_limits']['reports_per_guild_per_hour'] = limit
+            guild_service.update_guild_config(self.guild_id, {
+                'rate_limits': config['rate_limits']
+            })
+            
+            await interaction.response.send_message(
+                f"✅ Limite serveur mise à jour: {limit} reports/h", ephemeral=True
+            )
+        except ValueError as e:
+            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
 
 
 async def setup(bot):

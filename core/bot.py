@@ -53,9 +53,23 @@ class AegisBot(commands.Bot):
                 time_window=3600  # 1 heure
             )
             
+            # Intégrer Supabase si activé
+            db_client = None
+            if bot_settings.supabase_enabled:
+                try:
+                    from database.supabase_client import supabase_client
+                    connection_success = await supabase_client.connect()
+                    if connection_success:
+                        db_client = supabase_client
+                        logger.info("✅ Supabase intégré au ReportService")
+                    else:
+                        logger.warning("⚠️ Supabase activé mais connexion échouée")
+                except Exception as e:
+                    logger.error(f"❌ Erreur intégration Supabase: {e}")
+            
             # Service de signalements
             self.report_service = ReportService(
-                db_client=None,  # TODO: Intégrer Supabase
+                db_client=db_client,
                 validator=self.security_validator,
                 rate_limiter=self.rate_limiter
             )

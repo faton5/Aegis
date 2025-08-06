@@ -54,6 +54,40 @@ class ReportValidationView(View):
                 )
                 
                 if success:
+                    # Sauvegarder dans Supabase si connecté
+                    if hasattr(interaction.client.report_service, 'db') and interaction.client.report_service.db:
+                        try:
+                            # Déterminer le niveau basé sur le nombre de signalements validés du user
+                            user_reports = [r for r in interaction.client.report_service.active_reports.values() 
+                                          if r.target_username.lower() in [report.target_username.lower()] and r.status == "validated"]
+                            validated_count = len(user_reports)
+                            
+                            if validated_count >= 3:
+                                flag_level = "critical"
+                            elif validated_count >= 2:
+                                flag_level = "high"  
+                            elif validated_count >= 1:
+                                flag_level = "medium"
+                            else:
+                                flag_level = "low"
+                            
+                            # Ajouter à Supabase
+                            await interaction.client.report_service.db.add_validated_report(
+                                user_id=0,  # On n'a pas l'ID, seulement le username
+                                username=report.target_username,
+                                flag_level=flag_level,
+                                reason=report.reason,
+                                category=report.category,
+                                guild_id=interaction.guild_id,
+                                guild_name=interaction.guild.name
+                            )
+                            logger.info(f"Signalement {self.report_id} sauvé dans Supabase (niveau: {flag_level})")
+                        except Exception as e:
+                            logger.error(f"Erreur sauvegarde Supabase: {e}")
+                    
+                    # Envoyer feedback à l'utilisateur
+                    await self._send_validation_feedback(interaction, report, "validated")
+                    
                     # Créer l'embed de validation
                     embed = discord.Embed(
                         title="✅ Signalement Validé",
@@ -137,6 +171,9 @@ class ReportValidationView(View):
                 )
                 
                 if success:
+                    # Envoyer feedback à l'utilisateur
+                    await self._send_validation_feedback(interaction, report, "rejected")
+                    
                     # Créer l'embed de rejet
                     embed = discord.Embed(
                         title="❌ Signalement Refusé",
@@ -301,3 +338,95 @@ class ReportValidationView(View):
         except Exception as e:
             logger.error(f"Erreur vérification permissions: {e}")
             return interaction.user.guild_permissions.administrator
+    
+    async def _send_validation_feedback(self, interaction: discord.Interaction, report, status: str):
+        """Envoyer un feedback automatique à l'utilisateur qui a fait le signalement"""
+        try:
+            # Récupérer l'utilisateur qui a fait le signalement
+            reporter = await interaction.client.fetch_user(report.reporter_id)
+            
+            # Déterminer les détails selon le statut
+            if status == "validated":
+                title = "✅ Signalement Validé"
+                color = discord.Color.green()
+                decision = "**Validé** par l'équipe de modération"
+                
+                # Déterminer l'action prise selon la config
+                from services.guild_service import guild_service
+                config = guild_service.get_guild_config(interaction.guild_id)
+                auto_actions = config.get('auto_actions', {})
+                
+                # Calculer le niveau basé sur les signalements validés
+                user_reports = [r for r in interaction.client.report_service.active_reports.values() 
+                              if r.target_username.lower() == report.target_username.lower() and r.status == "validated"]
+                validated_count = len(user_reports)
+                
+                if validated_count >= 3:
+                    level = "critical"
+                elif validated_count >= 2:
+                    level = "high"
+                elif validated_count >= 1:
+                    level = "medium"
+                else:
+                    level = "low"
+                
+                action_taken = auto_actions.get(level, "none")
+                action_text = {
+                    "ban": "🔨 Utilisateur banni",
+                    "kick": "👢 Utilisateur expulsé", 
+                    "quarantine": "🔒 Utilisateur mis en quarantaine",
+                    "alert": "⚠️ Modérateurs alertés",
+                    "none": "📋 Signalement enregistré"
+                }.get(action_taken, "📋 Action manuelle nécessaire")
+                
+            else:  # rejected
+                title = "❌ Signalement Non Retenu"
+                color = discord.Color.orange()
+                decision = "**Non retenu** après examen"
+                action_text = "Aucune action prise"
+            
+            # Créer l'embed de feedback
+            embed = discord.Embed(
+                title=title,
+                description=f"Votre signalement **#{report.id}** a été analysé.",
+                color=color,
+                timestamp=interaction.created_at
+            )
+            
+            embed.add_field(
+                name="📋 Signalement",
+                value=f"**Utilisateur:** `{report.target_username}`\n**Catégorie:** {report.category}\n**Raison:** {report.reason[:100]}{'...' if len(report.reason) > 100 else ''}",
+                inline=False
+            )
+            
+            embed.add_field(
+                name="⚖️ Décision",
+                value=decision,
+                inline=True
+            )
+            
+            embed.add_field(
+                name="🔧 Action Prise",
+                value=action_text,
+                inline=True
+            )
+            
+            embed.add_field(
+                name="🏠 Serveur",
+                value=interaction.guild.name,
+                inline=True
+            )
+            
+            embed.set_footer(
+                text="Merci pour votre contribution à la sécurité de la communauté",
+                icon_url=interaction.guild.icon.url if interaction.guild.icon else None
+            )
+            
+            # Envoyer le MP
+            await reporter.send(embed=embed)
+            logger.info(f"Feedback {status} envoyé à {reporter} pour signalement {report.id}")
+            
+        except discord.Forbidden:
+            logger.warning(f"Impossible d'envoyer feedback à l'utilisateur {report.reporter_id} (DM fermés)")
+        except Exception as e:
+            logger.error(f"Erreur envoi feedback pour signalement {report.id}: {e}")
