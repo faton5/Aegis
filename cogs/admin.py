@@ -135,8 +135,8 @@ class AdminCog(commands.Cog):
                 return
             
             embed = discord.Embed(
-                title="🔍 Vérification Utilisateur",
-                description=f"Recherche pour {user.mention} ({user.id})",
+                title=translator.t("check_title", interaction.guild_id),
+                description=translator.t("check_description", interaction.guild_id, user_mention=user.mention, user_id=user.id),
                 color=discord.Color.orange()
             )
             
@@ -228,31 +228,31 @@ class AdminCog(commands.Cog):
                 
             else:
                 embed.add_field(
-                    name="📋 Signalements Locaux",
-                    value="✅ Aucun signalement local",
+                    name=translator.t("check_local_reports", interaction.guild_id),
+                    value=translator.t("check_no_local_reports", interaction.guild_id),
                     inline=True
                 )
             
             # Afficher les informations de la base globale Supabase
             if supabase_flag:
                 embed.add_field(
-                    name="🌐 Base Globale (Supabase)",
+                    name=translator.t("check_global_database", interaction.guild_id),
                     value=f"🚨 **UTILISATEUR FLAGGÉ**\n**Niveau:** {supabase_flag.get('flag_level', 'Inconnu')}\n**Catégorie:** {supabase_flag.get('flag_category', 'N/A')}\n**Raison:** {supabase_flag.get('flag_reason', 'N/A')[:50]}",
                     inline=False
                 )
                 embed.color = discord.Color.red()
             elif hasattr(self.bot.report_service, 'db') and self.bot.report_service.db and self.bot.report_service.db.is_connected:
                 embed.add_field(
-                    name="🌐 Base Globale (Supabase)",
-                    value="✅ Utilisateur non flaggé globalement",
+                    name=translator.t("check_global_database", interaction.guild_id),
+                    value=translator.t("check_not_flagged_globally", interaction.guild_id),
                     inline=True
                 )
                 if not user_reports:  # Seulement vert si pas de signalements locaux non plus
                     embed.color = discord.Color.green()
             else:
                 embed.add_field(
-                    name="🌐 Base Globale (Supabase)",
-                    value="⚠️ Non disponible (désactivé ou hors ligne)",
+                    name=translator.t("check_global_database", interaction.guild_id),
+                    value=translator.t("check_database_unavailable", interaction.guild_id),
                     inline=True
                 )
             

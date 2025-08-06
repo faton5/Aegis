@@ -278,10 +278,10 @@ class LanguageSelect(Select):
             logger.info(f"Langue sélectionnée: {selected_language} pour guild {self.guild_id}")
             
             # Import dynamique pour éviter les dépendances circulaires
-            from guild_config import guild_config
+            from services.guild_service import guild_service
             
             # Mettre à jour la configuration
-            guild_config.update_guild_config(self.guild_id, {
+            guild_service.update_guild_config(self.guild_id, {
                 'language': selected_language
             })
             

@@ -40,8 +40,8 @@ class ConfigCog(commands.Cog):
             
             # Créer l'embed principal
             embed = discord.Embed(
-                title="⚙️ Configuration Avancée Aegis",
-                description="Personnalisez le comportement du bot selon vos besoins.",
+                title=translator.t("config_title", interaction.guild_id),
+                description=translator.t("config_description", interaction.guild_id),
                 color=discord.Color.blue()
             )
             
