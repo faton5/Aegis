@@ -158,12 +158,12 @@ class AgisReportModal(Modal):
             
             embed.add_field(
                 name="📋 Informations",
-                value=f"**ID**: `{report.id}`\n**Statut**: En attente de validation",
+                value=f"**ID**: `{report.id}`\n**Statut**: {self.translator.t('report_status_pending', self.guild_id)}",
                 inline=False
             )
             
             embed.set_footer(
-                text="Les modérateurs examineront votre signalement sous peu.",
+                text=self.translator.t('report_footer_review', self.guild_id),
                 icon_url=interaction.user.display_avatar.url
             )
             
@@ -182,7 +182,7 @@ class AgisReportModal(Modal):
         try:
             if not interaction.response.is_done():
                 await interaction.response.send_message(
-                    "❌ Une erreur s'est produite lors du traitement de votre signalement.",
+                    self.translator.t('error_report_processing', self.guild_id),
                     ephemeral=True
                 )
         except:

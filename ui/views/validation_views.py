@@ -30,7 +30,7 @@ class ReportValidationView(View):
             # Vérifier les permissions
             if not self._check_validator_permissions(interaction):
                 await interaction.response.send_message(
-                    "❌ Vous n'avez pas la permission de valider les signalements.",
+                    translator.t("validation_error_no_permission", interaction.guild_id),
                     ephemeral=True
                 )
                 return
@@ -107,7 +107,7 @@ class ReportValidationView(View):
                         inline=True
                     )
                     
-                    embed.set_timestamp()
+                    embed.timestamp = interaction.created_at
                     
                     # Désactiver les boutons
                     for item in self.children:
@@ -125,14 +125,14 @@ class ReportValidationView(View):
                     
                 else:
                     await interaction.response.send_message(
-                        "❌ Erreur lors de la validation.",
+                        translator.t("validation_error_validation_failed", interaction.guild_id),
                         ephemeral=True
                     )
             
         except Exception as e:
             logger.error(f"Erreur validation signalement {self.report_id}: {e}")
             await interaction.response.send_message(
-                "❌ Erreur lors de la validation.",
+                translator.t("validation_error_validation_failed", interaction.guild_id),
                 ephemeral=True
             )
     
@@ -193,7 +193,7 @@ class ReportValidationView(View):
                         inline=True
                     )
                     
-                    embed.set_timestamp()
+                    embed.timestamp = interaction.created_at
                     
                     # Désactiver les boutons
                     for item in self.children:
@@ -253,46 +253,46 @@ class ReportValidationView(View):
                     
                     # Envoyer un MP demandant plus d'infos
                     embed = discord.Embed(
-                        title="📋 Informations Supplémentaires Demandées",
-                        description=f"Les modérateurs de **{interaction.guild.name}** souhaitent obtenir plus d'informations concernant votre signalement **#{self.report_id}**.",
+                        title=translator.t("validation_more_info_title", interaction.guild_id),
+                        description=translator.t("validation_more_info_description", interaction.guild_id, guild_name=interaction.guild.name, report_id=self.report_id),
                         color=discord.Color.blue()
                     )
                     
                     embed.add_field(
-                        name="📝 Signalement Initial",
+                        name=translator.t("validation_more_info_initial_report", interaction.guild_id),
                         value=f"**Utilisateur signalé:** `{report.target_username}`\n**Catégorie:** {report.category}\n**Raison:** {report.reason}",
                         inline=False
                     )
                     
                     embed.add_field(
-                        name="💭 Demande",
-                        value="Pourriez-vous fournir des détails supplémentaires ou des preuves pour nous aider à mieux évaluer ce signalement ?",
+                        name=translator.t("validation_more_info_request", interaction.guild_id),
+                        value=translator.t("validation_more_info_request_text", interaction.guild_id),
                         inline=False
                     )
                     
                     embed.add_field(
-                        name="📬 Comment répondre",
-                        value="Répondez simplement à ce message avec les informations supplémentaires.",
+                        name=translator.t("validation_more_info_how_to_respond", interaction.guild_id),
+                        value=translator.t("validation_more_info_how_to_respond_text", interaction.guild_id),
                         inline=False
                     )
                     
                     embed.set_footer(
-                        text=f"Demandé par {interaction.user.display_name}",
-                        icon_url=interaction.user.display_avatar.url
+                        text=translator.t("validation_more_info_requested_by", interaction.guild_id),
+                        icon_url=interaction.guild.icon.url if interaction.guild.icon else None
                     )
                     
                     await reporter.send(embed=embed)
                     
-                    # Confirmer l'envoi
+                    # Confirmer l'envoi (sans révéler l'identité du reporter)
                     await interaction.response.send_message(
-                        f"✅ Demande d'informations envoyée à {reporter.mention}.",
+                        translator.t("validation_more_info_sent_success", interaction.guild_id),
                         ephemeral=True
                     )
                     
                     # Ajouter un message dans le thread
                     embed_thread = discord.Embed(
-                        title="📋 Plus d'Infos Demandées",
-                        description=f"{interaction.user.mention} a demandé plus d'informations au rapporteur.",
+                        title=translator.t("validation_more_info_thread_title", interaction.guild_id),
+                        description=translator.t("validation_more_info_thread_description", interaction.guild_id, user_mention=interaction.user.mention),
                         color=discord.Color.blue()
                     )
                     
@@ -302,13 +302,13 @@ class ReportValidationView(View):
                     
                 except discord.Forbidden:
                     await interaction.response.send_message(
-                        "❌ Impossible d'envoyer un message privé à l'utilisateur (DM fermés).",
+                        translator.t("validation_more_info_dm_closed_error", interaction.guild_id),
                         ephemeral=True
                     )
                 except Exception as e:
                     logger.error(f"Erreur envoi demande infos: {e}")
                     await interaction.response.send_message(
-                        "❌ Erreur lors de l'envoi de la demande.",
+                        translator.t("validation_more_info_send_error", interaction.guild_id),
                         ephemeral=True
                     )
             
