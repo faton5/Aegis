@@ -121,5 +121,24 @@
   "forum_post_status_field": "📊 Status",
   "forum_post_validations_field": "👥 Validations",
   "forum_post_status_pending": "🔄 Pending validation",
-  "forum_post_footer": "Reported by a user • ID: {report_id}"
+  "forum_post_footer": "Reported by a user • ID: {report_id}",
+
+  "category_select_placeholder": "Choose a category...",
+  "category_harassment_description": "Harassment, bullying, or threatening behavior",
+  "category_inappropriate_content_description": "NSFW, offensive, or inappropriate content",
+  "category_suspicious_behavior_description": "Suspicious or unusual behavior",
+  "category_child_safety_description": "Content or behavior harmful to minors",
+  "category_spam_description": "Spam, flooding, or repetitive messages",
+  "category_scam_description": "Scams, phishing, or fraudulent activities",
+  "category_threats_description": "Threats, violence, or dangerous content",
+  "category_other_description": "Other violations not listed above",
+
+  "agis_command_title": "Anonymous Report - Aegis",
+  "agis_command_description": "Select a category for your report:",
+  "agis_categories_field": "📋 Available Categories",
+  "categories_command_title": "📋 Aegis Report Categories",
+  "categories_command_description": "Here are all available categories for your reports:",
+  "categories_command_footer": "Use /agis to create a report",
+  "error_title": "❌ Error",
+  "severity_label": "Severity"
 }

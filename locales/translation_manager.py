@@ -16,7 +16,7 @@ class TranslationManager:
     def __init__(self, locales_dir: str = "locales"):
         self.locales_dir = Path(locales_dir)
         self.translations: Dict[str, Dict[str, str]] = {}
-        self.default_language = "fr"
+        self.default_language = "en"
         self.available_languages = []
         
         # Charger toutes les traductions
@@ -118,9 +118,9 @@ class TranslationManager:
             
         try:
             # Import dynamique pour éviter les dépendances circulaires
-            from guild_config import guild_config
+            from services.guild_service import guild_service
             
-            config = guild_config.get_guild_config(guild_id)
+            config = guild_service.get_guild_config(guild_id)
             return config.get('language', self.default_language)
             
         except Exception as e:
