@@ -79,7 +79,9 @@
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" test_refactored.py)",
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" test_new_bot.py)",
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" main.py)",
-      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"\nimport discord\nimport asyncio\nfrom core.bot import AegisBot\n\nasync def check_channels():\n    bot = AegisBot()\n    await bot.setup()\n    await bot.login(bot.http.token)\n    \n    guild = bot.get_guild(1401296043504832602)\n    if guild:\n        print(''Canaux disponibles:'')\n        for channel in guild.channels:\n            print(f''- {channel.name} (ID: {channel.id}) - Type: {type(channel).__name__}'')\n    \n    await bot.close()\n\n# Récupérer le token depuis la config\nfrom config.bot_config import bot_settings\nimport os\nos.environ[''DISCORD_TOKEN''] = bot_settings.token\n\nasyncio.run(check_channels())\n\")"
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"\nimport discord\nimport asyncio\nfrom core.bot import AegisBot\n\nasync def check_channels():\n    bot = AegisBot()\n    await bot.setup()\n    await bot.login(bot.http.token)\n    \n    guild = bot.get_guild(1401296043504832602)\n    if guild:\n        print(''Canaux disponibles:'')\n        for channel in guild.channels:\n            print(f''- {channel.name} (ID: {channel.id}) - Type: {type(channel).__name__}'')\n    \n    await bot.close()\n\n# Récupérer le token depuis la config\nfrom config.bot_config import bot_settings\nimport os\nos.environ[''DISCORD_TOKEN''] = bot_settings.token\n\nasyncio.run(check_channels())\n\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''ui/views/validation_views.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''ui/modals/report_modals.py'', encoding=''utf-8'').read())\")"
     ],
     "deny": []
   }
