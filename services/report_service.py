@@ -141,7 +141,22 @@ class ReportService:
     
     def _generate_report_id(self) -> str:
         """Générer un ID unique pour un signalement"""
-        return str(uuid.uuid4())[:8].upper()
+        import time
+        
+        # Générer un ID et vérifier qu'il n'existe pas déjà
+        max_attempts = 10
+        for _ in range(max_attempts):
+            # Combinaison timestamp + uuid pour plus d'unicité
+            timestamp_part = hex(int(time.time() * 1000000))[-6:].upper()  # 6 chars du timestamp
+            uuid_part = str(uuid.uuid4())[:2].upper()  # 2 chars de l'UUID
+            report_id = timestamp_part + uuid_part
+            
+            # Vérifier que l'ID n'existe pas
+            if report_id not in self.active_reports:
+                return report_id
+        
+        # Fallback si collision (très improbable)
+        return str(uuid.uuid4()).replace('-', '').upper()[:8]
     
     async def cleanup_old_reports(self, days: int = 30):
         """Nettoyer les anciens signalements"""
