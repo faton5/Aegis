@@ -3,8 +3,10 @@ import os
 import asyncio
 from typing import Optional, Dict, List, Any
 from supabase import create_client, Client
-from utils import logger
-from config import BOT_CONFIG
+from config.logging_config import get_logger
+from config.bot_config import bot_settings
+
+logger = get_logger('supabase')
 
 class SupabaseClient:
     """Client pour interactions avec la base de données centralisée Supabase"""
@@ -15,7 +17,7 @@ class SupabaseClient:
         
     async def connect(self) -> bool:
         """Se connecter à Supabase"""
-        if not BOT_CONFIG["SUPABASE_ENABLED"]:
+        if not bot_settings.supabase_enabled:
             logger.info("Supabase désactivé dans la configuration")
             return False
             

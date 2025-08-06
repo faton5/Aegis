@@ -153,7 +153,19 @@ class AdminCog(commands.Cog):
                 inline=True
             )
             
-            # Chercher les signalements concernant cet utilisateur
+            # Vérifier d'abord dans Supabase (base globale)
+            supabase_flag = None
+            if hasattr(self.bot.report_service, 'db') and self.bot.report_service.db:
+                try:
+                    supabase_flag = await self.bot.report_service.db.check_user_flag(
+                        user.id, 
+                        interaction.guild_id,
+                        interaction.guild.name
+                    )
+                except Exception as e:
+                    logger.warning(f"Erreur vérification Supabase: {e}")
+            
+            # Chercher les signalements locaux concernant cet utilisateur
             user_reports = []
             if hasattr(self.bot, 'report_service'):
                 for report in self.bot.report_service.active_reports.values():
@@ -216,11 +228,33 @@ class AdminCog(commands.Cog):
                 
             else:
                 embed.add_field(
-                    name="🗃️ Base de données",
-                    value="✅ Aucun signalement trouvé\n*Utilisateur propre*",
+                    name="📋 Signalements Locaux",
+                    value="✅ Aucun signalement local",
+                    inline=True
+                )
+            
+            # Afficher les informations de la base globale Supabase
+            if supabase_flag:
+                embed.add_field(
+                    name="🌐 Base Globale (Supabase)",
+                    value=f"🚨 **UTILISATEUR FLAGGÉ**\n**Niveau:** {supabase_flag.get('flag_level', 'Inconnu')}\n**Catégorie:** {supabase_flag.get('flag_category', 'N/A')}\n**Raison:** {supabase_flag.get('flag_reason', 'N/A')[:50]}",
                     inline=False
                 )
-                embed.color = discord.Color.green()
+                embed.color = discord.Color.red()
+            elif hasattr(self.bot.report_service, 'db') and self.bot.report_service.db and self.bot.report_service.db.is_connected:
+                embed.add_field(
+                    name="🌐 Base Globale (Supabase)",
+                    value="✅ Utilisateur non flaggé globalement",
+                    inline=True
+                )
+                if not user_reports:  # Seulement vert si pas de signalements locaux non plus
+                    embed.color = discord.Color.green()
+            else:
+                embed.add_field(
+                    name="🌐 Base Globale (Supabase)",
+                    value="⚠️ Non disponible (désactivé ou hors ligne)",
+                    inline=True
+                )
             
             await interaction.followup.send(embed=embed, ephemeral=True)
             
