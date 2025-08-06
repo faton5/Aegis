@@ -121,5 +121,24 @@
   "forum_post_status_field": "📊 Statut",
   "forum_post_validations_field": "👥 Validations",
   "forum_post_status_pending": "🔄 En attente de validation",
-  "forum_post_footer": "Signalé par un utilisateur • ID: {report_id}"
+  "forum_post_footer": "Signalé par un utilisateur • ID: {report_id}",
+
+  "category_select_placeholder": "Choisissez une catégorie...",
+  "category_harassment_description": "Harcèlement, intimidation ou menaces",
+  "category_inappropriate_content_description": "Contenu NSFW, offensant ou inapproprié",
+  "category_suspicious_behavior_description": "Comportement suspect ou inhabituel",
+  "category_child_safety_description": "Contenu ou comportement dangereux pour les mineurs",
+  "category_spam_description": "Spam, flood ou messages répétitifs",
+  "category_scam_description": "Arnaques, phishing ou activités frauduleuses",
+  "category_threats_description": "Menaces, violence ou contenu dangereux",
+  "category_other_description": "Autres violations non listées ci-dessus",
+
+  "agis_command_title": "Signalement Anonyme - Aegis",
+  "agis_command_description": "Sélectionnez une catégorie pour votre signalement :",
+  "agis_categories_field": "📋 Catégories disponibles",
+  "categories_command_title": "📋 Catégories de Signalement Aegis",
+  "categories_command_description": "Voici toutes les catégories disponibles pour vos signalements :",
+  "categories_command_footer": "Utilisez /agis pour créer un signalement",
+  "error_title": "❌ Erreur",
+  "severity_label": "Sévérité"
 }

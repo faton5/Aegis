@@ -32,17 +32,22 @@ class CategorySelectView(View):
             label_key = f"category_{category_id}"
             label = self.translator.t(label_key, self.guild_id, fallback=category_data['label'])
             
+            # Traduire la description aussi
+            desc_key = f"category_{category_id}_description"
+            description = self.translator.t(desc_key, self.guild_id, fallback=category_data['description'])
+            
             option = discord.SelectOption(
                 label=label,
                 value=category_id,
-                description=category_data['description'][:100],  # Limite Discord
+                description=description[:100],  # Limite Discord
                 emoji=self._get_category_emoji(category_id)
             )
             options.append(option)
         
-        # Créer le select avec les options
+        # Créer le select avec les options (placeholder traduit)
+        placeholder = self.translator.t("category_select_placeholder", self.guild_id)
         select = CategorySelect(
-            placeholder="Choisissez une catégorie...",
+            placeholder=placeholder,
             options=options,
             guild_id=self.guild_id,
             bot=self.bot,

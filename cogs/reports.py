@@ -23,7 +23,7 @@ class ReportsCog(commands.Cog):
     
     @app_commands.command(
         name="agis",
-        description="Créer un signalement anonyme"
+        description="Create an anonymous report"
     )
     async def agis_command(self, interaction: discord.Interaction):
         """Commande principale pour créer un signalement"""
@@ -42,18 +42,22 @@ class ReportsCog(commands.Cog):
             
             # Créer l'embed de présentation
             embed = discord.Embed(
-                title=translator.t("report_modal_title", interaction.guild_id),
-                description="Sélectionnez une catégorie pour votre signalement :",
+                title=translator.t("agis_command_title", interaction.guild_id),
+                description=translator.t("agis_command_description", interaction.guild_id),
                 color=discord.Color.blue()
             )
             
-            # Ajouter les catégories à l'embed
+            # Ajouter les catégories à l'embed (traduites)
             categories_text = ""
             for category_id, category_data in REPORT_CATEGORIES.items():
-                categories_text += f"{category_data['label']}\n{category_data['description']}\n\n"
+                label_key = f"category_{category_id}"
+                desc_key = f"category_{category_id}_description"
+                label = translator.t(label_key, interaction.guild_id, fallback=category_data['label'])
+                description = translator.t(desc_key, interaction.guild_id, fallback=category_data['description'])
+                categories_text += f"{label}\n{description}\n\n"
             
             embed.add_field(
-                name="📋 Catégories disponibles",
+                name=translator.t("agis_categories_field", interaction.guild_id),
                 value=categories_text[:1024],  # Limite Discord
                 inline=False
             )
@@ -70,25 +74,31 @@ class ReportsCog(commands.Cog):
     
     @app_commands.command(
         name="categories",
-        description="Afficher les catégories de signalement disponibles"
+        description="Display available report categories"
     )
     async def categories_command(self, interaction: discord.Interaction):
         """Afficher toutes les catégories de signalement"""
         try:
             embed = discord.Embed(
-                title="📋 Catégories de Signalement Aegis",
-                description="Voici toutes les catégories disponibles pour vos signalements :",
+                title=translator.t("categories_command_title", interaction.guild_id),
+                description=translator.t("categories_command_description", interaction.guild_id),
                 color=discord.Color.blue()
             )
             
             for category_id, category_data in REPORT_CATEGORIES.items():
+                label_key = f"category_{category_id}"
+                desc_key = f"category_{category_id}_description"
+                label = translator.t(label_key, interaction.guild_id, fallback=category_data['label'])
+                description = translator.t(desc_key, interaction.guild_id, fallback=category_data['description'])
+                severity_label = translator.t("severity_label", interaction.guild_id)
+                
                 embed.add_field(
-                    name=category_data['label'],
-                    value=f"{category_data['description']}\n*Sévérité: {category_data['severity']}*",
+                    name=label,
+                    value=f"{description}\n*{severity_label}: {category_data['severity']}*",
                     inline=True
                 )
             
-            embed.set_footer(text="Utilisez /agis pour créer un signalement")
+            embed.set_footer(text=translator.t("categories_command_footer", interaction.guild_id))
             
             await interaction.response.send_message(embed=embed, ephemeral=True)
             
@@ -102,7 +112,7 @@ class ReportsCog(commands.Cog):
             error_message = translator.t(error_key, interaction.guild_id)
             
             embed = discord.Embed(
-                title="❌ Erreur",
+                title=translator.t("error_title", interaction.guild_id),
                 description=error_message,
                 color=discord.Color.red()
             )
