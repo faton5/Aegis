@@ -78,9 +78,11 @@ class AegisBot(commands.Bot):
     async def _load_cogs(self):
         """Charger les cogs (extensions) du bot"""
         cogs_to_load = [
-            'cogs.reports',  # Commandes de signalement
-            'cogs.admin',    # Commandes admin
-            'cogs.setup',    # Configuration serveurs
+            'cogs.reports',    # Commandes de signalement
+            'cogs.admin',      # Commandes admin
+            'cogs.setup',      # Configuration serveurs
+            'cogs.dm_handler', # Gestionnaire de MP
+            'cogs.config',     # Configuration avancée
         ]
         
         if bot_settings.debug_enabled:

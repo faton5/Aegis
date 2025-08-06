@@ -59,11 +59,14 @@ class SetupMainView(View):
                     interaction.guild.me: discord.PermissionOverwrite(
                         read_messages=True, 
                         send_messages=True, 
-                        create_public_threads=True
+                        create_public_threads=True,
+                        manage_messages=True
                     ),
                     validator_role: discord.PermissionOverwrite(
                         read_messages=True, 
-                        send_messages=True
+                        send_messages=False,  # Pas d'écriture libre
+                        use_application_commands=True,  # Pour les boutons
+                        add_reactions=True  # Pour les réactions
                     )
                 }
                 
