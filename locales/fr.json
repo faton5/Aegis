@@ -1,7 +1,7 @@
 {
   "report_modal_title": "Signalement Agis - Rapport anonyme",
   "report_modal_target_label": "Nom d'utilisateur à signaler",
-  "report_modal_target_placeholder": "Entrez le nom d'utilisateur exact",
+  "report_modal_target_placeholder": "@utilisateur ou nom ou ID",
   "report_modal_reason_label": "Raison du signalement",
   "report_modal_reason_placeholder": "Décrivez la raison de votre signalement (500 caractères max)",
   "report_modal_evidence_label": "Preuves (optionnel)",
@@ -140,5 +140,21 @@
   "categories_command_description": "Voici toutes les catégories disponibles pour vos signalements :",
   "categories_command_footer": "Utilisez /agis pour créer un signalement",
   "error_title": "❌ Erreur",
-  "severity_label": "Sévérité"
+  "severity_label": "Sévérité",
+
+  "admin_alerts_forum_not_found": "❌ Forum d'alertes non trouvé. Utilisez /setup pour configurer le bot.",
+  "admin_database_disabled": "❌ Base de données centralisée désactivée.",
+  "admin_verification_error": "❌ Erreur lors de la vérification.",
+  "admin_reports_retrieval_error": "❌ Erreur lors de la récupération des signalements.",
+  "admin_forum_not_found": "❌ Forum d'alertes non trouvé.",
+  "admin_stats_calculation": "📊 Statistiques Aegis",
+  "admin_stats_description": "Rapport d'activité des {days} derniers jours",
+  "admin_stats_total_reports": "📈 Signalements totaux",
+  "admin_stats_validated": "✅ Validés",
+  "admin_stats_pending": "⏳ En attente",
+  "admin_stats_active_reports": "🔄 Signalements actifs",
+  "admin_stats_monitored_users": "👥 Utilisateurs surveillés",
+  "admin_stats_error": "❌ Erreur lors du calcul des statistiques.",
+
+  "report_target_invalid": "Utilisateur invalide: mention (@user), nom ou ID requis"
 }

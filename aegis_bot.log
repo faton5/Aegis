@@ -294,3 +294,91 @@
 [2025-08-06 22:38:18] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
 [2025-08-06 22:38:18] [INFO    ] aegis.bot: ==================================================
 [2025-08-06 22:38:18] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-06 22:43:02] [INFO    ] aegis: ==================================================
+[2025-08-06 22:43:02] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 22:43:02] [INFO    ] aegis: ==================================================
+[2025-08-06 22:43:02] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 22:43:02] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 22:43:02] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 22:43:02] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 22:43:02] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 22:43:03] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-06 22:43:03] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-06 22:43:03] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 22:43:03] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 22:43:03] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 22:43:03] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 22:43:03] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-06 22:43:03] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-06 22:43:03] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 22:43:03] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-06 22:43:06] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-06 22:43:06] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:43:06] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-06 22:43:11] [INFO    ] aegis.setup: Commande /setup utilisée par 1faton dans BOT TEST
+[2025-08-06 22:43:11] [INFO    ] aegis.guild_service: Configuration par défaut créée pour guild 975379747443978260
+[2025-08-06 22:43:21] [INFO    ] aegis.ui.setup_views: Rôle Validateur créé dans BOT TEST
+[2025-08-06 22:43:21] [INFO    ] aegis.ui.setup_views: Forum agis-alerts créé dans BOT TEST
+[2025-08-06 22:43:21] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['forum_channel_id', 'validator_role_id', 'configured']
+[2025-08-06 22:43:36] [INFO    ] aegis.ui.setup_views: Langue sélectionnée: en pour guild 975379747443978260
+[2025-08-06 22:43:36] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['language']
+[2025-08-06 22:43:45] [INFO    ] aegis.config: Commande /config utilisée par 1faton dans BOT TEST
+[2025-08-06 22:44:00] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['auto_actions']
+[2025-08-06 22:44:04] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['auto_actions']
+[2025-08-06 22:44:11] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['auto_actions']
+[2025-08-06 22:44:14] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['auto_actions']
+[2025-08-06 22:44:26] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['validation_thresholds']
+[2025-08-06 22:44:32] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['validation_thresholds']
+[2025-08-06 22:44:38] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['validation_thresholds']
+[2025-08-06 22:44:48] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['rate_limits']
+[2025-08-06 22:44:53] [INFO    ] aegis.guild_service: Configuration mise à jour pour guild 975379747443978260: ['rate_limits']
+[2025-08-06 22:45:34] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans BOT TEST
+[2025-08-06 22:45:38] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 22:45:42] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans BOT TEST
+[2025-08-06 22:45:42] [INFO    ] aegis.report_service: Signalement créé: 9D07B14B par user 883682952221978674
+[2025-08-06 22:45:42] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402754534388007126 pour signalement 9D07B14B
+[2025-08-06 22:45:43] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement 9D07B14B
+[2025-08-06 22:45:43] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 9D07B14B
+[2025-08-06 22:45:58] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:46:00] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:46:07] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:46:15] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:46:28] [INFO    ] aegis.ui.validation_views: Infos supplémentaires demandées pour 9D07B14B par 1faton
+[2025-08-06 22:46:39] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:46:47] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402754534388007126 (signalement 9D07B14B)
+[2025-08-06 22:47:08] [INFO    ] aegis.report_service: Signalement 9D07B14B mis à jour: statut=validated
+[2025-08-06 22:47:08] [INFO    ] aegis.supabase: ✅ Flag ajouté pour utilisateur 0 (niveau: medium)
+[2025-08-06 22:47:08] [INFO    ] aegis.ui.validation_views: Signalement 9D07B14B sauvé dans Supabase (niveau: medium)
+[2025-08-06 22:47:09] [INFO    ] aegis.ui.validation_views: Feedback validated envoyé à 1faton pour signalement 9D07B14B
+[2025-08-06 22:47:09] [INFO    ] aegis.ui.validation_views: Signalement 9D07B14B validé par 1faton
+[2025-08-06 22:55:20] [INFO    ] aegis: ==================================================
+[2025-08-06 22:55:20] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 22:55:20] [INFO    ] aegis: ==================================================
+[2025-08-06 22:55:20] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 22:55:20] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 22:55:20] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 22:55:20] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 22:55:20] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 22:55:21] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-06 22:55:21] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-06 22:55:21] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 22:55:21] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 22:55:21] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 22:55:21] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 22:55:21] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-06 22:55:21] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-06 22:55:21] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 22:55:21] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 22:55:24] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:55:24] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 22:55:24] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-06 22:55:24] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-06 22:55:24] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-06 22:55:24] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 22:55:24] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:55:25] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées

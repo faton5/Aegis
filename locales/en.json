@@ -1,7 +1,7 @@
 {
   "report_modal_title": "Agis Report - Anonymous Report",
   "report_modal_target_label": "Username to report",
-  "report_modal_target_placeholder": "Enter the exact username",
+  "report_modal_target_placeholder": "@username or username or ID",
   "report_modal_reason_label": "Reason for report",
   "report_modal_reason_placeholder": "Describe the reason for your report (500 characters max)",
   "report_modal_evidence_label": "Evidence (optional)",
@@ -140,5 +140,21 @@
   "categories_command_description": "Here are all available categories for your reports:",
   "categories_command_footer": "Use /agis to create a report",
   "error_title": "❌ Error",
-  "severity_label": "Severity"
+  "severity_label": "Severity",
+
+  "admin_alerts_forum_not_found": "❌ Alerts forum not found. Use /setup to configure the bot.",
+  "admin_database_disabled": "❌ Centralized database disabled.",
+  "admin_verification_error": "❌ Error during verification.",
+  "admin_reports_retrieval_error": "❌ Error retrieving reports.",
+  "admin_forum_not_found": "❌ Alerts forum not found.",
+  "admin_stats_calculation": "📊 Aegis Statistics",
+  "admin_stats_description": "Activity report for the last {days} days",
+  "admin_stats_total_reports": "📈 Total Reports",
+  "admin_stats_validated": "✅ Validated",
+  "admin_stats_pending": "⏳ Pending",
+  "admin_stats_active_reports": "🔄 Active Reports",
+  "admin_stats_monitored_users": "👥 Monitored Users",
+  "admin_stats_error": "❌ Error calculating statistics.",
+
+  "report_target_invalid": "Invalid user: mention (@user), username, or ID required"
 }

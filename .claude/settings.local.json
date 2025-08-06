@@ -83,7 +83,10 @@
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''ui/views/validation_views.py'', encoding=''utf-8'').read())\")",
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''ui/modals/report_modals.py'', encoding=''utf-8'').read())\")",
       "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''cogs/dm_handler.py'', encoding=''utf-8'').read())\")",
-      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''cogs/reports.py'', encoding=''utf-8'').read())\")"
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''cogs/reports.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''ui/modals/report_modals.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''database/models/report.py'', encoding=''utf-8'').read())\")",
+      "Bash(\"C:/Users/FATON-GAMES/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import ast; ast.parse(open(''services/report_service.py'', encoding=''utf-8'').read())\")"
     ],
     "deny": []
   }

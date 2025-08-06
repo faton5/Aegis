@@ -169,7 +169,10 @@ class AdminCog(commands.Cog):
             user_reports = []
             if hasattr(self.bot, 'report_service'):
                 for report in self.bot.report_service.active_reports.values():
-                    if report.target_username.lower() == user.name.lower() or report.target_username.lower() == user.display_name.lower():
+                    # Priorité à l'ID utilisateur, puis au nom
+                    if (report.target_user_id and report.target_user_id == user.id) or \
+                       (report.target_username.lower() == user.name.lower() or 
+                        report.target_username.lower() == user.display_name.lower()):
                         user_reports.append(report)
             
             if user_reports:
