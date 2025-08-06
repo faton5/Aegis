@@ -54,5 +54,31 @@
   "button_configure_roles": "👥 Configurer Rôles",
   "button_set_language": "🌐 Définir Langue",
   "button_back": "⬅️ Retour",
-  "button_finish": "✅ Terminer"
+  "button_finish": "✅ Terminer",
+
+  "config_title": "⚙️ Configuration Avancée Aegis",
+  "config_description": "Personnalisez le comportement du bot selon vos besoins.",
+  "config_auto_actions_title": "🔧 Configuration Actions Automatiques",
+  "config_auto_actions_description": "Définissez les actions à prendre automatiquement selon le niveau de gravité des signalements validés.",
+  "config_thresholds_title": "📊 Configuration Seuils de Validation",
+  "config_thresholds_description": "Paramétrez les critères pour valider automatiquement les signalements.",
+  "config_limits_title": "⏱️ Configuration Limites de Taux",
+  "config_limits_description": "Définissez les limites pour éviter le spam de signalements.",
+
+  "validation_feedback_validated_title": "✅ Signalement Validé",
+  "validation_feedback_rejected_title": "❌ Signalement Non Retenu",
+  "validation_feedback_validated_decision": "**Validé** par l'équipe de modération",
+  "validation_feedback_rejected_decision": "**Non retenu** après examen",
+
+  "dm_transferred_title": "✅ Message Transféré", 
+  "dm_transferred_description": "Votre message a été ajouté au signalement **#{report_id}**.",
+
+  "check_title": "🔍 Vérification Utilisateur",
+  "check_description": "Recherche pour {user_mention} ({user_id})",
+  "check_local_reports": "📋 Signalements Locaux",
+  "check_global_database": "🌐 Base Globale (Supabase)",
+  "check_risk_level": "⚠️ Niveau de Risque",
+  "check_no_local_reports": "✅ Aucun signalement local",
+  "check_not_flagged_globally": "✅ Utilisateur non flaggé globalement",
+  "check_database_unavailable": "⚠️ Non disponible (désactivé ou hors ligne)"
 }

@@ -54,5 +54,31 @@
   "button_configure_roles": "👥 Configure Roles",
   "button_set_language": "🌐 Set Language",
   "button_back": "⬅️ Back",
-  "button_finish": "✅ Finish"
+  "button_finish": "✅ Finish",
+
+  "config_title": "⚙️ Advanced Aegis Configuration",
+  "config_description": "Customize the bot's behavior according to your needs.",
+  "config_auto_actions_title": "🔧 Auto Actions Configuration",
+  "config_auto_actions_description": "Define actions to take automatically based on validated report severity level.",
+  "config_thresholds_title": "📊 Validation Thresholds Configuration",
+  "config_thresholds_description": "Set criteria to automatically validate reports.",
+  "config_limits_title": "⏱️ Rate Limits Configuration",
+  "config_limits_description": "Set limits to prevent report spam.",
+
+  "validation_feedback_validated_title": "✅ Report Validated",
+  "validation_feedback_rejected_title": "❌ Report Not Retained",
+  "validation_feedback_validated_decision": "**Validated** by moderation team",
+  "validation_feedback_rejected_decision": "**Not retained** after review",
+
+  "dm_transferred_title": "✅ Message Transferred",
+  "dm_transferred_description": "Your message has been added to report **#{report_id}**.",
+
+  "check_title": "🔍 User Verification",
+  "check_description": "Search for {user_mention} ({user_id})",
+  "check_local_reports": "📋 Local Reports",
+  "check_global_database": "🌐 Global Database (Supabase)",
+  "check_risk_level": "⚠️ Risk Level", 
+  "check_no_local_reports": "✅ No local reports",
+  "check_not_flagged_globally": "✅ User not flagged globally",
+  "check_database_unavailable": "⚠️ Unavailable (disabled or offline)"
 }
