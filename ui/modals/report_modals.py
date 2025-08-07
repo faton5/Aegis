@@ -121,7 +121,8 @@ class AgisReportModal(Modal):
             # Créer le post dans le forum si configuré
             await self._create_forum_post(interaction, report, target_username)
             
-            # Note: Les preuves peuvent être ajoutées via MP ultérieurement (transférées automatiquement)
+            # Envoyer MP pour demander les preuves
+            await self._send_evidence_dm(interaction, report)
             
             # Notifier les modérateurs
             await self._notify_moderators(report)
@@ -291,6 +292,41 @@ class AgisReportModal(Modal):
         except Exception as e:
             logger.error(f"Erreur lors de la notification des modérateurs: {e}")
     
+    async def _send_evidence_dm(self, interaction: discord.Interaction, report):
+        """Envoyer un MP à l'utilisateur pour demander des preuves supplémentaires"""
+        try:
+            # Créer l'embed du MP
+            embed = discord.Embed(
+                title="🔍 Preuves Supplémentaires",
+                description=f"Merci pour votre signalement **#{report.id}**.\n\nPour nous aider à traiter votre signalement plus efficacement, vous pouvez nous envoyer des **preuves supplémentaires** :",
+                color=discord.Color.blue()
+            )
+            
+            embed.add_field(
+                name="📋 Types de preuves utiles",
+                value="• Captures d'écran\n• Liens vers des messages\n• Historique de conversation\n• Autres éléments pertinents",
+                inline=False
+            )
+            
+            embed.add_field(
+                name="📬 Comment procéder",
+                value=f"Répondez simplement à ce message avec vos preuves.\n\n**Votre signalement sera traité même sans preuves supplémentaires.**",
+                inline=False
+            )
+            
+            embed.set_footer(
+                text=f"Signalement #{report.id} • Aegis Bot",
+                icon_url=self.bot.user.avatar.url if self.bot.user.avatar else None
+            )
+            
+            # Envoyer le MP
+            await interaction.user.send(embed=embed)
+            logger.info(f"MP pour preuves envoyé à {interaction.user} pour signalement {report.id}")
+            
+        except discord.Forbidden:
+            logger.warning(f"Impossible d'envoyer un MP à {interaction.user} (DM fermés)")
+        except Exception as e:
+            logger.error(f"Erreur lors de l'envoi du MP pour preuves: {e}")
     
     async def _extract_user_info(self, interaction: discord.Interaction, target_input: str):
         """Extraire les informations utilisateur depuis une mention, nom ou ID"""
