@@ -28,7 +28,8 @@ class ReportService:
                           target_username: str,
                           category: str,
                           reason: str,
-                          evidence: str = "") -> Optional[Report]:
+                          evidence: str = "",
+                          target_user_id: int = None) -> Optional[Report]:
         """
         Créer un nouveau signalement
         
@@ -39,6 +40,7 @@ class ReportService:
             category: Catégorie du signalement
             reason: Raison du signalement
             evidence: Preuves (optionnel)
+            target_user_id: ID Discord de l'utilisateur signalé (si disponible)
             
         Returns:
             Report créé ou None si échec

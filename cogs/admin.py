@@ -47,7 +47,7 @@ class AdminCog(commands.Cog):
             
             if not alerts_forum:
                 await interaction.followup.send(
-                    "❌ Forum d'alertes non trouvé. Utilisez /setup pour configurer le bot.",
+                    translator.t("admin_alerts_forum_not_found", interaction.guild_id),
                     ephemeral=True
                 )
                 return
@@ -104,7 +104,7 @@ class AdminCog(commands.Cog):
         except Exception as e:
             logger.error(f"Erreur dans /stats: {e}")
             await interaction.followup.send(
-                "❌ Erreur lors du calcul des statistiques.",
+                translator.t("admin_stats_error", interaction.guild_id),
                 ephemeral=True
             )
     
@@ -129,7 +129,7 @@ class AdminCog(commands.Cog):
             # Vérifier si Supabase est activé
             if not bot_settings.supabase_enabled:
                 await interaction.followup.send(
-                    "❌ Base de données centralisée désactivée.",
+                    translator.t("admin_database_disabled", interaction.guild_id),
                     ephemeral=True
                 )
                 return
@@ -264,7 +264,7 @@ class AdminCog(commands.Cog):
         except Exception as e:
             logger.error(f"Erreur dans /check: {e}")
             await interaction.followup.send(
-                "❌ Erreur lors de la vérification.",
+                translator.t("admin_verification_error", interaction.guild_id),
                 ephemeral=True
             )
     
@@ -320,14 +320,14 @@ class AdminCog(commands.Cog):
                 await interaction.followup.send(embed=embed, ephemeral=True)
             else:
                 await interaction.followup.send(
-                    "❌ Service de signalements non disponible.",
+                    translator.t("validate_service_unavailable", interaction.guild_id),
                     ephemeral=True
                 )
                 
         except Exception as e:
             logger.error(f"Erreur dans /validate: {e}")
             await interaction.followup.send(
-                "❌ Erreur lors de la récupération des signalements.",
+                translator.t("admin_reports_retrieval_error", interaction.guild_id),
                 ephemeral=True
             )
     
@@ -366,29 +366,47 @@ class AdminCog(commands.Cog):
             cutoff_date = datetime.now(timezone.utc) - timedelta(days=days or 30)
             
             deleted_count = 0
+            active_deleted = 0
+            archived_deleted = 0
+            
+            # Nettoyer les threads ACTIFS anciens d'abord
+            if hasattr(alerts_forum, 'threads'):
+                for thread in alerts_forum.threads:
+                    if thread.created_at and thread.created_at < cutoff_date:
+                        try:
+                            await thread.delete()
+                            active_deleted += 1
+                            deleted_count += 1
+                        except Exception as e:
+                            logger.debug(f"Erreur suppression thread actif {thread.id}: {e}")
             
             # Nettoyer les threads archivés anciens
             async for thread in alerts_forum.archived_threads(limit=200):
                 if thread.created_at and thread.created_at < cutoff_date:
                     try:
                         await thread.delete()
+                        archived_deleted += 1
                         deleted_count += 1
-                    except:
-                        pass  # Ignorer les erreurs de suppression
+                    except Exception as e:
+                        logger.debug(f"Erreur suppression thread archivé {thread.id}: {e}")
             
             # Nettoyer le service si disponible
             if hasattr(self.bot, 'report_service'):
                 await self.bot.report_service.cleanup_old_reports(days or 30)
             
             embed = discord.Embed(
-                title="🧹 Nettoyage Terminé",
-                description=f"Nettoyage des signalements de plus de {days or 30} jours",
+                title=translator.t("purge_cleanup_completed", interaction.guild_id),
+                description=translator.t("purge_cleanup_description", interaction.guild_id, days=days or 30),
                 color=discord.Color.green()
             )
             
             embed.add_field(
-                name="📊 Résultats",
-                value=f"**Threads supprimés**: {deleted_count}\n**Critère**: Plus de {days or 30} jours",
+                name=translator.t("purge_results_field", interaction.guild_id),
+                value=translator.t("purge_results_value", interaction.guild_id, 
+                                 deleted_count=deleted_count, 
+                                 active_count=active_deleted,
+                                 archived_count=archived_deleted, 
+                                 days=days or 30),
                 inline=False
             )
             
@@ -397,7 +415,7 @@ class AdminCog(commands.Cog):
         except Exception as e:
             logger.error(f"Erreur dans /purge: {e}")
             await interaction.followup.send(
-                "❌ Erreur lors du nettoyage.",
+                translator.t("purge_error", interaction.guild_id),
                 ephemeral=True
             )
     

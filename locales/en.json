@@ -156,5 +156,14 @@
   "admin_stats_monitored_users": "👥 Monitored Users",
   "admin_stats_error": "❌ Error calculating statistics.",
 
-  "report_target_invalid": "Invalid user: mention (@user), username, or ID required"
+  "report_target_invalid": "Invalid user: mention (@user), username, or ID required",
+
+  "purge_cleanup_completed": "🧹 Cleanup Completed",
+  "purge_cleanup_description": "Cleaning reports older than {days} days",
+  "purge_results_field": "📈 Results",
+  "purge_results_value": "**Threads deleted**: {deleted_count}\n**Active deleted**: {active_count}\n**Archived deleted**: {archived_count}\n**Criteria**: Older than {days} days",
+  "purge_forum_not_found": "❌ Alerts forum not found.",
+  "purge_error": "❌ Error during cleanup.",
+  "validate_no_reports": "No pending reports.",
+  "validate_service_unavailable": "❌ Report service not available."
 }
