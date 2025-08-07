@@ -238,9 +238,31 @@ class AdminCog(commands.Cog):
             
             # Afficher les informations de la base globale Supabase
             if supabase_flag:
+                # Nouveau format avec niveaux et historique
+                active_flags = supabase_flag.get('active_flags', 0)
+                total_flags = supabase_flag.get('total_flags', 0)
+                current_level = supabase_flag.get('current_level', 'unknown').upper()
+                
+                # Extraire la dernière raison de l'historique JSON
+                flag_history = supabase_flag.get('flag_history', [])
+                last_reason = "N/A"
+                last_category = "N/A"
+                
+                if flag_history and len(flag_history) > 0:
+                    # Trouver le dernier flag actif (non expiré)
+                    for flag_item in reversed(flag_history):
+                        if not flag_item.get('expired', False):
+                            last_reason = flag_item.get('reason', 'N/A')[:50]
+                            last_category = flag_item.get('category', 'N/A')
+                            break
+                
                 embed.add_field(
                     name=translator.t("check_global_database", interaction.guild_id),
-                    value=f"🚨 **UTILISATEUR FLAGGÉ**\n**Niveau:** {supabase_flag.get('flag_level', 'Inconnu')}\n**Catégorie:** {supabase_flag.get('flag_category', 'N/A')}\n**Raison:** {supabase_flag.get('flag_reason', 'N/A')[:50]}",
+                    value=f"🚨 **UTILISATEUR FLAGGÉ**\n"
+                          f"**Niveau:** {current_level}\n"
+                          f"**Flags actifs/total:** {active_flags}/{total_flags}\n"
+                          f"**Catégorie:** {last_category}\n"
+                          f"**Dernière raison:** {last_reason}",
                     inline=False
                 )
                 embed.color = discord.Color.red()

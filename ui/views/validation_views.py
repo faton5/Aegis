@@ -57,31 +57,22 @@ class ReportValidationView(View):
                     # Sauvegarder dans Supabase si connecté
                     if hasattr(interaction.client.report_service, 'db') and interaction.client.report_service.db:
                         try:
-                            # Déterminer le niveau basé sur le nombre de signalements validés du user
-                            user_reports = [r for r in interaction.client.report_service.active_reports.values() 
-                                          if r.target_username.lower() in [report.target_username.lower()] and r.status == "validated"]
-                            validated_count = len(user_reports)
-                            
-                            if validated_count >= 3:
-                                flag_level = "critical"
-                            elif validated_count >= 2:
-                                flag_level = "high"  
-                            elif validated_count >= 1:
-                                flag_level = "medium"
-                            else:
-                                flag_level = "low"
-                            
-                            # Ajouter à Supabase (avec user_id si disponible maintenant !)
-                            await interaction.client.report_service.db.add_validated_report(
+                            # Ajouter à Supabase (niveau calculé automatiquement maintenant)
+                            result = await interaction.client.report_service.db.add_validated_report(
                                 user_id=report.target_user_id or 0,  # Utilise l'ID si disponible
                                 username=report.target_username,
-                                flag_level=flag_level,
                                 reason=report.reason,
                                 category=report.category,
                                 guild_id=interaction.guild_id,
                                 guild_name=interaction.guild.name
                             )
-                            logger.info(f"Signalement {self.report_id} sauvé dans Supabase (niveau: {flag_level})")
+                            
+                            if result.get("success"):
+                                logger.info(f"Signalement {self.report_id} sauvé dans Supabase - "
+                                          f"Nouveau niveau: {result['new_level']} "
+                                          f"({result['new_active_flags']} flags actifs)")
+                            else:
+                                logger.error(f"Échec sauvegarde Supabase: {result.get('error')}")
                         except Exception as e:
                             logger.error(f"Erreur sauvegarde Supabase: {e}")
                     
