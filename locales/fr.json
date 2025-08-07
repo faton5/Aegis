@@ -5,7 +5,7 @@
   "report_modal_reason_label": "Raison du signalement",
   "report_modal_reason_placeholder": "Décrivez la raison de votre signalement (500 caractères max)",
   "report_modal_evidence_label": "Preuves (optionnel)",
-  "report_modal_evidence_placeholder": "Liens, captures d'écran, ou autres preuves",
+  "report_modal_evidence_placeholder": "Optionnel - Vous pouvez aussi envoyer des preuves par MP plus tard",
   
   "category_harassment": "🚫 Harcèlement",
   "category_inappropriate_content": "📵 Contenu inapproprié",
