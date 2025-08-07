@@ -44,26 +44,34 @@ class SupabaseClient:
             return False
     
     async def check_user_flag(self, user_id: int, guild_id: int, guild_name: str = None) -> Optional[Dict]:
-        """Vérifier si un utilisateur est flagué globalement"""
+        """Vérifier si un utilisateur est flagué globalement avec nouveau système de niveaux"""
         if not self.is_connected:
             return None
             
         try:
-            # Appeler la fonction SQL pour vérifier et logger
+            # Appeler la fonction SQL pour vérifier et logger (avec nettoyage automatique)
             result = self.client.rpc(
                 "check_user_flag",
                 {
                     "check_user_id": user_id,
                     "requesting_guild_id": guild_id,
-                    "requesting_guild_name": guild_name
+                    "requesting_guild_name": guild_name or "Unknown"
                 }
             ).execute()
             
             if result.data and len(result.data) > 0:
                 flag_data = result.data[0]
+                
+                # Log avec nouveau format de niveaux
                 if flag_data["is_flagged"]:
-                    logger.info(f"🚩 Utilisateur {user_id} flagué: {flag_data['flag_level']}")
-                    return flag_data
+                    logger.info(f"🚩 Utilisateur {user_id} flagué: niveau {flag_data['current_level']} "
+                              f"({flag_data['active_flags']}/{flag_data['total_flags']} flags actifs/total)")
+                    
+                    # Nettoyer les flags expirés si nécessaire
+                    if flag_data.get("expired_flags_cleaned", 0) > 0:
+                        logger.info(f"🧹 {flag_data['expired_flags_cleaned']} flags expirés nettoyés pour utilisateur {user_id}")
+                
+                return flag_data
                     
             return None
             
@@ -71,20 +79,19 @@ class SupabaseClient:
             logger.error(f"Erreur lors de la vérification utilisateur {user_id}: {e}")
             return None
     
-    async def add_validated_report(self, user_id: int, username: str, flag_level: str, 
-                                 reason: str, category: str, guild_id: int, guild_name: str) -> bool:
-        """Ajouter un signalement validé à la base centralisée"""
+    async def add_validated_report(self, user_id: int, username: str, 
+                                 reason: str, category: str, guild_id: int, guild_name: str) -> Dict[str, Any]:
+        """Ajouter un signalement validé à la base centralisée (nouveau système sans level manuel)"""
         if not self.is_connected:
-            return False
+            return {"success": False, "error": "Not connected to Supabase"}
             
         try:
-            # Appeler la fonction SQL pour ajouter le flag
+            # Appel direct Supabase (contournement temporaire du problème de format)
             result = self.client.rpc(
                 "add_user_flag",
                 {
                     "flag_user_id": user_id,
                     "flag_username": username,
-                    "flag_level": flag_level,
                     "flag_reason": reason,
                     "flag_category": category,
                     "flagging_guild_id": guild_id,
@@ -92,23 +99,33 @@ class SupabaseClient:
                 }
             ).execute()
             
-            if result.data:
-                logger.info(f"✅ Flag ajouté pour utilisateur {user_id} (niveau: {flag_level})")
-                return True
+            # Gestion directe du retour Supabase
+            if result.data and isinstance(result.data, dict):
+                flag_result = result.data
                 
-            return False
+                if flag_result.get("success"):
+                    logger.info(f"✅ Flag ajouté pour utilisateur {user_id} - "
+                              f"Nouveau niveau: {flag_result.get('new_level', 'unknown')} "
+                              f"({flag_result.get('new_active_flags', 0)} flags actifs)")
+                    return flag_result
+                else:
+                    logger.error(f"❌ Échec ajout flag: {flag_result.get('error', 'Unknown error')}")
+                    return flag_result
+            else:
+                logger.error(f"❌ Retour inattendu de Supabase: {result.data} (type: {type(result.data)})")
+                return {"success": False, "error": f"Unexpected Supabase response: {result.data}"}
             
         except Exception as e:
             logger.error(f"Erreur lors de l'ajout du flag pour {user_id}: {e}")
-            return False
+            return {"success": False, "error": str(e)}
     
-    async def get_guild_stats(self, guild_id: int, days: int = 30) -> Dict[str, int]:
-        """Obtenir les statistiques de vérification pour un serveur"""
+    async def get_guild_stats(self, guild_id: int, days: int = 30) -> Dict[str, Any]:
+        """Obtenir les statistiques de vérification pour un serveur (nouveau format avec niveaux)"""
         if not self.is_connected:
             return {}
             
         try:
-            # Utiliser la fonction RPC du nouveau schéma
+            # Utiliser la fonction RPC mise à jour
             result = self.client.rpc(
                 "get_guild_stats",
                 {
@@ -121,14 +138,18 @@ class SupabaseClient:
                 stats = result.data[0]
                 return {
                     "total_checks": stats.get("total_checks", 0),
-                    "flagged_users": stats.get("flagged_users", 0), 
-                    "recent_flags": stats.get("recent_flags", 0)
+                    "flagged_users_found": stats.get("flagged_users_found", 0),
+                    "flags_created_by_guild": stats.get("flags_created_by_guild", 0),
+                    "active_flagged_users": stats.get("active_flagged_users", 0),
+                    "level_breakdown": stats.get("level_breakdown", {})
                 }
                 
             return {
                 "total_checks": 0,
-                "flagged_users": 0,
-                "recent_flags": 0
+                "flagged_users_found": 0,
+                "flags_created_by_guild": 0,
+                "active_flagged_users": 0,
+                "level_breakdown": {}
             }
             
         except Exception as e:
