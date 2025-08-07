@@ -382,3 +382,71 @@
 [2025-08-06 22:55:24] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
 [2025-08-06 22:55:24] [INFO    ] aegis.bot: ==================================================
 [2025-08-06 22:55:25] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-06 22:56:41] [INFO    ] aegis: ==================================================
+[2025-08-06 22:56:41] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-06 22:56:41] [INFO    ] aegis: ==================================================
+[2025-08-06 22:56:41] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-06 22:56:41] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-06 22:56:41] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-06 22:56:41] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-06 22:56:41] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-06 22:56:42] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-06 22:56:42] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-06 22:56:42] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-06 22:56:42] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-06 22:56:42] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-06 22:56:42] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-06 22:56:42] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-06 22:56:42] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-06 22:56:42] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-06 22:56:42] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-06 22:56:45] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:56:45] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-06 22:56:45] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-06 22:56:45] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-06 22:56:45] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-06 22:56:45] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-06 22:56:45] [INFO    ] aegis.bot: ==================================================
+[2025-08-06 22:56:46] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-06 22:57:38] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 22:57:44] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 22:57:56] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 22:58:03] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: inappropriate_content par 1faton
+[2025-08-06 22:58:14] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: suspicious_behavior par 1faton
+[2025-08-06 22:58:21] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 22:58:21] [ERROR   ] aegis.ui.report_modals: Erreur lors de la soumission du signalement: ReportService.create_report() got an unexpected keyword argument 'target_user_id'. Did you mean 'target_username'?
+[2025-08-06 22:58:35] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 22:58:38] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 22:58:41] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 22:58:48] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: inappropriate_content par 1faton
+[2025-08-06 22:58:58] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 22:59:14] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-06 22:59:16] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-06 22:59:25] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-06 22:59:25] [ERROR   ] aegis.ui.report_modals: Erreur lors de la soumission du signalement: ReportService.create_report() got an unexpected keyword argument 'target_user_id'. Did you mean 'target_username'?
+[2025-08-07 09:41:47] [INFO    ] aegis: ==================================================
+[2025-08-07 09:41:47] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 09:41:47] [INFO    ] aegis: ==================================================
+[2025-08-07 09:41:47] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 09:41:47] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 09:41:47] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 09:41:47] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 09:41:47] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 09:41:49] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 09:41:49] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 09:41:49] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 09:41:49] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 09:41:49] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 09:41:49] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 09:41:49] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 09:41:49] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 09:41:49] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 09:41:49] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 09:41:52] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 09:41:52] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 09:41:52] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 09:41:52] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 09:41:52] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 09:41:52] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 09:41:52] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 09:41:53] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées

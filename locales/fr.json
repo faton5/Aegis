@@ -156,5 +156,14 @@
   "admin_stats_monitored_users": "👥 Utilisateurs surveillés",
   "admin_stats_error": "❌ Erreur lors du calcul des statistiques.",
 
-  "report_target_invalid": "Utilisateur invalide: mention (@user), nom ou ID requis"
+  "report_target_invalid": "Utilisateur invalide: mention (@user), nom ou ID requis",
+
+  "purge_cleanup_completed": "🧹 Nettoyage Terminé",
+  "purge_cleanup_description": "Nettoyage des signalements de plus de {days} jours",
+  "purge_results_field": "📈 Résultats",
+  "purge_results_value": "**Threads supprimés**: {deleted_count}\n**Actifs supprimés**: {active_count}\n**Archivés supprimés**: {archived_count}\n**Critère**: Plus de {days} jours",
+  "purge_forum_not_found": "❌ Forum d'alertes non trouvé.",
+  "purge_error": "❌ Erreur lors du nettoyage.",
+  "validate_no_reports": "Aucun signalement en attente.",
+  "validate_service_unavailable": "❌ Service de signalements non disponible."
 }
