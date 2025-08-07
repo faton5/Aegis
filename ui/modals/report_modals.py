@@ -49,15 +49,6 @@ class AgisReportModal(Modal):
         )
         self.add_item(self.reason_input)
         
-        # Champ preuves (optionnel)
-        self.evidence_input = TextInput(
-            label=self.translator.t("report_modal_evidence_label", self.guild_id),
-            placeholder=self.translator.t("report_modal_evidence_placeholder", self.guild_id),
-            required=False,
-            max_length=1900,
-            style=discord.TextStyle.paragraph
-        )
-        self.add_item(self.evidence_input)
     
     async def on_submit(self, interaction: discord.Interaction):
         """Quand le modal est soumis"""
@@ -67,7 +58,7 @@ class AgisReportModal(Modal):
             # Récupérer les valeurs et extraire l'utilisateur
             target_raw = self.target_input.value.strip()
             reason = self.reason_input.value.strip()
-            evidence = self.evidence_input.value.strip() if self.evidence_input.value else ""
+            evidence = ""  # Preuves via MP uniquement
             
             # Extraire les infos utilisateur (nom/ID)
             target_user_data = await self._extract_user_info(interaction, target_raw)
@@ -130,8 +121,7 @@ class AgisReportModal(Modal):
             # Créer le post dans le forum si configuré
             await self._create_forum_post(interaction, report, target_username)
             
-            # Envoyer MP pour les preuves si nécessaire
-            await self._send_evidence_dm(interaction, report)
+            # Note: Les preuves peuvent être ajoutées via MP ultérieurement (transférées automatiquement)
             
             # Notifier les modérateurs
             await self._notify_moderators(report)
@@ -238,12 +228,7 @@ class AgisReportModal(Modal):
                 inline=False
             )
             
-            if report.evidence:
-                embed.add_field(
-                    name="🔍 Preuves",
-                    value=report.evidence,
-                    inline=False
-                )
+            # Note: Les preuves sont ajoutées via MP (transférées automatiquement)
             
             embed.add_field(
                 name="📊 Statut",
@@ -306,45 +291,6 @@ class AgisReportModal(Modal):
         except Exception as e:
             logger.error(f"Erreur lors de la notification des modérateurs: {e}")
     
-    async def _send_evidence_dm(self, interaction: discord.Interaction, report):
-        """Envoyer un MP à l'utilisateur pour demander des preuves supplémentaires si nécessaire"""
-        try:
-            # Vérifier si des preuves ont été fournies
-            if report.evidence and len(report.evidence.strip()) > 10:
-                return  # Des preuves suffisantes ont été fournies
-            
-            # Créer l'embed du MP
-            embed = discord.Embed(
-                title="🔍 Preuves Supplémentaires",
-                description=f"Merci pour votre signalement **#{report.id}**.\n\nPour nous aider à traiter votre signalement plus efficacement, vous pouvez nous envoyer des **preuves supplémentaires** :",
-                color=discord.Color.blue()
-            )
-            
-            embed.add_field(
-                name="📋 Types de preuves utiles",
-                value="• Captures d'écran\n• Liens vers des messages\n• Historique de conversation\n• Autres éléments pertinents",
-                inline=False
-            )
-            
-            embed.add_field(
-                name="📬 Comment procéder",
-                value=f"Répondez simplement à ce message avec vos preuves.\n\n**Votre signalement sera traité même sans preuves supplémentaires.**",
-                inline=False
-            )
-            
-            embed.set_footer(
-                text=f"Signalement #{report.id} • Aegis Bot",
-                icon_url=self.bot.user.avatar.url if self.bot.user.avatar else None
-            )
-            
-            # Envoyer le MP
-            await interaction.user.send(embed=embed)
-            logger.info(f"MP pour preuves envoyé à {interaction.user} pour signalement {report.id}")
-            
-        except discord.Forbidden:
-            logger.warning(f"Impossible d'envoyer un MP à {interaction.user} (DM fermés)")
-        except Exception as e:
-            logger.error(f"Erreur lors de l'envoi du MP pour preuves: {e}")
     
     async def _extract_user_info(self, interaction: discord.Interaction, target_input: str):
         """Extraire les informations utilisateur depuis une mention, nom ou ID"""

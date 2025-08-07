@@ -5,7 +5,7 @@
   "report_modal_reason_label": "Reason for report",
   "report_modal_reason_placeholder": "Describe the reason for your report (500 characters max)",
   "report_modal_evidence_label": "Evidence (optional)",
-  "report_modal_evidence_placeholder": "Links, screenshots, or other evidence",
+  "report_modal_evidence_placeholder": "Optional - You can also send additional evidence via DM later",
   
   "category_harassment": "🚫 Harassment",
   "category_inappropriate_content": "📵 Inappropriate Content",

@@ -512,3 +512,132 @@
 [2025-08-07 10:01:13] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
 [2025-08-07 10:01:13] [INFO    ] aegis.bot: ==================================================
 [2025-08-07 10:01:14] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 10:43:59] [INFO    ] aegis: ==================================================
+[2025-08-07 10:43:59] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 10:43:59] [INFO    ] aegis: ==================================================
+[2025-08-07 10:43:59] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 10:43:59] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 10:43:59] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 10:43:59] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 10:43:59] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 10:44:00] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 10:44:00] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 10:44:00] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 10:44:00] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 10:44:00] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 10:44:00] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 10:44:00] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 10:44:00] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 10:44:00] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 10:44:00] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 10:44:03] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 10:44:03] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 10:44:03] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 10:44:03] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 10:44:03] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 10:44:03] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 10:44:03] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 10:44:04] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 10:46:04] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 10:46:07] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-07 10:46:18] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 10:46:18] [INFO    ] aegis.report_service: Signalement créé: A72FE0EE par user 883682952221978674
+[2025-08-07 10:46:18] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402935881202929704 pour signalement A72FE0EE
+[2025-08-07 10:46:18] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement A72FE0EE
+[2025-08-07 10:46:19] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement A72FE0EE
+[2025-08-07 10:46:26] [INFO    ] aegis.report_service: Signalement A72FE0EE mis à jour: statut=validated
+[2025-08-07 10:46:26] [ERROR   ] aegis.ui.validation_views: Erreur sauvegarde Supabase: SupabaseClient.add_validated_report() got an unexpected keyword argument 'flag_level'
+[2025-08-07 10:46:27] [INFO    ] aegis.ui.validation_views: Feedback validated envoyé à 1faton pour signalement A72FE0EE
+[2025-08-07 10:46:27] [INFO    ] aegis.ui.validation_views: Signalement A72FE0EE validé par 1faton
+[2025-08-07 11:28:20] [INFO    ] aegis: ==================================================
+[2025-08-07 11:28:20] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 11:28:20] [INFO    ] aegis: ==================================================
+[2025-08-07 11:28:20] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 11:28:20] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 11:28:20] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 11:28:20] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 11:28:20] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 11:28:22] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 11:28:22] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 11:28:22] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 11:28:22] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 11:28:22] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 11:28:22] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 11:28:22] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 11:28:22] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 11:28:22] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 11:28:22] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 11:28:24] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 11:28:24] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 11:28:24] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 11:28:24] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 11:28:24] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 11:28:24] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 11:28:24] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 11:28:25] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 11:36:22] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 11:36:26] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: inappropriate_content par 1faton
+[2025-08-07 11:36:35] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 11:36:35] [INFO    ] aegis.report_service: Signalement créé: 7AEDAA1D par user 883682952221978674
+[2025-08-07 11:36:35] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402948535686533162 pour signalement 7AEDAA1D
+[2025-08-07 11:36:36] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement 7AEDAA1D
+[2025-08-07 11:36:36] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 7AEDAA1D
+[2025-08-07 11:36:41] [INFO    ] aegis.report_service: Signalement 7AEDAA1D mis à jour: statut=validated
+[2025-08-07 11:36:41] [ERROR   ] aegis.supabase: Erreur lors de l'ajout du flag pour 529672315227602979: 0
+[2025-08-07 11:36:41] [ERROR   ] aegis.ui.validation_views: Échec sauvegarde Supabase: 0
+[2025-08-07 11:36:42] [INFO    ] aegis.ui.validation_views: Feedback validated envoyé à 1faton pour signalement 7AEDAA1D
+[2025-08-07 11:36:42] [INFO    ] aegis.ui.validation_views: Signalement 7AEDAA1D validé par 1faton
+[2025-08-07 14:07:57] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 14:07:59] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: child_safety par 1faton
+[2025-08-07 14:08:08] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 14:08:08] [INFO    ] aegis.report_service: Signalement créé: 83AE6118 par user 883682952221978674
+[2025-08-07 14:08:09] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402986679605792788 pour signalement 83AE6118
+[2025-08-07 14:08:09] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement 83AE6118
+[2025-08-07 14:08:10] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 83AE6118
+[2025-08-07 14:08:19] [INFO    ] aegis.report_service: Signalement 83AE6118 mis à jour: statut=validated
+[2025-08-07 14:08:19] [ERROR   ] aegis.supabase: Erreur lors de l'ajout du flag pour 529672315227602979: 0
+[2025-08-07 14:08:19] [ERROR   ] aegis.ui.validation_views: Échec sauvegarde Supabase: 0
+[2025-08-07 14:08:19] [INFO    ] aegis.ui.validation_views: Feedback validated envoyé à 1faton pour signalement 83AE6118
+[2025-08-07 14:08:19] [INFO    ] aegis.ui.validation_views: Signalement 83AE6118 validé par 1faton
+[2025-08-07 14:09:31] [INFO    ] aegis: ==================================================
+[2025-08-07 14:09:31] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 14:09:31] [INFO    ] aegis: ==================================================
+[2025-08-07 14:09:31] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 14:09:31] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 14:09:31] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 14:09:31] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 14:09:31] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 14:09:32] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 14:09:32] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 14:09:32] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 14:09:32] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 14:09:32] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 14:09:32] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 14:09:32] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 14:09:32] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 14:09:32] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 14:09:32] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 14:09:35] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 14:09:35] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:09:35] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 14:09:39] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 14:09:42] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-07 14:09:48] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 14:09:48] [INFO    ] aegis.report_service: Signalement créé: 7179EE5E par user 883682952221978674
+[2025-08-07 14:09:48] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402987096049979413 pour signalement 7179EE5E
+[2025-08-07 14:09:49] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement 7179EE5E
+[2025-08-07 14:09:49] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 7179EE5E
+[2025-08-07 14:09:54] [INFO    ] aegis.report_service: Signalement 7179EE5E mis à jour: statut=validated
+[2025-08-07 14:09:54] [INFO    ] aegis.supabase: ✅ Flag ajouté pour utilisateur 529672315227602979 - Nouveau niveau: medium (3 flags actifs)
+[2025-08-07 14:09:54] [INFO    ] aegis.ui.validation_views: Signalement 7179EE5E sauvé dans Supabase - Nouveau niveau: medium (3 flags actifs)
+[2025-08-07 14:09:54] [INFO    ] aegis.ui.validation_views: Feedback validated envoyé à 1faton pour signalement 7179EE5E
+[2025-08-07 14:09:55] [INFO    ] aegis.ui.validation_views: Signalement 7179EE5E validé par 1faton
+[2025-08-07 14:10:49] [INFO    ] aegis.supabase: 🚩 Utilisateur 529672315227602979 flagué: niveau medium (3/3 flags actifs/total)
+[2025-08-07 14:12:09] [INFO    ] aegis.supabase: 🚩 Utilisateur 529672315227602979 flagué: niveau medium (3/3 flags actifs/total)
+[2025-08-07 14:15:50] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans None
+[2025-08-07 14:15:53] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
