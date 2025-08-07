@@ -165,5 +165,25 @@
   "purge_forum_not_found": "❌ Alerts forum not found.",
   "purge_error": "❌ Error during cleanup.",
   "validate_no_reports": "No pending reports.",
-  "validate_service_unavailable": "❌ Report service not available."
+  "validate_service_unavailable": "❌ Report service not available.",
+
+  "config_invalid_value": "❌ Invalid value: {error}",
+  "config_updated_success": "✅ Configuration updated successfully!",
+  "config_update_error": "❌ Error updating configuration.",
+
+  "setup_status_configured": "✅ Configured",
+  "setup_status_to_configure": "⚙️ To configure",
+  "setup_state_field": "📋 State",
+
+  "setup_role_created": "🆕 Role created",
+  "setup_forum_created": "🆕 Forum created",
+  "setup_next_steps": "📋 Next steps",
+  "setup_next_steps_value": "1. Assign @{role_name} role to moderators\n2. Use /agis to test",
+  "setup_config_saved": "Configuration saved automatically",
+  "setup_language_configured": "🏷️ Language configured",
+  "setup_alerts_forum_status": "Alerts Forum",
+  "setup_validator_role_status": "Validator Role",
+  "setup_status_missing": "❌ Missing",
+  "setup_no_data": "No data",
+  "setup_stats_error": "❌ Error retrieving statistics."
 }

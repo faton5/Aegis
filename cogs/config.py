@@ -348,7 +348,10 @@ class QuorumModal(discord.ui.Modal):
                 f"✅ Quorum mis à jour: {quorum}%", ephemeral=True
             )
         except ValueError as e:
-            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+            await interaction.response.send_message(
+                translator.t("config_invalid_value", interaction.guild_id, error=str(e)),
+                ephemeral=True
+            )
 
 
 class MinValidatorsModal(discord.ui.Modal):
@@ -384,7 +387,10 @@ class MinValidatorsModal(discord.ui.Modal):
                 f"✅ Minimum validateurs mis à jour: {min_val}", ephemeral=True
             )
         except ValueError as e:
-            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+            await interaction.response.send_message(
+                translator.t("config_invalid_value", interaction.guild_id, error=str(e)),
+                ephemeral=True
+            )
 
 
 class TimeoutModal(discord.ui.Modal):
@@ -420,7 +426,10 @@ class TimeoutModal(discord.ui.Modal):
                 f"✅ Timeout mis à jour: {timeout} heures", ephemeral=True
             )
         except ValueError as e:
-            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+            await interaction.response.send_message(
+                translator.t("config_invalid_value", interaction.guild_id, error=str(e)),
+                ephemeral=True
+            )
 
 
 class UserLimitsModal(discord.ui.Modal):
@@ -456,7 +465,10 @@ class UserLimitsModal(discord.ui.Modal):
                 f"✅ Limite utilisateur mise à jour: {limit} reports/h", ephemeral=True
             )
         except ValueError as e:
-            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+            await interaction.response.send_message(
+                translator.t("config_invalid_value", interaction.guild_id, error=str(e)),
+                ephemeral=True
+            )
 
 
 class GuildLimitsModal(discord.ui.Modal):
@@ -492,7 +504,10 @@ class GuildLimitsModal(discord.ui.Modal):
                 f"✅ Limite serveur mise à jour: {limit} reports/h", ephemeral=True
             )
         except ValueError as e:
-            await interaction.response.send_message(f"❌ Valeur invalide: {e}", ephemeral=True)
+            await interaction.response.send_message(
+                translator.t("config_invalid_value", interaction.guild_id, error=str(e)),
+                ephemeral=True
+            )
 
 
 async def setup(bot):
