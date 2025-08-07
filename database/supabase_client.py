@@ -31,8 +31,8 @@ class SupabaseClient:
                 
             self.client = create_client(supabase_url, supabase_key)
             
-            # Test de connexion
-            test_query = self.client.table("flagged_users").select("id").limit(1).execute()
+            # Test de connexion avec nouvelle structure
+            test_query = self.client.table("user_flags").select("id").limit(1).execute()
             
             self.is_connected = True
             logger.info("✅ Connexion Supabase établie")
@@ -102,50 +102,50 @@ class SupabaseClient:
             logger.error(f"Erreur lors de l'ajout du flag pour {user_id}: {e}")
             return False
     
-    async def get_guild_stats(self, guild_id: int) -> Dict[str, int]:
+    async def get_guild_stats(self, guild_id: int, days: int = 30) -> Dict[str, int]:
         """Obtenir les statistiques de vérification pour un serveur"""
         if not self.is_connected:
             return {}
             
         try:
-            # Statistiques des requêtes
-            query_stats = self.client.table("query_logs")\
-                .select("flag_found")\
-                .eq("querying_guild_id", guild_id)\
-                .execute()
+            # Utiliser la fonction RPC du nouveau schéma
+            result = self.client.rpc(
+                "get_guild_stats",
+                {
+                    "guild_id_param": guild_id,
+                    "days_param": days
+                }
+            ).execute()
             
-            total_checks = len(query_stats.data) if query_stats.data else 0
-            flags_found = len([q for q in query_stats.data if q["flag_found"]]) if query_stats.data else 0
-            
-            # Statistiques des flags contribués
-            contributed_flags = self.client.table("flagged_users")\
-                .select("id")\
-                .eq("flagged_by_guild_id", guild_id)\
-                .execute()
-            
-            flags_contributed = len(contributed_flags.data) if contributed_flags.data else 0
-            
+            if result.data and len(result.data) > 0:
+                stats = result.data[0]
+                return {
+                    "total_checks": stats.get("total_checks", 0),
+                    "flagged_users": stats.get("flagged_users", 0), 
+                    "recent_flags": stats.get("recent_flags", 0)
+                }
+                
             return {
-                "total_checks": total_checks,
-                "flags_found": flags_found,
-                "flags_contributed": flags_contributed
+                "total_checks": 0,
+                "flagged_users": 0,
+                "recent_flags": 0
             }
             
         except Exception as e:
             logger.error(f"Erreur lors de la récupération des stats pour {guild_id}: {e}")
             return {}
     
-    async def get_recent_flags(self, limit: int = 10) -> List[Dict]:
+    async def get_recent_flags(self, days: int = 7) -> List[Dict]:
         """Obtenir les flags récents pour surveillance"""
         if not self.is_connected:
             return []
             
         try:
-            result = self.client.table("flagged_users")\
-                .select("user_id, username, flag_level, flag_category, flagged_by_guild_name, created_at")\
-                .order("created_at", desc=True)\
-                .limit(limit)\
-                .execute()
+            # Utiliser la fonction RPC du nouveau schéma
+            result = self.client.rpc(
+                "get_recent_flags",
+                {"days_param": days}
+            ).execute()
             
             return result.data if result.data else []
             
