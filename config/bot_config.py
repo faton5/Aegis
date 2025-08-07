@@ -40,55 +40,55 @@ class BotSettings:
 # Configuration des catégories de signalement
 REPORT_CATEGORIES = {
     "harassment": {
-        "label": "🚫 Harcèlement",
-        "description": "Harcèlement, menaces ou intimidation",
+        "label": "🚫 Harassment",
+        "description": "Harassment, threats or intimidation",
         "severity": "high"
     },
     "inappropriate_content": {
-        "label": "📵 Contenu inapproprié", 
-        "description": "Contenu sexuel, violent ou dérangeant",
+        "label": "📵 Inappropriate Content", 
+        "description": "Sexual, violent or disturbing content",
         "severity": "medium"
     },
     "suspicious_behavior": {
-        "label": "🔍 Comportement suspect",
-        "description": "Activité suspecte ou manipulation",
+        "label": "🔍 Suspicious Behavior",
+        "description": "Suspicious activity or manipulation",
         "severity": "medium"
     },
     "child_safety": {
-        "label": "🛡️ Sécurité des mineurs",
-        "description": "Danger potentiel pour les mineurs",
+        "label": "🛡️ Child Safety",
+        "description": "Potential danger to minors",
         "severity": "critical"
     },
     "spam": {
         "label": "📢 Spam/Flood",
-        "description": "Messages répétitifs ou non sollicités", 
+        "description": "Repetitive or unsolicited messages", 
         "severity": "low"
     },
     "scam": {
-        "label": "💰 Arnaque/Phishing",
-        "description": "Tentative d'arnaque ou de phishing",
+        "label": "💰 Scam/Phishing",
+        "description": "Scam or phishing attempt",
         "severity": "high"
     },
     "threats": {
-        "label": "⚔️ Menaces",
-        "description": "Menaces de violence ou de mal",
+        "label": "⚔️ Threats",
+        "description": "Threats of violence or harm",
         "severity": "critical"
     },
     "other": {
-        "label": "❓ Autre",
-        "description": "Autre motif de signalement",
+        "label": "❓ Other",
+        "description": "Other reason for reporting",
         "severity": "low"
     }
 }
 
 # Messages d'erreur standardisés
 ERROR_MESSAGES = {
-    "guild_not_configured": "❌ Ce serveur n'est pas configuré pour utiliser Aegis.",
-    "missing_permissions": "❌ Vous n'avez pas les permissions nécessaires.",
-    "rate_limited": "⏰ Vous devez attendre avant de faire un nouveau signalement.",
-    "invalid_input": "❌ Les données fournies ne sont pas valides.",
-    "database_error": "❌ Erreur de base de données. Réessayez plus tard.",
-    "user_not_found": "❌ Utilisateur non trouvé ou inaccessible.",
+    "guild_not_configured": "❌ This server is not configured to use Aegis.",
+    "missing_permissions": "❌ You don't have the necessary permissions.",
+    "rate_limited": "⏰ You must wait before making another report.",
+    "invalid_input": "❌ The provided data is not valid.",
+    "database_error": "❌ Database error. Please try again later.",
+    "user_not_found": "❌ User not found or inaccessible.",
 }
 
 # Instance globale de configuration
@@ -97,11 +97,11 @@ bot_settings = BotSettings()
 def validate_config() -> bool:
     """Valider la configuration du bot"""
     if not bot_settings.token:
-        print("❌ DISCORD_TOKEN manquant")
+        print("❌ DISCORD_TOKEN missing")
         return False
     
     if bot_settings.quorum_percentage < 1 or bot_settings.quorum_percentage > 100:
-        print("❌ QUORUM_PERCENTAGE doit être entre 1 et 100")
+        print("❌ QUORUM_PERCENTAGE must be between 1 and 100")
         return False
         
     return True

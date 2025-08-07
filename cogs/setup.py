@@ -63,10 +63,10 @@ class SetupCog(commands.Cog):
                 from services.guild_service import guild_service
                 
                 config = guild_service.get_guild_config(interaction.guild_id)
-                status = "✅ Configuré" if config.get('configured', False) else "⚙️ À configurer"
+                status = translator.t("setup_status_configured", interaction.guild_id) if config.get('configured', False) else translator.t("setup_status_to_configure", interaction.guild_id)
                 
                 embed.add_field(
-                    name="📋 État",
+                    name=translator.t("setup_state_field", interaction.guild_id),
                     value=status,
                     inline=True
                 )
