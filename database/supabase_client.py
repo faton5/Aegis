@@ -86,7 +86,7 @@ class SupabaseClient:
             return {"success": False, "error": "Not connected to Supabase"}
             
         try:
-            # Appel direct Supabase (contournement temporaire du problème de format)
+            # Utiliser la nouvelle fonction qui retourne plus d'informations
             result = self.client.rpc(
                 "add_user_flag",
                 {
@@ -99,21 +99,24 @@ class SupabaseClient:
                 }
             ).execute()
             
-            # Gestion directe du retour Supabase
-            if result.data and isinstance(result.data, dict):
-                flag_result = result.data
+            # Gestion du retour de la nouvelle fonction
+            if result.data and isinstance(result.data, list) and len(result.data) > 0:
+                flag_result = result.data[0]  # La fonction retourne une table
                 
-                if flag_result.get("success"):
-                    logger.info(f"✅ Flag ajouté pour utilisateur {user_id} - "
-                              f"Nouveau niveau: {flag_result.get('new_level', 'unknown')} "
-                              f"({flag_result.get('new_active_flags', 0)} flags actifs)")
-                    return flag_result
+                if flag_result.get('success'):
+                    logger.info(f"✅ Flag ajouté: utilisateur {user_id}, niveau {flag_result.get('new_level')}, total: {flag_result.get('total_flags')}")
+                    return {
+                        "success": True,
+                        "level": flag_result.get('new_level'),
+                        "total_flags": flag_result.get('total_flags'),
+                        "message": flag_result.get('message', 'Flag ajouté avec succès')
+                    }
                 else:
-                    logger.error(f"❌ Échec ajout flag: {flag_result.get('error', 'Unknown error')}")
-                    return flag_result
+                    logger.warning(f"❌ Échec ajout flag: {flag_result.get('message')}")
+                    return {"success": False, "error": flag_result.get('message', 'Erreur inconnue')}
             else:
-                logger.error(f"❌ Retour inattendu de Supabase: {result.data} (type: {type(result.data)})")
-                return {"success": False, "error": f"Unexpected Supabase response: {result.data}"}
+                logger.error("Format de retour Supabase inattendu")
+                return {"success": False, "error": "Format de retour inattendu"}
             
         except Exception as e:
             logger.error(f"Erreur lors de l'ajout du flag pour {user_id}: {e}")
@@ -173,6 +176,73 @@ class SupabaseClient:
         except Exception as e:
             logger.error(f"Erreur lors de la récupération des flags récents: {e}")
             return []
+    
+    async def save_report_anonymized(self, report_data: Dict[str, Any]) -> bool:
+        """Sauvegarder un signalement de manière anonyme (sans ID du reporter)"""
+        if not self.is_connected:
+            return False
+            
+        try:
+            result = self.client.rpc(
+                "save_anonymous_report",
+                {"report_data": report_data}
+            ).execute()
+            
+            if result.data:
+                logger.debug(f"Signalement anonyme sauvé: {report_data.get('id')}")
+                return True
+            return False
+            
+        except Exception as e:
+            logger.error(f"Erreur sauvegarde signalement anonyme: {e}")
+            return False
+    
+    async def check_duplicate_report(self, uniqueness_hash: str) -> Optional[str]:
+        """Vérifier l'existence d'un signalement en doublon"""
+        if not self.is_connected:
+            return None
+            
+        try:
+            result = self.client.rpc(
+                "check_duplicate_report",
+                {"uniqueness_hash_param": uniqueness_hash}
+            ).execute()
+            
+            return result.data if result.data else None
+            
+        except Exception as e:
+            logger.error(f"Erreur vérification doublon: {e}")
+            return None
+    
+    async def log_audit_action(self, action: str, guild_id: int, moderator_id: int, 
+                              moderator_name: str, details: Dict[str, Any],
+                              report_id: Optional[str] = None,
+                              target_user_id: Optional[int] = None,
+                              target_username: Optional[str] = None) -> bool:
+        """Enregistrer une action d'audit"""
+        if not self.is_connected:
+            return False
+            
+        try:
+            result = self.client.rpc(
+                "log_audit_action",
+                {
+                    "action_param": action,
+                    "guild_id_param": guild_id,
+                    "moderator_id_param": moderator_id,
+                    "moderator_name_param": moderator_name,
+                    "report_id_param": report_id,
+                    "target_user_id_param": target_user_id,
+                    "target_username_param": target_username,
+                    "details_param": details
+                }
+            ).execute()
+            
+            return bool(result.data)
+            
+        except Exception as e:
+            logger.error(f"Erreur enregistrement audit: {e}")
+            return False
 
 # Instance globale du client Supabase
 supabase_client = SupabaseClient()
