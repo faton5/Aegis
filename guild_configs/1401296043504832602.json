@@ -46,5 +46,13 @@
     "log_auto_actions": true,
     "retention_days": 30
   },
-  "quarantine.duration_hours": 48
+  "quarantine.duration_hours": 48,
+  "language": "en",
+  "forum_channel_id": 1402676489874444360,
+  "configured": true,
+  "validator_role_id": 1401555688005701674,
+  "rate_limits": {
+    "reports_per_guild_per_hour": 10,
+    "reports_per_user_per_hour": 1
+  }
 }

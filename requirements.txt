@@ -9,5 +9,8 @@ cryptography>=41.0.0  # Pour le chiffrement des données sensibles
 
 # Dépendances de développement (optionnelles)
 pytest>=7.0.0  # Pour les tests
+pytest-asyncio>=0.21.0  # Pour les tests asynchrones
+pytest-mock>=3.11.0  # Pour les mocks avancés
+pytest-cov>=4.1.0  # Pour la couverture de code
 black>=23.0.0  # Pour le formatage du code
 flake8>=6.0.0  # Pour le linting
