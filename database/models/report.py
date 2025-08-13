@@ -12,7 +12,7 @@ class Report:
     
     id: str
     guild_id: int
-    reporter_id: int
+    reporter_id: int  # ATTENTION: Ne jamais stocker en base - seulement pour logique locale
     target_username: str
     category: str
     reason: str
@@ -24,6 +24,10 @@ class Report:
     validated_at: Optional[datetime] = None
     thread_id: Optional[int] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
+    
+    # Champs pour l'anonymat et l'anti-abus
+    reporter_hash: Optional[str] = None  # Hash anonyme du reporter
+    uniqueness_hash: Optional[str] = None  # Hash pour détecter doublons
     
     def __post_init__(self):
         """Initialisation post-création"""
@@ -47,12 +51,16 @@ class Report:
             return 0
         return (datetime.utcnow() - self.created_at).total_seconds() / 3600
     
-    def to_dict(self) -> Dict[str, Any]:
-        """Convertir en dictionnaire pour stockage"""
-        return {
+    def to_dict(self, include_reporter_id: bool = False) -> Dict[str, Any]:
+        """
+        Convertir en dictionnaire pour stockage
+        
+        Args:
+            include_reporter_id: Si True, inclut l'ID du reporter (DANGEREUX - seulement pour usage local)
+        """
+        data = {
             'id': self.id,
             'guild_id': self.guild_id,
-            'reporter_id': self.reporter_id,
             'target_username': self.target_username,
             'target_user_id': self.target_user_id,
             'category': self.category,
@@ -63,8 +71,16 @@ class Report:
             'validated_by': self.validated_by,
             'validated_at': self.validated_at.isoformat() if self.validated_at else None,
             'thread_id': self.thread_id,
-            'metadata': self.metadata
+            'metadata': self.metadata,
+            'reporter_hash': self.reporter_hash,
+            'uniqueness_hash': self.uniqueness_hash
         }
+        
+        # ATTENTION: N'inclure l'ID du reporter que pour usage local temporaire
+        if include_reporter_id:
+            data['reporter_id'] = self.reporter_id
+            
+        return data
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Report':
@@ -81,7 +97,7 @@ class Report:
         return cls(
             id=data['id'],
             guild_id=data['guild_id'],
-            reporter_id=data['reporter_id'],
+            reporter_id=data.get('reporter_id', 0),  # Par défaut 0 si pas présent (anonymisé)
             target_username=data['target_username'],
             target_user_id=data.get('target_user_id'),
             category=data['category'],
@@ -92,5 +108,7 @@ class Report:
             validated_by=data.get('validated_by'),
             validated_at=validated_at,
             thread_id=data.get('thread_id'),
-            metadata=data.get('metadata', {})
+            metadata=data.get('metadata', {}),
+            reporter_hash=data.get('reporter_hash'),
+            uniqueness_hash=data.get('uniqueness_hash')
         )

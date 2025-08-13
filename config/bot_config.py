@@ -29,12 +29,16 @@ class BotSettings:
     test_mode_enabled: bool = False
     debug_enabled: bool = False
     
+    # Sécurité anti-abus
+    reporter_salt_secret: str = ""
+    
     def __post_init__(self):
         """Charger les valeurs depuis les variables d'environnement"""
         self.token = os.getenv('DISCORD_TOKEN', '')
         self.supabase_enabled = os.getenv('SUPABASE_ENABLED', 'true').lower() == 'true'
         self.test_mode_enabled = os.getenv('TEST_MODE_ENABLED', 'false').lower() == 'true'
         self.debug_enabled = os.getenv('DEBUG_ENABLED', 'false').lower() == 'true'
+        self.reporter_salt_secret = os.getenv('REPORTER_SALT_SECRET', '')
 
 
 # Configuration des catégories de signalement
@@ -89,6 +93,8 @@ ERROR_MESSAGES = {
     "invalid_input": "❌ The provided data is not valid.",
     "database_error": "❌ Database error. Please try again later.",
     "user_not_found": "❌ User not found or inaccessible.",
+    "duplicate_report": "⚠️ You have already reported this user in this server.",
+    "missing_salt_secret": "❌ Security configuration missing. Contact administrator.",
 }
 
 # Instance globale de configuration
@@ -102,6 +108,15 @@ def validate_config() -> bool:
     
     if bot_settings.quorum_percentage < 1 or bot_settings.quorum_percentage > 100:
         print("❌ QUORUM_PERCENTAGE must be between 1 and 100")
+        return False
+    
+    if not bot_settings.reporter_salt_secret:
+        print("❌ REPORTER_SALT_SECRET missing - required for reporter anonymity")
+        print("   Generate with: python -c \"import secrets; print(secrets.token_hex(32))\"")
+        return False
+    
+    if len(bot_settings.reporter_salt_secret) < 32:
+        print("❌ REPORTER_SALT_SECRET too short - minimum 32 characters required")
         return False
         
     return True
