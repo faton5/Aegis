@@ -127,38 +127,45 @@ LOG_LEVEL=INFO
 
 ```
 aegis/
-├── main.py                     # Point d'entrée
-├── config/                     # Configuration centralisée
-│   ├── bot_config.py          # Config principale
-│   └── logging_config.py      # Configuration logging
-├── core/                       # Cœur du bot
-│   └── bot.py                 # Classe principale
-├── cogs/                       # Commandes Discord
-│   ├── reports.py             # Signalements
-│   ├── admin.py               # Administration
-│   ├── setup.py               # Configuration
-│   └── debug.py               # Debug
-├── ui/                         # Interface utilisateur
-│   ├── views/                 # Vues Discord
-│   └── modals/                # Modals Discord
-├── services/                   # Logique métier
-│   ├── report_service.py      # Service signalements
-│   └── guild_service.py       # Service serveurs
-├── utils/                      # Utilitaires Sécurisés
-│   ├── security.py            # Validation sécurisée
-│   ├── rate_limiter.py        # Limitation taux
-│   ├── anonymous_hasher.py    # Hachage cryptographique
-│   └── audit_logger.py        # Audit transparent
-├── locales/                    # Traductions
-│   ├── fr.json                # Français
-│   ├── en.json                # Anglais
-│   └── translation_manager.py # Gestionnaire
-├── database/                   # Base de Données Sécurisée
-│   ├── models/                # Modèles avec hash anonymes
-│   ├── supabase_client.py     # Client Supabase avancé
-│   ├── supabase_schema.sql    # Schéma base principal
-│   └── supabase_schema_anti_abuse.sql # Schéma anti-abus
-└── tests/                      # Tests automatisés
+├── 📄 main.py                  # Point d'entrée principal
+├── ⚙️ config/                  # Configuration centralisée
+│   ├── bot_config.py          # Config principale type-safe
+│   └── logging_config.py      # Logging avec rotation
+├── 🤖 core/                    # Cœur du bot
+│   └── bot.py                 # Classe AegisBot principale
+├── 🧩 cogs/                    # Commandes Discord (6 cogs)
+│   ├── reports.py             # Signalements (/agis, /categories)
+│   ├── admin.py               # Administration (/stats, /check, /validate, /purge)
+│   ├── setup.py               # Configuration (/setup)
+│   ├── debug.py               # Debug (/debug-*)
+│   ├── dm_handler.py          # Gestion messages privés
+│   └── config.py              # Configuration serveur
+├── 🎨 ui/                      # Interface utilisateur moderne
+│   ├── views/                 # Vues avec boutons interactifs
+│   └── modals/                # Modals de saisie élégants
+├── 🛠️ services/                # Logique métier découplée
+│   ├── report_service.py      # Service signalements avec anti-abus
+│   └── guild_service.py       # Service serveurs (JSON individuels)
+├── 🔧 utils/                   # Utilitaires Sécurisés
+│   ├── security.py            # Validation renforcée
+│   ├── rate_limiter.py        # Rate limiting intelligent
+│   ├── anonymous_hasher.py    # Hash HMAC-SHA256 anonyme
+│   └── audit_logger.py        # Audit transparent JSONL
+├── 🌍 locales/                 # Système multilingue
+│   ├── fr.json + en.json      # Traductions externalisées
+│   └── translation_manager.py # Gestionnaire auto-détection
+├── 🗃️ database/                # Base de données sécurisée
+│   ├── models/                # Modèles avec hash anonymes  
+│   ├── supabase_client.py     # Client avancé flags multi-niveaux
+│   └── *.sql                  # Schémas sécurisés (RLS + functions)
+├── 📜 scripts/                 # Scripts utilitaires organisés
+│   ├── tests/                 # Tests système anti-abus
+│   └── database/              # Scripts maintenance BDD
+├── 🧪 tests/                   # Tests automatisés complets
+└── 📚 docs/                    # Documentation professionnelle
+    ├── website/               # Site web complet
+    ├── deployment/            # Guides production
+    └── development/           # Docs techniques
 ```
 
 ## 🧪 **Tests**
@@ -172,9 +179,12 @@ python -m pytest tests/test_simple.py -v
 
 # Avec couverture
 python scripts/run_tests.py -c
+
+# Test système anti-abus
+python scripts/tests/test_anti_abuse_simple.py
 ```
 
-**Résultats actuels :** ✅ Tests système complet + ✅ 4/4 tests anti-abus passent
+**Résultats actuels :** ✅ Tests système complet + ✅ 4/4 tests anti-abus cryptographique passent
 
 ## 📊 **Statistiques Projet**
 
@@ -225,8 +235,19 @@ self.mon_service = MonService()
 
 ## 📚 **Documentation**
 
-- **[Rapport de Refactorisation](docs/reports/REFACTORING_REPORT.md)** - Détails de l'architecture
-- **[Rapport de Tests](docs/reports/TESTS_REPORT.md)** - Résultats des tests
+### 🌐 **Site Web** 
+- **[Documentation Site Complète](docs/website/DOCUMENTATION_SITE.md)** - Tout pour créer un site professionnel
+
+### 🚀 **Déploiement**
+- **[Guide Anti-Abus Production](docs/deployment/DEPLOIEMENT_ANTI_ABUS.md)** - Déploiement sécurisé complet
+
+### 🔧 **Développement**  
+- **[Documentation Technique](docs/development/TECHNICAL_DOCUMENTATION.md)** - Architecture détaillée
+- **[Rapport Refactorisation](docs/development/REFACTORING_REPORT.md)** - Évolution du code
+- **[Rapport Tests](docs/development/TESTS_REPORT.md)** - Résultats tests automatisés
+
+### 📋 **Navigation Documentation**
+👉 **[docs/README.md](docs/README.md)** - Index complet de toute la documentation
 
 ## 🔒 **Sécurité Enterprise**
 

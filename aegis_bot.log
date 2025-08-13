@@ -641,3 +641,71 @@
 [2025-08-07 14:12:09] [INFO    ] aegis.supabase: 🚩 Utilisateur 529672315227602979 flagué: niveau medium (3/3 flags actifs/total)
 [2025-08-07 14:15:50] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans None
 [2025-08-07 14:15:53] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: harassment par 1faton
+[2025-08-07 14:22:37] [INFO    ] aegis: ==================================================
+[2025-08-07 14:22:37] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 14:22:37] [INFO    ] aegis: ==================================================
+[2025-08-07 14:22:37] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 14:22:37] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 14:22:37] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 14:22:37] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 14:22:37] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 14:22:39] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 14:22:39] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 14:22:39] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 14:22:39] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 14:22:39] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 14:22:39] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 14:22:39] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 14:22:39] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 14:22:39] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 14:22:39] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 14:22:42] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 14:22:42] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:22:42] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 14:22:51] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 14:22:54] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: inappropriate_content par 1faton
+[2025-08-07 14:23:09] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 14:23:09] [INFO    ] aegis.report_service: Signalement créé: 2F12FAE0 par user 883682952221978674
+[2025-08-07 14:23:10] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402990455896936528 pour signalement 2F12FAE0
+[2025-08-07 14:23:10] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 2F12FAE0
+[2025-08-07 14:25:56] [INFO    ] aegis: ==================================================
+[2025-08-07 14:25:56] [INFO    ] aegis: 🤖 Démarrage d'Aegis Bot (Version Refactorisée)
+[2025-08-07 14:25:56] [INFO    ] aegis: ==================================================
+[2025-08-07 14:25:56] [INFO    ] aegis: ✅ Configuration validée
+[2025-08-07 14:25:56] [INFO    ] aegis: 🔧 Mode test: Désactivé
+[2025-08-07 14:25:56] [INFO    ] aegis: 🔧 Mode debug: Désactivé
+[2025-08-07 14:25:56] [INFO    ] aegis: 🗃️  Supabase: Activé
+[2025-08-07 14:25:56] [INFO    ] aegis.bot: 🔧 Initialisation des services...
+[2025-08-07 14:25:58] [INFO    ] aegis.supabase: ✅ Connexion Supabase établie
+[2025-08-07 14:25:58] [INFO    ] aegis.bot: ✅ Supabase intégré au ReportService
+[2025-08-07 14:25:58] [INFO    ] aegis.bot: ✅ Services initialisés
+[2025-08-07 14:25:58] [INFO    ] aegis.reports: ✅ Cog Reports chargé
+[2025-08-07 14:25:58] [INFO    ] aegis.admin: ✅ Cog Admin chargé
+[2025-08-07 14:25:58] [INFO    ] aegis.setup: ✅ Cog Setup chargé
+[2025-08-07 14:25:58] [INFO    ] aegis.dm_handler: ✅ Cog DMHandler chargé
+[2025-08-07 14:25:58] [INFO    ] aegis.config: ✅ Cog Config chargé
+[2025-08-07 14:25:58] [INFO    ] aegis.bot: 🔌 Extensions chargées
+[2025-08-07 14:25:58] [INFO    ] aegis: 🚀 Bot initialisé avec succès
+[2025-08-07 14:26:00] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:26:00] [INFO    ] aegis.bot: 🤖 Aegis#4663 est connecté et prêt !
+[2025-08-07 14:26:00] [INFO    ] aegis.bot: 📊 Serveurs connectés: 2
+[2025-08-07 14:26:00] [INFO    ] aegis.bot:    - BOT TEST (ID: 975379747443978260, Membres: 3)
+[2025-08-07 14:26:00] [INFO    ] aegis.bot:    - Aegis (ID: 1401296043504832602, Membres: 3)
+[2025-08-07 14:26:00] [INFO    ] aegis.bot: 🌐 Langues disponibles: ['en', 'fr']
+[2025-08-07 14:26:00] [INFO    ] aegis.bot: ==================================================
+[2025-08-07 14:26:01] [INFO    ] aegis.bot: ⚡ 8 commandes slash synchronisées
+[2025-08-07 14:26:04] [INFO    ] aegis.reports: Commande /agis utilisée par 1faton dans Aegis
+[2025-08-07 14:26:06] [INFO    ] aegis.ui.report_views: Catégorie sélectionnée: inappropriate_content par 1faton
+[2025-08-07 14:26:15] [INFO    ] aegis.ui.report_modals: Signalement soumis par 1faton dans Aegis
+[2025-08-07 14:26:15] [INFO    ] aegis.report_service: Signalement créé: 40E984D0 par user 883682952221978674
+[2025-08-07 14:26:15] [INFO    ] aegis.ui.report_modals: Post forum créé: 1402991234422673469 pour signalement 40E984D0
+[2025-08-07 14:26:15] [INFO    ] aegis.ui.report_modals: MP pour preuves envoyé à 1faton pour signalement 40E984D0
+[2025-08-07 14:26:16] [INFO    ] aegis.ui.report_modals: Modérateurs notifiés pour signalement 40E984D0
+[2025-08-07 14:26:34] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402991234422673469 (signalement 40E984D0)
+[2025-08-07 14:26:48] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402991234422673469 (signalement 40E984D0)
+[2025-08-07 14:26:53] [INFO    ] aegis.dm_handler: MP de 1faton transféré vers thread 1402991234422673469 (signalement 40E984D0)
