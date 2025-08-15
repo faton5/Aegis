@@ -163,6 +163,7 @@ class GuildService:
             # Configuration de base
             "language": "fr",           # Langue par défaut
             "configured": False,        # Premier setup terminé
+            "debug_enabled": False,     # Commandes debug activées (par défaut: NON)
             
             # IDs des éléments Discord configurés
             "forum_channel_id": None,   # ID du forum d'alertes
