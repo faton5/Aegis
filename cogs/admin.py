@@ -498,6 +498,100 @@ class AdminCog(commands.Cog):
             'validated': validated_reports,
             'pending': total_reports - validated_reports
         }
+    
+    @app_commands.command(
+        name="debug-mode",
+        description="Activer/désactiver les commandes debug pour ce serveur"
+    )
+    async def debug_mode_command(self, interaction: discord.Interaction, enabled: bool):
+        """Activer ou désactiver le mode debug pour le serveur"""
+        
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            # Vérifier les permissions administrateur
+            if not interaction.user.guild_permissions.administrator:
+                await interaction.followup.send(
+                    translator.t("error_missing_permissions", interaction.guild_id),
+                    ephemeral=True
+                )
+                return
+            
+            # Mettre à jour la configuration du serveur
+            from services.guild_service import guild_service
+            
+            guild_config = guild_service.get_guild_config(interaction.guild_id)
+            old_status = guild_config.get('debug_enabled', False)
+            
+            guild_service.update_guild_config(interaction.guild_id, {
+                'debug_enabled': enabled
+            })
+            
+            # Créer l'embed de confirmation
+            status_emoji = "✅" if enabled else "❌"
+            status_text = "activé" if enabled else "désactivé"
+            color = discord.Color.green() if enabled else discord.Color.red()
+            
+            embed = discord.Embed(
+                title=f"{status_emoji} Mode Debug {status_text.title()}",
+                description=f"Le mode debug a été **{status_text}** pour ce serveur.",
+                color=color,
+                timestamp=datetime.utcnow()
+            )
+            
+            # Ajouter des informations sur les commandes
+            if enabled:
+                embed.add_field(
+                    name="🔧 Commandes debug disponibles",
+                    value="• `/debug-info` - Informations système\n"
+                          "• `/debug-services` - État des services\n"
+                          "• `/debug-config` - Configuration serveur\n"
+                          "• `/debug-translations <clé>` - Test traductions",
+                    inline=False
+                )
+                embed.add_field(
+                    name="⚠️ Attention",
+                    value="Les commandes debug peuvent révéler des informations sensibles.\n"
+                          "Réservez l'accès aux administrateurs de confiance uniquement.",
+                    inline=False
+                )
+            else:
+                embed.add_field(
+                    name="ℹ️ Informations",
+                    value="Les commandes debug ne sont plus accessibles sur ce serveur.\n"
+                          "Les administrateurs peuvent les réactiver avec cette commande.",
+                    inline=False
+                )
+            
+            # Historique du changement
+            if old_status != enabled:
+                embed.add_field(
+                    name="📝 Changement",
+                    value=f"**Avant:** {'Activé' if old_status else 'Désactivé'}\n"
+                          f"**Maintenant:** {'Activé' if enabled else 'Désactivé'}\n"
+                          f"**Par:** {interaction.user.mention}",
+                    inline=True
+                )
+            else:
+                embed.add_field(
+                    name="📝 Statut",
+                    value=f"Aucun changement (déjà {status_text})",
+                    inline=True
+                )
+            
+            embed.set_footer(text=f"Serveur: {interaction.guild.name}")
+            
+            await interaction.followup.send(embed=embed, ephemeral=True)
+            
+            # Log le changement
+            logger.info(f"Mode debug {'activé' if enabled else 'désactivé'} pour guild {interaction.guild_id} par {interaction.user}")
+            
+        except Exception as e:
+            logger.error(f"Erreur dans /debug-mode: {e}")
+            await interaction.followup.send(
+                f"❌ Erreur lors du changement de mode debug: {str(e)}",
+                ephemeral=True
+            )
 
 
 async def setup(bot):

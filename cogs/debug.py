@@ -21,7 +21,16 @@ class DebugCog(commands.Cog):
         self.bot = bot
     
     async def cog_check(self, ctx):
-        """Vérifier que le mode debug est activé"""
+        """Vérifier que le mode debug est activé pour ce serveur"""
+        # Si ctx est une interaction (slash command)
+        if hasattr(ctx, 'guild_id') and ctx.guild_id:
+            try:
+                from services.guild_service import guild_service
+                guild_config = guild_service.get_guild_config(ctx.guild_id)
+                return guild_config.get('debug_enabled', False)
+            except Exception:
+                return False
+        # Fallback sur la config globale si pas de serveur
         return bot_settings.debug_enabled
     
     @app_commands.command(
@@ -320,8 +329,6 @@ class DebugCog(commands.Cog):
 
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
-    if bot_settings.debug_enabled:
-        await bot.add_cog(DebugCog(bot))
-        logger.info("✅ Cog Debug chargé")
-    else:
-        logger.info("ℹ️ Cog Debug ignoré (mode debug désactivé)")
+    # Toujours charger le cog, la vérification se fait par serveur dans cog_check
+    await bot.add_cog(DebugCog(bot))
+    logger.info("✅ Cog Debug chargé (activation par serveur via guild config)")
