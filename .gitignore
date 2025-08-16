@@ -31,8 +31,9 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Cache Python
+# Cache Python  
 __pycache__/
+*/__pycache__/
 *.py[cod]
 *$py.class
 *.so
