@@ -31,9 +31,14 @@ Thumbs.db
 *.tmp
 *.temp
 
+<<<<<<< HEAD
 # Cache Python  
 __pycache__/
 */__pycache__/
+=======
+# Cache Python
+__pycache__/
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
 *.py[cod]
 *$py.class
 *.so
@@ -107,6 +112,11 @@ private_test_*
 production_config.json
 server_settings.json
 
+<<<<<<< HEAD
 # Claude Code et GitHub privé
 /.claude
 .github/
+=======
+# Claude Code
+/.claude
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7

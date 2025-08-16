@@ -513,4 +513,8 @@ class GuildLimitsModal(discord.ui.Modal):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(ConfigCog(bot))
+<<<<<<< HEAD
     # Cog chargé silencieusement
+=======
+    logger.info("✅ Cog Config chargé")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7

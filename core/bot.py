@@ -44,7 +44,11 @@ class AegisBot(commands.Bot):
     async def setup(self):
         """Initialiser les services et charger les cogs"""
         try:
+<<<<<<< HEAD
             # Services init silencieux sauf erreurs
+=======
+            logger.info("🔧 Initialisation des services...")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Initialiser les services
             self.security_validator = SecurityValidator()
@@ -61,7 +65,11 @@ class AegisBot(commands.Bot):
                     connection_success = await supabase_client.connect()
                     if connection_success:
                         db_client = supabase_client
+<<<<<<< HEAD
                         # Supabase connecté silencieusement
+=======
+                        logger.info("✅ Supabase intégré au ReportService")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
                     else:
                         logger.warning("⚠️ Supabase activé mais connexion échouée")
                 except Exception as e:
@@ -78,12 +86,20 @@ class AegisBot(commands.Bot):
             from services.guild_service import guild_service
             self.guild_service = guild_service
             
+<<<<<<< HEAD
             # Services initialisés silencieusement
+=======
+            logger.info("✅ Services initialisés")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Charger les cogs (extensions)
             await self._load_cogs()
             
+<<<<<<< HEAD
             # Extensions chargées silencieusement
+=======
+            logger.info("🔌 Extensions chargées")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
         except Exception as e:
             logger.error(f"❌ Erreur lors de l'initialisation: {e}")
@@ -116,12 +132,25 @@ class AegisBot(commands.Bot):
         self.startup_time = datetime.utcnow()
         self.is_ready = True
         
+<<<<<<< HEAD
         # Variables pour le message final
         guild_count = len(self.guilds)
+=======
+        logger.info("=" * 50)
+        logger.info(f"🤖 {self.user} est connecté et prêt !")
+        logger.info(f"📊 Serveurs connectés: {len(self.guilds)}")
+        
+        for guild in self.guilds:
+            logger.info(f"   - {guild.name} (ID: {guild.id}, Membres: {guild.member_count})")
+        
+        logger.info(f"🌐 Langues disponibles: {list(translator.get_available_languages().keys())}")
+        logger.info("=" * 50)
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
         
         # Synchroniser les commandes slash
         try:
             synced = await self.tree.sync()
+<<<<<<< HEAD
             synced_count = len(synced)
         except Exception as e:
             logger.error(f"❌ Erreur synchronisation commandes: {e}")
@@ -129,6 +158,11 @@ class AegisBot(commands.Bot):
         
         # Message final simple et propre
         print(f"✅ {self.user} connecté - {guild_count} serveur(s) - {synced_count} commandes")
+=======
+            logger.info(f"⚡ {len(synced)} commandes slash synchronisées")
+        except Exception as e:
+            logger.error(f"❌ Erreur synchronisation commandes: {e}")
+>>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
     
     async def on_guild_join(self, guild: discord.Guild):
         """Événement: Bot rejoint un serveur"""
