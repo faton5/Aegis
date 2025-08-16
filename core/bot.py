@@ -44,7 +44,7 @@ class AegisBot(commands.Bot):
     async def setup(self):
         """Initialiser les services et charger les cogs"""
         try:
-            logger.info("🔧 Initialisation des services...")
+            # Services init silencieux sauf erreurs
             
             # Initialiser les services
             self.security_validator = SecurityValidator()
@@ -61,7 +61,7 @@ class AegisBot(commands.Bot):
                     connection_success = await supabase_client.connect()
                     if connection_success:
                         db_client = supabase_client
-                        logger.info("✅ Supabase intégré au ReportService")
+                        # Supabase connecté silencieusement
                     else:
                         logger.warning("⚠️ Supabase activé mais connexion échouée")
                 except Exception as e:
@@ -78,12 +78,12 @@ class AegisBot(commands.Bot):
             from services.guild_service import guild_service
             self.guild_service = guild_service
             
-            logger.info("✅ Services initialisés")
+            # Services initialisés silencieusement
             
             # Charger les cogs (extensions)
             await self._load_cogs()
             
-            logger.info("🔌 Extensions chargées")
+            # Extensions chargées silencieusement
             
         except Exception as e:
             logger.error(f"❌ Erreur lors de l'initialisation: {e}")
@@ -116,22 +116,19 @@ class AegisBot(commands.Bot):
         self.startup_time = datetime.utcnow()
         self.is_ready = True
         
-        logger.info("=" * 50)
-        logger.info(f"🤖 {self.user} est connecté et prêt !")
-        logger.info(f"📊 Serveurs connectés: {len(self.guilds)}")
-        
-        for guild in self.guilds:
-            logger.info(f"   - {guild.name} (ID: {guild.id}, Membres: {guild.member_count})")
-        
-        logger.info(f"🌐 Langues disponibles: {list(translator.get_available_languages().keys())}")
-        logger.info("=" * 50)
+        # Variables pour le message final
+        guild_count = len(self.guilds)
         
         # Synchroniser les commandes slash
         try:
             synced = await self.tree.sync()
-            logger.info(f"⚡ {len(synced)} commandes slash synchronisées")
+            synced_count = len(synced)
         except Exception as e:
             logger.error(f"❌ Erreur synchronisation commandes: {e}")
+            synced_count = 0
+        
+        # Message final simple et propre
+        print(f"✅ {self.user} connecté - {guild_count} serveur(s) - {synced_count} commandes")
     
     async def on_guild_join(self, guild: discord.Guild):
         """Événement: Bot rejoint un serveur"""

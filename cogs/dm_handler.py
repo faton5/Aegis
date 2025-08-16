@@ -154,4 +154,4 @@ class DMHandlerCog(commands.Cog):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(DMHandlerCog(bot))
-    logger.info("✅ Cog DMHandler chargé")
+    # Cog chargé silencieusement

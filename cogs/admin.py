@@ -585,4 +585,4 @@ class AdminCog(commands.Cog):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(AdminCog(bot))
-    logger.info("✅ Cog Admin chargé")
+    # Cog chargé silencieusement

@@ -108,4 +108,4 @@ class SetupCog(commands.Cog):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(SetupCog(bot))
-    logger.info("✅ Cog Setup chargé")
+    # Cog chargé silencieusement
