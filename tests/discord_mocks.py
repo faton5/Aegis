@@ -9,7 +9,7 @@ from typing import Optional, List, Dict, Any
 
 class MockUser:
     """Mock d'un utilisateur Discord"""
-    def __init__(self, user_id: int = 123456789, name: str = "testuser", display_name: str = "Test User"):
+    def __init__(self, user_id: int = 987654321, name: str = "testuser", display_name: str = "Test User"):
         self.id = user_id
         self.name = name
         self.display_name = display_name

@@ -55,8 +55,8 @@ async def check_database_state():
             try:
                 # Test check_user_flag
                 result = client.rpc("check_user_flag", {
-                    "check_user_id": 123456789,
-                    "requesting_guild_id": 987654321,
+                    "check_user_id": 111111111,
+                    "requesting_guild_id": 222222222,
                     "requesting_guild_name": "Test Server"
                 }).execute()
                 print("✅ Fonction check_user_flag OK")

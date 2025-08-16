@@ -1,10 +1,109 @@
+# Configuration et données sensibles
 .env
-/.claude
-/guild_configs
+.env.*
+config.json
+guild_configs.json
+guild_configs/
+*.secret
+
+# Tokens et clés
+*token*
+*key*
+*secret*
+*.pem
+*.key
+
+# Base de données
+*.db
+*.sqlite
+*.sqlite3
+database.json
+
+# Logs
+*.log
+logs/
 aegis_bot.log
-/test
-pytest.ini
-run_tests.bat
-run_tests.py
-/.pytest_cache
-/__pycache__
+
+# Fichiers temporaires système
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environnements virtuels
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Tests et coverage
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Documentation générée
+site/
+.cache/
+
+# Fichiers spécifiques Windows
+*.exe
+*.msi
+*.msm
+*.msp
+
+# Backup et fichiers temporaires
+*.bak
+*.backup
+*~
+.#*
+
+# Données de test privées
+test_data/
+private_test_*
+
+# Configuration serveur
+production_config.json
+server_settings.json
+
+# Claude Code
+/.claude

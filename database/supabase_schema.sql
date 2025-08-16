@@ -218,7 +218,7 @@ CREATE POLICY "Allow service role access" ON access_logs
 
 -- Exemple de données de test (à supprimer en production)
 -- INSERT INTO user_flags (user_id, username, flag_level, flag_reason, flag_category, flagging_guild_id, flagging_guild_name)
--- VALUES (123456789, 'testuser', 'medium', 'Suspicious behavior', 'suspicious_behavior', 987654321, 'Test Server');
+-- VALUES (111111111, 'testuser', 'medium', 'Suspicious behavior', 'suspicious_behavior', 222222222, 'Test Server');
 
 -- ====================================
 -- 9. Vues utiles (optionnel)
