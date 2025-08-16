@@ -752,7 +752,7 @@ compat.py              # Compatibilité anciens imports
 ```
 guild_configs/         # Configuration par serveur (JSON)
 ├── 123.json          # Config serveur test
-└── 1401296043504832602.json  # Config serveur prod
+└── 123456789012345678.json  # Config serveur exemple
 
 aegis_bot.log          # Logs application (UTF-8)
 ```

@@ -224,10 +224,10 @@ COMMENT ON FUNCTION add_user_flag IS 'Ajoute un nouveau flag utilisateur validé
 -- ====================================
 
 -- Test d'ajout d'un flag (optionnel - à commenter en production)
--- SELECT add_user_flag(123456789, 'testuser', 'medium', 'Test flag', 'harassment', 987654321, 'Test Server');
+-- SELECT add_user_flag(111111111, 'testuser', 'medium', 'Test flag', 'harassment', 222222222, 'Test Server');
 
 -- Test de vérification (optionnel - à commenter en production) 
--- SELECT * FROM check_user_flag(123456789, 987654321, 'Test Server');
+-- SELECT * FROM check_user_flag(111111111, 222222222, 'Test Server');
 
 -- ====================================
 -- MIGRATION TERMINÉE
