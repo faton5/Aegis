@@ -3,7 +3,8 @@
 .env.*
 config.json
 guild_configs.json
-guild_configs/
+guild_configs/*.json
+!guild_configs/123.json
 *.secret
 
 # Tokens et clés
