@@ -24,8 +24,8 @@ def setup_logging(debug_mode: bool = False) -> logging.Logger:
         sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
         sys.stderr = codecs.getwriter("utf-8")(sys.stderr.detach())
     
-    # Niveau de logging
-    log_level = logging.DEBUG if debug_mode else logging.INFO
+    # Niveau de logging - Seulement erreurs importantes par défaut
+    log_level = logging.DEBUG if debug_mode else logging.WARNING
     
     # Format des messages
     formatter = logging.Formatter(
@@ -54,10 +54,12 @@ def setup_logging(debug_mode: bool = False) -> logging.Logger:
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     
-    # Réduire le niveau des loggers externes
-    logging.getLogger('discord').setLevel(logging.WARNING)
-    logging.getLogger('discord.http').setLevel(logging.WARNING)
-    logging.getLogger('aiohttp').setLevel(logging.WARNING)
+    # Réduire le niveau des loggers externes - Seulement erreurs critiques
+    logging.getLogger('discord').setLevel(logging.ERROR)
+    logging.getLogger('discord.http').setLevel(logging.ERROR)
+    logging.getLogger('discord.gateway').setLevel(logging.ERROR)
+    logging.getLogger('aiohttp').setLevel(logging.ERROR)
+    logging.getLogger('asyncio').setLevel(logging.ERROR)
     
     return logger
 
