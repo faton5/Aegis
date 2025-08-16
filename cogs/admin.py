@@ -31,13 +31,7 @@ class AdminCog(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         
         try:
-            # Vérifier les permissions
-            if not self._check_admin_permissions(interaction):
-                await interaction.followup.send(
-                    translator.t("error_missing_permissions", interaction.guild_id),
-                    ephemeral=True
-                )
-                return
+            # /stats accessible à tous - pas de vérification permissions
             
             # Obtenir le forum d'alertes
             alerts_forum = discord.utils.get(
@@ -118,13 +112,7 @@ class AdminCog(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         
         try:
-            # Vérifier les permissions
-            if not self._check_admin_permissions(interaction):
-                await interaction.followup.send(
-                    translator.t("error_missing_permissions", interaction.guild_id),
-                    ephemeral=True
-                )
-                return
+            # /check accessible à tous - pas de vérification permissions
             
             # Vérifier si Supabase est activé
             if not bot_settings.supabase_enabled:

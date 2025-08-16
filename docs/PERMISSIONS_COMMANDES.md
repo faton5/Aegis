@@ -8,14 +8,14 @@
 |----------|-------------------|-------------------|-------------|
 | `/agis` | `Send Messages` | Aucune | Créer signalement anonyme |
 | `/categories` | `Send Messages` | Aucune | Voir catégories signalement |
+| `/stats` | `Send Messages` | Aucune | Statistiques serveur |
+| `/check` | `Send Messages` | Aucune | Vérifier utilisateur |
 
 ### 🔐 **Commandes Administration**
 
 | Commande | Permissions Discord | Permissions Serveur | Description |
 |----------|-------------------|-------------------|-------------|
 | `/setup` | `Administrator` | Admin serveur | Configuration initiale |
-| `/stats` | `Manage Messages` | Rôle Modérateur+ | Statistiques serveur |
-| `/check` | `Manage Messages` | Rôle Validateur+ | Vérifier utilisateur |
 | `/validate` | `Manage Messages` | Rôle Validateur+ | Interface validation |
 | `/purge` | `Manage Messages` | Rôle Modérateur+ | Purger anciens rapports |
 | `/config` | `Manage Guild` | Rôle Admin+ | Configuration avancée |
@@ -72,16 +72,16 @@
 - **Vérifications** : `interaction.user.guild_permissions.administrator`
 
 ### **`/stats` - Statistiques**
-- **Permission Discord** : `Manage Messages` (8192)  
-- **Permission Serveur** : Rôle "Modérateur" ou supérieur
-- **Utilisation** : Équipe modération
-- **Vérifications** : Rôles configurés dans config serveur
+- **Permission Discord** : `Send Messages` (2048)  
+- **Permission Serveur** : Aucune restriction
+- **Utilisation** : Tous les membres du serveur
+- **Vérifications** : Aucune
 
 ### **`/check` - Vérifier Utilisateur**
-- **Permission Discord** : `Manage Messages` (8192)
-- **Permission Serveur** : Rôle "Validateur" ou supérieur  
-- **Utilisation** : Équipe validation
-- **Vérifications** : Rôles `check_command_roles` dans config
+- **Permission Discord** : `Send Messages` (2048)
+- **Permission Serveur** : Aucune restriction  
+- **Utilisation** : Tous les membres du serveur
+- **Vérifications** : Aucune
 
 ### **`/validate` - Interface Validation**
 - **Permission Discord** : `Manage Messages` (8192)
