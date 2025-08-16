@@ -106,5 +106,6 @@ private_test_*
 production_config.json
 server_settings.json
 
-# Claude Code
+# Claude Code et GitHub privé
 /.claude
+.github/
