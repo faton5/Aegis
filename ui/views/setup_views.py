@@ -58,11 +58,13 @@ class SetupMainView(View):
                                f"• {chr(10).join(missing_perms)}\n\n" +
                                f"**Solution :**\n" +
                                f"Re-invitez le bot avec ce lien :\n" +
-                               f"https://discord.com/oauth2/authorize?client_id={interaction.client.user.id}&permissions=328833518672&scope=bot",
+                               f"https://discord.com/oauth2/authorize?client_id={interaction.client.user.id}&permissions=328833518672&integration_type=0&scope=bot",
                     color=discord.Color.red()
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 return
+                
+            # Permissions OK - Continuer la configuration
             # Vérifier si le forum existe déjà
             alerts_forum = discord.utils.get(
                 interaction.guild.channels, 

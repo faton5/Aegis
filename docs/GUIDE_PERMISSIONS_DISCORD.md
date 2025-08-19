@@ -12,9 +12,8 @@ Si tu vois cette erreur : `403 Forbidden (error code: 50013): Missing Permission
 
 ### **1. Utilise ce lien d'invitation :**
 ```
-https://discord.com/oauth2/authorize?client_id=TON_BOT_ID&permissions=328833518672&scope=bot
+https://discord.com/oauth2/authorize?client_id=1401300007612846090&permissions=328833518672&integration_type=0&scope=bot
 ```
-*(Remplace TON_BOT_ID par l'ID de ton bot)*
 
 ### **2. Ou donne ces permissions manuellement :**
 
@@ -55,7 +54,7 @@ Le bot vérifie maintenant automatiquement ses permissions au démarrage :
 ✅ BotName connecté - 2 serveur(s) - 9 commandes
 ✅ Permissions OK sur ServeurTest
 ⚠️ Permissions manquantes sur ServeurProblème: Manage Roles, Manage Channels
-   URL d'invitation: https://discord.com/oauth2/authorize?client_id=123456789&permissions=328833518672&scope=bot
+   URL d'invitation: https://discord.com/oauth2/authorize?client_id=1401300007612846090&permissions=328833518672&integration_type=0&scope=bot
 ```
 
 ---

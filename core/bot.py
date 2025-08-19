@@ -141,7 +141,7 @@ class AegisBot(commands.Bot):
                 missing_perms = [name for name, has_perm in critical_perms.items() if not has_perm]
                 if missing_perms:
                     print(f"⚠️ Permissions manquantes sur {guild.name}: {', '.join(missing_perms)}")
-                    print(f"   URL d'invitation: https://discord.com/oauth2/authorize?client_id={self.user.id}&permissions=328833518672&scope=bot")
+                    print(f"   URL d'invitation: https://discord.com/oauth2/authorize?client_id={self.user.id}&permissions=328833518672&integration_type=0&scope=bot")
                 else:
                     print(f"✅ Permissions OK sur {guild.name}")
     
