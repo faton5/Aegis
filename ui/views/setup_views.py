@@ -29,6 +29,40 @@ class SetupMainView(View):
         await interaction.response.defer(ephemeral=True)
         
         try:
+            # Vérifier les permissions du bot AVANT de faire quoi que ce soit
+            bot_member = interaction.guild.get_member(interaction.client.user.id)
+            if not bot_member:
+                await interaction.followup.send(
+                    "❌ Impossible de récupérer les informations du bot.", 
+                    ephemeral=True
+                )
+                return
+            
+            perms = bot_member.guild_permissions
+            missing_perms = []
+            
+            if not perms.manage_roles:
+                missing_perms.append("Gérer les rôles")
+            if not perms.manage_channels:
+                missing_perms.append("Gérer les salons")
+            if not perms.send_messages:
+                missing_perms.append("Envoyer des messages")
+            if not perms.create_public_threads:
+                missing_perms.append("Créer des fils publics")
+            
+            if missing_perms:
+                embed = discord.Embed(
+                    title="❌ Permissions manquantes",
+                    description=f"Le bot n'a pas les permissions nécessaires :\n\n" +
+                               f"**Permissions manquantes :**\n" +
+                               f"• {chr(10).join(missing_perms)}\n\n" +
+                               f"**Solution :**\n" +
+                               f"Re-invitez le bot avec ce lien :\n" +
+                               f"https://discord.com/oauth2/authorize?client_id={interaction.client.user.id}&permissions=328833518672&scope=bot",
+                    color=discord.Color.red()
+                )
+                await interaction.followup.send(embed=embed, ephemeral=True)
+                return
             # Vérifier si le forum existe déjà
             alerts_forum = discord.utils.get(
                 interaction.guild.channels, 

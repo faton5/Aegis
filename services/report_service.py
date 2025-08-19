@@ -104,10 +104,18 @@ class ReportService:
             self.uniqueness_cache[uniqueness_hash] = report.id
             
             # 8. Enregistrer dans la DB (SANS l'ID du reporter)
-            if self.db and hasattr(self.db, 'save_report'):
-                # Créer une copie anonymisée pour la DB
-                anonymized_data = report.to_dict(include_reporter_id=False)
-                await self.db.save_report_anonymized(anonymized_data)
+            if self.db and hasattr(self.db, 'add_report'):
+                # Utiliser la nouvelle méthode add_report
+                await self.db.add_report(
+                    target_user_id=target_user_id,
+                    target_username=target_username,
+                    reason=reason,
+                    category=category,
+                    guild_id=guild_id,
+                    guild_name=guild_name,
+                    reporter_hash=reporter_hash,
+                    uniqueness_hash=uniqueness_hash
+                )
             
             logger.info(f"✅ Signalement anonyme créé: {report.id} dans guild {guild_id}")
             logger.debug(f"Hash reporter: {reporter_hash[:8]}... Hash unicité: {uniqueness_hash[:8]}...")

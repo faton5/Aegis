@@ -44,11 +44,6 @@ class AegisBot(commands.Bot):
     async def setup(self):
         """Initialiser les services et charger les cogs"""
         try:
-<<<<<<< HEAD
-            # Services init silencieux sauf erreurs
-=======
-            logger.info("🔧 Initialisation des services...")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Initialiser les services
             self.security_validator = SecurityValidator()
@@ -57,19 +52,15 @@ class AegisBot(commands.Bot):
                 time_window=3600  # 1 heure
             )
             
-            # Intégrer Supabase si activé
+            # Intégrer Supabase si activé avec nouvelle structure
             db_client = None
             if bot_settings.supabase_enabled:
                 try:
-                    from database.supabase_client import supabase_client
-                    connection_success = await supabase_client.connect()
+                    from database.supabase_client_new import supabase_client_new
+                    connection_success = await supabase_client_new.connect()
                     if connection_success:
-                        db_client = supabase_client
-<<<<<<< HEAD
+                        db_client = supabase_client_new
                         # Supabase connecté silencieusement
-=======
-                        logger.info("✅ Supabase intégré au ReportService")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
                     else:
                         logger.warning("⚠️ Supabase activé mais connexion échouée")
                 except Exception as e:
@@ -86,20 +77,10 @@ class AegisBot(commands.Bot):
             from services.guild_service import guild_service
             self.guild_service = guild_service
             
-<<<<<<< HEAD
-            # Services initialisés silencieusement
-=======
-            logger.info("✅ Services initialisés")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Charger les cogs (extensions)
             await self._load_cogs()
             
-<<<<<<< HEAD
-            # Extensions chargées silencieusement
-=======
-            logger.info("🔌 Extensions chargées")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
         except Exception as e:
             logger.error(f"❌ Erreur lors de l'initialisation: {e}")
@@ -132,37 +113,37 @@ class AegisBot(commands.Bot):
         self.startup_time = datetime.utcnow()
         self.is_ready = True
         
-<<<<<<< HEAD
-        # Variables pour le message final
-        guild_count = len(self.guilds)
-=======
-        logger.info("=" * 50)
-        logger.info(f"🤖 {self.user} est connecté et prêt !")
-        logger.info(f"📊 Serveurs connectés: {len(self.guilds)}")
-        
-        for guild in self.guilds:
-            logger.info(f"   - {guild.name} (ID: {guild.id}, Membres: {guild.member_count})")
-        
-        logger.info(f"🌐 Langues disponibles: {list(translator.get_available_languages().keys())}")
-        logger.info("=" * 50)
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
         
         # Synchroniser les commandes slash
         try:
             synced = await self.tree.sync()
-<<<<<<< HEAD
             synced_count = len(synced)
         except Exception as e:
             logger.error(f"❌ Erreur synchronisation commandes: {e}")
             synced_count = 0
         
-        # Message final simple et propre
-        print(f"✅ {self.user} connecté - {guild_count} serveur(s) - {synced_count} commandes")
-=======
-            logger.info(f"⚡ {len(synced)} commandes slash synchronisées")
-        except Exception as e:
-            logger.error(f"❌ Erreur synchronisation commandes: {e}")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
+        # Message final avec infos permissions
+        print(f"✅ {self.user} connecté - {len(self.guilds)} serveur(s) - {synced_count} commandes")
+        
+        # Vérifier les permissions critiques
+        for guild in self.guilds:
+            bot_member = guild.get_member(self.user.id)
+            if bot_member:
+                perms = bot_member.guild_permissions
+                critical_perms = {
+                    "Manage Roles": perms.manage_roles,
+                    "Manage Channels": perms.manage_channels, 
+                    "Send Messages": perms.send_messages,
+                    "Create Public Threads": perms.create_public_threads,
+                    "Embed Links": perms.embed_links
+                }
+                
+                missing_perms = [name for name, has_perm in critical_perms.items() if not has_perm]
+                if missing_perms:
+                    print(f"⚠️ Permissions manquantes sur {guild.name}: {', '.join(missing_perms)}")
+                    print(f"   URL d'invitation: https://discord.com/oauth2/authorize?client_id={self.user.id}&permissions=328833518672&scope=bot")
+                else:
+                    print(f"✅ Permissions OK sur {guild.name}")
     
     async def on_guild_join(self, guild: discord.Guild):
         """Événement: Bot rejoint un serveur"""
