@@ -34,7 +34,8 @@ class ReportService:
                           category: str,
                           reason: str,
                           evidence: str = "",
-                          target_user_id: int = None) -> Optional[Report]:
+                          target_user_id: int = None,
+                          guild_name: Optional[str] = None) -> Optional[Report]:
         """
         Créer un nouveau signalement avec système anti-abus anonyme
         
@@ -112,7 +113,7 @@ class ReportService:
                     reason=reason,
                     category=category,
                     guild_id=guild_id,
-                    guild_name=guild_name,
+                    guild_name=guild_name or "Unknown",
                     reporter_hash=reporter_hash,
                     uniqueness_hash=uniqueness_hash
                 )

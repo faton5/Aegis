@@ -167,7 +167,41 @@ class SupabaseClientNew:
         except Exception as e:
             logger.error(f"❌ Erreur validate_report: {e}")
             return False
+
+    async def update_report(self, report) -> bool:
+        """Compatibilité: met à jour un rapport à partir de l'objet Report.
+        Redirige vers validate_report du nouveau client.
+        """
+        try:
+            if not self.is_connected:
+                return False
+            report_id = getattr(report, 'id', None)
+            status = getattr(report, 'status', 'pending')
+            validator_id = getattr(report, 'validated_by', 0) or 0
+            if not report_id:
+                return False
+            return await self.validate_report(report_id=report_id, validator_id=validator_id, status=status)
+        except Exception as e:
+            logger.error(f"Erreur update_report (shim compat): {e}")
+            return False
     
+    async def add_validated_report(self, user_id: int, username: str,
+                                   reason: str, category: str,
+                                   guild_id: int, guild_name: str) -> dict:
+        """Compat: méthode legacy appelée par certaines vues.
+        Le flux officiel passe par validate_report; on renvoie un succès neutre
+        pour éviter les doubles insertions et garder la compatibilité UI.
+        """
+        try:
+            logger.info("Compat add_validated_report: géré via validate_report/update_report.")
+            # Optionnel: recalculer les flags utilisateur si ID fourni
+            if user_id:
+                await self._update_user_flags(user_id=user_id, username=username, guild_name=guild_name)
+            return {"success": True, "new_level": "", "new_active_flags": 0}
+        except Exception as e:
+            logger.error(f"Erreur compat add_validated_report: {e}")
+            return {"success": False, "error": str(e)}
+
     async def get_guild_stats(self, guild_id: int, days: int = 30) -> Optional[Dict]:
         """Obtenir les statistiques d'un serveur"""
         if not self.is_connected:
