@@ -129,8 +129,3 @@ class ReportsCog(commands.Cog):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(ReportsCog(bot))
-<<<<<<< HEAD
-    # Cog chargé silencieusement
-=======
-    logger.info("✅ Cog Reports chargé")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7

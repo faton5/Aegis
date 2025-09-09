@@ -91,7 +91,8 @@ class AgisReportModal(Modal):
                 target_user_id=target_user_id,  # Nouveau paramètre
                 category=self.category,
                 reason=reason,
-                evidence=evidence
+                evidence=evidence,
+                guild_name=(interaction.guild.name if interaction.guild and interaction.guild.name else "Unknown")
             )
             
             if not report:

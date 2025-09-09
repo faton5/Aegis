@@ -31,17 +31,6 @@ class AdminCog(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         
         try:
-<<<<<<< HEAD
-            # /stats accessible à tous - pas de vérification permissions
-=======
-            # Vérifier les permissions
-            if not self._check_admin_permissions(interaction):
-                await interaction.followup.send(
-                    translator.t("error_missing_permissions", interaction.guild_id),
-                    ephemeral=True
-                )
-                return
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Obtenir le forum d'alertes
             alerts_forum = discord.utils.get(
@@ -122,17 +111,6 @@ class AdminCog(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         
         try:
-<<<<<<< HEAD
-            # /check accessible à tous - pas de vérification permissions
-=======
-            # Vérifier les permissions
-            if not self._check_admin_permissions(interaction):
-                await interaction.followup.send(
-                    translator.t("error_missing_permissions", interaction.guild_id),
-                    ephemeral=True
-                )
-                return
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
             
             # Vérifier si Supabase est activé
             if not bot_settings.supabase_enabled:
@@ -165,7 +143,7 @@ class AdminCog(commands.Cog):
             supabase_flag = None
             if hasattr(self.bot.report_service, 'db') and self.bot.report_service.db:
                 try:
-                    supabase_flag = await self.bot.report_service.db.check_user_flag(
+                    supabase_flag = await self.bot.report_service.db.check_user(
                         user.id, 
                         interaction.guild_id,
                         interaction.guild.name
@@ -605,8 +583,3 @@ class AdminCog(commands.Cog):
 async def setup(bot):
     """Fonction appelée lors du chargement du cog"""
     await bot.add_cog(AdminCog(bot))
-<<<<<<< HEAD
-    # Cog chargé silencieusement
-=======
-    logger.info("✅ Cog Admin chargé")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7

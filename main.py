@@ -21,42 +21,25 @@ async def main():
     
     # Configuration du logging
     logger = setup_logging(debug_mode=bot_settings.debug_enabled)
-<<<<<<< HEAD
     
-    # Message simple de démarrage
+    # Messages de démarrage informatifs
     print("🤖 Démarrage d'Aegis Bot...")
+    print("📋 Vérification de la configuration...")
     
     # Validation de la configuration
     if not validate_config():
         print("❌ Erreur de configuration. Arrêt du bot.")
         return 1
+        
+    print("✅ Configuration validée")
+    print("🔌 Connexion à Discord...")
     
-=======
-    logger.info("=" * 50)
-    logger.info("🤖 Démarrage d'Aegis Bot (Version Refactorisée)")
-    logger.info("=" * 50)
-    
-    # Validation de la configuration
-    if not validate_config():
-        logger.error("❌ Erreur de configuration. Arrêt du bot.")
-        return 1
-    
-    logger.info(f"✅ Configuration validée")
-    logger.info(f"🔧 Mode test: {'Activé' if bot_settings.test_mode_enabled else 'Désactivé'}")
-    logger.info(f"🔧 Mode debug: {'Activé' if bot_settings.debug_enabled else 'Désactivé'}")
-    logger.info(f"🗃️  Supabase: {'Activé' if bot_settings.supabase_enabled else 'Désactivé'}")
-    
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
     try:
         # Créer et démarrer le bot
         bot = AegisBot()
         await bot.setup()
         
-<<<<<<< HEAD
         # Pas de message ici - sera affiché dans on_ready
-=======
-        logger.info("🚀 Bot initialisé avec succès")
->>>>>>> a512c3414221258fe8b4b13148490d4f0b66e5d7
         
         # Démarrer le bot
         await bot.start(bot_settings.token)
