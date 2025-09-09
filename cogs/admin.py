@@ -39,14 +39,11 @@ class AdminCog(commands.Cog):
             )
             
             if not alerts_forum:
-                await interaction.followup.send(
-                    translator.t("admin_alerts_forum_not_found", interaction.guild_id),
-                    ephemeral=True
-                )
-                return
-            
-            # Calculer les statistiques
-            stats = await self._calculate_stats(alerts_forum, period or 7)
+                logger.warning("Forum d'alertes non trouvé; stats forum indisponibles.")
+                stats = {'total': 0, 'validated': 0, 'pending': 0}
+            else:
+                # Calculer les statistiques
+                stats = await self._calculate_stats(alerts_forum, period or 7)
             
             # Créer l'embed
             embed = discord.Embed(
@@ -70,9 +67,25 @@ class AdminCog(commands.Cog):
                 name="⏳ En attente", 
                 value=str(stats['pending']), 
                 inline=True
-            )
+            ) 
             
-            # Statistiques du bot si disponibles
+            # Statistiques Supabase (si disponibles)
+            try:
+                db_client = getattr(getattr(self.bot, 'report_service', None), 'db', None)
+                if bot_settings.supabase_enabled and db_client and hasattr(db_client, 'get_guild_stats'):
+                    supa = await db_client.get_guild_stats(interaction.guild_id, period or 7)
+                    if supa:
+                        embed.add_field(name="Vérifications", value=str(supa.get('total_checks', 0)), inline=True)
+                        embed.add_field(name="Utilisateurs flaggés actifs", value=str(supa.get('active_flagged_users', 0)), inline=True)
+                        embed.add_field(name="Flags créés (serveur)", value=str(supa.get('flags_created_by_guild', 0)), inline=True)
+                        lb = supa.get('level_breakdown') or {}
+                        if isinstance(lb, dict) and lb:
+                            parts = [f"{k}: {v}" for k, v in lb.items()]
+                            embed.add_field(name="Niveaux", value=", ".join(parts)[:1024] or "N/A", inline=False)
+            except Exception as e:
+                logger.warning(f"Impossible de récupérer les stats Supabase: {e}")
+            
+            # Statistiques du bot si disponibles 
             if hasattr(self.bot, 'report_service'):
                 active_reports = len(self.bot.report_service.active_reports)
                 embed.add_field(
